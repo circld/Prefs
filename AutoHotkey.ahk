@@ -44,31 +44,31 @@ GL_func(is_prod)
     }
     if(%id_name% == "")
     {
-	if(%id_other% != "")
-	{
-            temp := %id_other%
-	    WinMinimize, ahk_id %temp%
-	}
-        Run, %path%
-        SetTitleMatchMode, 2
-	SetTitleMatchMode RegEx
-        WinWaitActive, .*\.SPF.*,,20
-        if ErrorLevel
-             MsgBox, Didn't work
-        else
-	{
-            WinGet, %id_name%, ID, A
-            WinRestore
-            temp := %id_name%
-            WinMove, ahk_id %temp%,, pos_x, 0, 960, 1200
+        if(%id_other% != "")
+        {
+                temp := %id_other%
+            WinMinimize, ahk_id %temp%
         }
-	if(%id_other% != "")
-	{
-            temp := %id_other%
-	    WinRestore, ahk_id %temp%
-            temp := %id_name%
-            WinActivate, ahk_id %temp%
-	}
+            Run, %path%
+            SetTitleMatchMode, 2
+        SetTitleMatchMode RegEx
+            WinWaitActive, .*\.SPF.*,,20
+            if ErrorLevel
+                 MsgBox, Didn't work
+            else
+        {
+                WinGet, %id_name%, ID, A
+                WinRestore
+                temp := %id_name%
+                WinMove, ahk_id %temp%,, pos_x, 0, 960, 1200
+        }
+        if(%id_other% != "")
+        {
+                temp := %id_other%
+            WinRestore, ahk_id %temp%
+                temp := %id_name%
+                WinActivate, ahk_id %temp%
+        }
     }
     else
     {
@@ -117,7 +117,7 @@ return
 
 LShift & WheelDown::  ; Scroll right.
     SetTitleMatchMode, 2
-    IfWinActive, Microsoft Excel -
+    IfWinActive, - Excel
     {
         ;SetScrollLockState, on
         send,{right}
@@ -135,26 +135,6 @@ LShift & WheelDown::  ; Scroll right.
 	Loop 10  ; <-- Increase this value to scroll faster.
 		SendMessage, 0x114, 1, 0, %fcontrol%, A  ; 0x114 is WM_HSCROLL and the 1 after it is SB_LINERIGHT.
 	}
-return
-
-;Spyder
-#a::
-    SetTitleMatchMode, 2
-    IfWinExist, Spyder (Python
-    {
-        IfWinActive, Spyder
-        {
-            WinMinimize, Spyder (Python
-        }
-        else
-        {
-            WinActivate, Spyder (Python
-        }
-    }
-    else
-    {
-    Run, C:\Users\pgaraud\AppData\Local\Continuum\Anaconda\pythonw.exe "C:\Users\pgaraud\AppData\Local\Continuum\Anaconda\Scripts/spyder-script.py"
-    }
 return
 
 ; PIDGIN CHAT WINDOW SHORTCUT
@@ -182,47 +162,60 @@ return
 
 #`;::  ; Activates/minimizes Excel or opens it if not open
     SetTitleMatchMode, 2
-    IfWinExist, Microsoft Excel
+    IfWinExist, - Excel
     {
-        IfWinActive, Microsoft Excel
+        IfWinActive, - Excel
         {
-            WinMinimize, Microsoft Excel
+            WinMinimize, - Excel
         }
         else
         {
-            WinActivate, Microsoft Excel
+            WinActivate, - Excel
         }
     }
     else
     {
-    Run, C:\Program Files\Microsoft Office\Office14\EXCEL.EXE
+    Run, "C:\Program Files\Microsoft Office 15\root\office15\EXCEL.EXE"
+    }
+return
+
+; gVim
+#v::
+    SetTitleMatchMode, 2
+    IfWinExist, - GVIM
+    {
+        IfWinActive, - GVIM
+        {
+            WinMinimize, - GVIM
+        }
+        else
+        {
+            WinActivate, - GVIM
+        }
     }
 return
 
 ; TOGGLE MINIMIZING A WINDOW
 
 #m::
-    global LastWindowID
     LastWindowID := ""
     WinGet, LastWindowID, ID, A
     WinMinimize, A
 return
 
 +#m:: 
-    global LastWindowID
     WinActivate, ahk_id %LastWindowID%
 return
 
 ; GL DAILY & PRODUCTION WINDOW MANIPULATION
 
 ; DAILY
-#`::  GL_func(0)
+;#`::  GL_func(0)
 
 ; PRODUCTION
-+#`::  GL_func(1)
+;+#`::  GL_func(1)
 
 +#5::
-    global ActiveID
     WinGet, ActiveID, ID, A
     WinGetActiveTitle, Title
     MsgBox, The active window is "%Title%".
@@ -230,14 +223,14 @@ return
 return
 
 ; SnagIt
-#IfWinNotExist, ahk_class SnagIt5UI
-PrintScreen::
-    {
-    Run, C:\Program Files (x86)\TechSmith\SnagIt 8\SnagIt32.exe
-    WinWait, ahk_class SnagIt5UI,,10
-    Send {PrintScreen}
-    }
-return
+;#IfWinNotExist, ahk_class SnagIt5UI
+;PrintScreen::
+;    {
+;    Run, C:\Program Files (x86)\TechSmith\SnagIt 8\SnagIt32.exe
+;    WinWait, ahk_class SnagIt5UI,,10
+;    Send {PrintScreen}
+;    }
+;return
 
 ; Windows Explorer
 #IfWinExist, ahk_class CabinetWClass
@@ -251,6 +244,7 @@ return
         WinActivate, ahk_class CabinetWClass
     }
 return
+
 
 ; Note: From now on whenever you run AutoHotkey directly, this script
 ; will be loaded.  So feel free to customize it to suit your needs.
