@@ -143,13 +143,13 @@ return
     SetTitleMatchMode, 2
     IfWinExist,, Pidgin, Buddy List
     {
-        IfWinActive,, Pidgin, Buddy List
+        IfWinNotActive,, Pidgin, Buddy List
         {
-            WinMinimize,, Pidgin, Buddy List
+            WinActivate,, Pidgin, Buddy List
         }
         else
         {
-            WinActivate,, Pidgin, Buddy List
+            WinMinimize,, Pidgin, Buddy List
         }
     }
     else
@@ -165,7 +165,7 @@ return
     {
         IfWinNotActive, - Remote Desktop Connection
         {
-            WinMaximize, - Remote Desktop Connection
+            WinActivate, - Remote Desktop Connection
         }
         else
         {
