@@ -158,9 +158,41 @@ return
     }
 return
 
+; RDP WINDOW MANIPULATION
+#`::
+    SetTitleMatchMode, 2
+    IfWinExist, - Remote Desktop Connection
+    {
+        IfWinNotActive, - Remote Desktop Connection
+        {
+            WinMaximize, - Remote Desktop Connection
+        }
+        else
+        {
+            WinMinimize, - Remote Desktop Connection
+        }
+    }
+    else
+    {
+        SetTitleMatchMode, RegEx
+        Run, "C:\Program Files (x86)\Cisco Systems\VPN Client\vpngui.exe"
+        WinWaitActive, .*status:.*VPN Client.*,,20
+        IfWinExist, .*status: Connected.*VPN.*
+        {
+            WinClose
+            Run, "%windir%\system32\mstsc.exe"
+        }
+        else
+        {
+            WinWaitClose , .*status:.*VPN Client.*,,120
+	    Run, "%windir%\system32\mstsc.exe"
+        }
+    }
+return
+
 ; EXCEL WINDOW MANIPULATION
 
-#`;::  ; Activates/minimizes Excel or opens it if not open
+#;::  ; Activates/minimizes Excel or opens it if not open
     SetTitleMatchMode, 2
     IfWinExist, - Excel
     {
