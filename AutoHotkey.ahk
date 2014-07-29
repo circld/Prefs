@@ -95,7 +95,7 @@ GL_func(is_prod)
 
 LShift & WheelUp::  ; Scroll left.
     SetTitleMatchMode, 2
-    IfWinActive, Microsoft Excel -
+    IfWinActive, - Excel
     {
         ;SetScrollLockState, on
         send,{left}
