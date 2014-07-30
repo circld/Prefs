@@ -100,6 +100,7 @@ map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 set nu  " line numbering
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+map Y y$
 
 syntax on
 " set t_Co=256
