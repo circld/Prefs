@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<!-- Console2 Solarized color scheme; colors rearranged so that Console 2 and VIM would play nice -->
 <settings>
-	<console change_refresh="10" refresh="100" rows="63" columns="78" buffer_rows="500" buffer_columns="0" shell="&quot;C:\Program Files (x86)\Git\bin\sh.exe&quot; --login -i" init_dir="C:\Users\pgaraud" start_hidden="0" save_size="1">
+	<console change_refresh="10" refresh="100" rows="51" columns="101" buffer_rows="500" buffer_columns="0" shell="&quot;C:\Program Files (x86)\Git\bin\sh.exe&quot; --login -i" init_dir="C:\Users\Paul" start_hidden="0" save_size="1">
 		<colors>
 			<color id="0" r="7" g="54" b="66"/>
 			<!-- black -->
