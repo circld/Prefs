@@ -101,6 +101,8 @@ set nu
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
+inoremap <CR> <Esc>
+inoremap <S-CR> <CR>
 
 " swap split windows & maximize
 map <C-J> <C-W>j<C-W>_
