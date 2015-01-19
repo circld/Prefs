@@ -1,0 +1,14 @@
+" avoid error bells
+set visualbell
+set noerrorbells
+
+" mappings from vimrc file
+map <Enter> o<Esc>
+map <S-Enter> O<Esc>
+map Y y$
+inoremap <C-c> <Esc>
+nnoremap <C-c> :noh<Enter><Esc>
+
+" remap <Leader> key (note: may not work in consoles! Default: \)
+let mapleader=" "
+set autochdir

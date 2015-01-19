@@ -96,6 +96,7 @@ if !exists(":DiffOrig")
 endif
 
 " Set various additional settings
+set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
 map <Enter> o<Esc>
