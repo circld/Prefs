@@ -1,0 +1,8 @@
+map Y y$
+map <Enter> o<Esc>
+map <S-Enter> O<Esc>
+map cc ^C
+inoremap <C-c> <Esc>
+nnoremap <C-c> :noh<Enter><Esc>
+let mapleader=" "
+set noerrorbells
