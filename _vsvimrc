@@ -1,6 +1,6 @@
 map Y y$
-map <Enter> o<Esc>
-map <S-Enter> O<Esc>
+map <Enter> o<BS><tab><Esc>
+map <S-Enter> O<BS><tab><Esc>
 map cc ^C
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
