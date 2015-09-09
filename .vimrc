@@ -118,7 +118,7 @@ map <C-K> <C-W>k<C-W>_
 set wmh=0  " set stacked height to 0 by default
 
 " close split window below
-map <leader>d <C-W>j :bd <Enter>
+map <leader>x <C-W>j :bd <Enter>
 
 set autochdir
 
@@ -178,7 +178,8 @@ let g:pymode_lint_checker="pyflakes,pep8"
 
 " Auto check on save
 let g:pymode_lint_write=1
- 
+let g:pymode_lint_cwindow=0
+
 let g:pymode_virtualenv=0
  
 " Enable breakpoints
