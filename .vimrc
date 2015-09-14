@@ -111,6 +111,7 @@ set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
 set laststatus=2
+set splitbelow
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
