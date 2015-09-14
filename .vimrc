@@ -110,6 +110,7 @@ set foldlevel=99
 set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
+set laststatus=2
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
@@ -230,6 +231,3 @@ set completeopt=menuone,longest,preview
 " Command-T
 let g:CommandTAcceptSelectionMap='<C-CR>'
 let g:CommandTAcceptSelectionSplitMap='<CR>'
-
-" Ack
-nmap <leader>a <Esc>:Ack!
