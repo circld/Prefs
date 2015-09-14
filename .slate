@@ -21,7 +21,8 @@ bind left:ctrl;cmd   push left  bar-resize:screenSizeX/2
 # Vertical split 3
 bind right:ctrl;alt;cmd  push right bar-resize:screenSizeX/3
 bind left:ctrl;alt;cmd   push left  bar-resize:screenSizeX/3
-bind up:ctrl;alt;cmd   move screenSizeX/3;0 screenSizeX/3;screenSizeY
+bind down:ctrl;alt;cmd   move screenSizeX/3;0 screenSizeX/3;screenSizeY
+bind up:ctrl;alt;cmd move 0;0 screenSizeX;screenSizeY
 # Horizontal split
 bind up:ctrl;cmd     push up    bar-resize:screenSizeY/2
 bind down:ctrl;cmd   push down  bar-resize:screenSizeY/2

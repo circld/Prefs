@@ -10,8 +10,10 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 " Pathogen (package/module management)
+filetype off
 execute pathogen#infect()
 execute pathogen#helptags()
+filetype on
 
 " remap <Leader> key (note: may not work in consoles! Default: \)
 let mapleader=" "
@@ -39,7 +41,7 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+" let &guioptions=substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -103,6 +105,8 @@ if !exists(":DiffOrig")
 endif
 
 " Set various additional settings
+set foldmethod=indent
+set foldlevel=99
 set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
@@ -117,8 +121,13 @@ map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 set wmh=0  " set stacked height to 0 by default
 
+" split windows set to equal
+map <leader>=  <C-W>= 
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+
 " close split window below
-map <leader>x <C-W>j :bd <Enter>
+map <leader>x :close <Enter>
 
 set autochdir
 
@@ -165,8 +174,8 @@ if has("autocmd")
 endif " has("autocmd")
 
 " Python-mode
-" disabled for Jedi vim
-let g:pymode_rope=0
+" rope completion disabled for Jedi vim
+let g:pymode_rope_completion=0
  
 " Documentation
 let g:pymode_doc=1
@@ -197,15 +206,7 @@ let g:pymode_folding=0
  
 " turn on pymode_run
 let g:pymode_run=1
-let g:pymode_run_bind ='<leader>r'
-
-" Powerline (last try!)
-" set rtp+=/c/Users/Paul/vimfiles/bundle/powerline/powerline/bindings/vim/plugin
-" set encoding=utf-8
-" set t_Co=256
-" set laststatus=2
-" set guifont=Inconsolata\ for\ Powerline\ 12
-" let g:Powerline_symbols = 'fancy'
+let g:pymode_run_bind='<S-R>'
 
 augroup vimrc_autocmds
     autocmd!
@@ -214,3 +215,21 @@ augroup vimrc_autocmds
     autocmd FileType python match Excess /\%80v.*/
     autocmd FileType python set nowrap
 augroup END
+
+" TaskList settings
+map <leader>l <Plug>TaskList
+
+" Gundo
+map <leader>z :GundoToggle<Enter>
+let g:gundo_close_on_revert=1
+
+" SuperTab
+let g:SuperTabDefaultCompletionType="context"
+set completeopt=menuone,longest,preview
+
+" Command-T
+let g:CommandTAcceptSelectionMap='<C-CR>'
+let g:CommandTAcceptSelectionSplitMap='<CR>'
+
+" Ack
+nmap <leader>a <Esc>:Ack!
