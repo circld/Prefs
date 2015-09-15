@@ -4,6 +4,7 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 cd ~/.vim && git init
 
 # install vim plugins
+git submodule add https://github.com/klen/python-mode bundle/python-mode
 git submodule add http://github.com/tpope/vim-fugitive.git bundle/fugitive
 git submodule add https://github.com/msanders/snipmate.vim.git bundle/snipmate
 git submodule add https://github.com/tpope/vim-surround.git bundle/surround
