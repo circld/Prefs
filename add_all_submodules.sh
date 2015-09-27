@@ -19,7 +19,7 @@ git submodule add https://github.com/alfredodeza/pytest.vim.git bundle/py.test
 git submodule add https://github.com/reinh/vim-makegreen bundle/makegreen
 git submodule add https://github.com/vim-scripts/TaskList.vim.git bundle/tasklist
 git submodule add https://github.com/vim-scripts/The-NERD-tree.git bundle/nerdtree
-git submodule add https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline.git bundle/vim-airline
+git submodule add https://github.com/bling/vim-airline bundle/vim-airline.git bundle/vim-airline
 git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
 
 # finish submodule config
