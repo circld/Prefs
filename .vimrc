@@ -9,6 +9,11 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
 
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first (and before pathogen calls), because it changes other 
+" options as a side effect.
+set nocompatible
+
 " Pathogen (package/module management)
 filetype off
 execute pathogen#infect()
@@ -22,10 +27,6 @@ let mapleader=" "
 if v:progname =~? "evim"
   finish
 endif
-
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
