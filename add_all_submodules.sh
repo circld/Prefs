@@ -5,7 +5,7 @@ cd ~/.vim && git init
 
 # install vim plugins
 git submodule add https://github.com/klen/python-mode bundle/python-mode
-git submodule add http://github.com/tpope/vim-fugitive.git bundle/fugitive
+git submodule add https://github.com/tpope/vim-fugitive.git bundle/fugitive
 git submodule add https://github.com/msanders/snipmate.vim.git bundle/snipmate
 git submodule add https://github.com/tpope/vim-surround.git bundle/surround
 git submodule add https://github.com/tpope/vim-git.git bundle/git
@@ -21,6 +21,7 @@ git submodule add https://github.com/vim-scripts/TaskList.vim.git bundle/tasklis
 git submodule add https://github.com/vim-scripts/The-NERD-tree.git bundle/nerdtree
 git submodule add https://github.com/bling/vim-airline bundle/vim-airline.git bundle/vim-airline
 git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
+git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 
 # finish submodule config
 git submodule init
