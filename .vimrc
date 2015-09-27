@@ -234,3 +234,12 @@ set completeopt=menuone,longest,preview
 " Command-T
 let g:CommandTAcceptSelectionMap='<C-CR>'
 let g:CommandTAcceptSelectionSplitMap='<CR>'
+
+" Airline
+let g:airline#extensions#tabline#enabled=1
+" apply different themes based on OS
+if has("win32")
+    let g:airline_theme='zenburn'
+else
+    let g:airline_theme='behelit'
+endif
