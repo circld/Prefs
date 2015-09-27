@@ -212,6 +212,9 @@ let g:pymode_folding=0
 let g:pymode_run=1
 let g:pymode_run_bind='<S-R>'
 
+" map pymode rename
+let g:pymode_rope_rename_bind = '<leader>r'
+
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 80
