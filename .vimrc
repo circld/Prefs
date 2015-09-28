@@ -10,7 +10,7 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 " Use Vim settings, rather than Vi settings (much better!).
-" This must be first (and before pathogen calls), because it changes other 
+" This must be first (and before pathogen calls), because it changes other
 " options as a side effect.
 set nocompatible
 
@@ -102,7 +102,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+     \ | wincmd p | diffthis
 endif
 
 " Set various additional settings
@@ -126,7 +126,7 @@ map <C-K> <C-W>k<C-W>_
 set wmh=0  " set stacked height to 0 by default
 
 " split windows set to equal
-map <leader>=  <C-W>= 
+map <leader>=  <C-W>=
 map <leader>j <C-W>j
 map <leader>k <C-W>k
 
@@ -180,11 +180,11 @@ endif " has("autocmd")
 " Python-mode
 " rope completion disabled for Jedi vim
 let g:pymode_rope_completion=0
- 
+
 " Documentation
 let g:pymode_doc=1
 let g:pymode_doc_key='K'
- 
+
 " " Lint
 let g:pymode_lint=1
 let g:pymode_lint_checker="pyflakes,pep8"
@@ -194,23 +194,26 @@ let g:pymode_lint_write=1
 let g:pymode_lint_cwindow=0
 
 let g:pymode_virtualenv=0
- 
+
 " Enable breakpoints
 let g:pymode_breakpoint=1
 let g:pymode_breakpoint_key='<leader>b'
- 
+
 " syntax highlighting
 let g:pymode_syntax=1
 let g:pymode_syntax_all=1
 let g:pymode_indent_errors=g:pymode_syntax_all
 let g:pymode_space_errors=g:pymode_syntax_all
- 
+
 " turn off autofolding
 let g:pymode_folding=0
- 
+
 " turn on pymode_run
 let g:pymode_run=1
 let g:pymode_run_bind='<S-R>'
+
+" map pymode rename
+let g:pymode_rope_rename_bind = '<leader>r'
 
 augroup vimrc_autocmds
     autocmd!
