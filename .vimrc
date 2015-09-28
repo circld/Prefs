@@ -133,6 +133,9 @@ map <leader>k <C-W>k
 " close split window below
 map <leader>x :close <Enter>
 
+" highlight hql files as sql
+au BufNewFile,BufRead *.hql set filetype=sql
+
 set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)
