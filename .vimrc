@@ -117,6 +117,7 @@ set nobackup
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
+nnoremap = <C-w>=
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
 
@@ -238,8 +239,16 @@ let g:SuperTabDefaultCompletionType="context"
 set completeopt=menuone,longest,preview
 
 " Command-T
-let g:CommandTAcceptSelectionMap='<C-CR>'
-let g:CommandTAcceptSelectionSplitMap='<CR>'
+" let g:CommandTAcceptSelectionMap='<C-CR>'
+" let g:CommandTAcceptSelectionSplitMap='<CR>'
+
+" CtrlP
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-v>'],
+    \ 'AcceptSelection("h")': ['<cr>'],
+    \ }
 
 " Airline
 let g:airline#extensions#tabline#enabled=1

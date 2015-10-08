@@ -10,7 +10,8 @@ git submodule add https://github.com/ervandew/snipmate.vim.git bundle/snipmate
 git submodule add https://github.com/tpope/vim-surround.git bundle/surround
 git submodule add https://github.com/tpope/vim-git.git bundle/git
 git submodule add https://github.com/ervandew/supertab.git bundle/supertab
-git submodule add https://github.com/wincent/Command-T.git bundle/command-t
+# git submodule add https://github.com/wincent/Command-T.git bundle/command-t
+git submodule add https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 git submodule add https://github.com/mitechie/pyflakes-pathogen.git
 git submodule add https://github.com/sjl/gundo.vim.git bundle/gundo
 git submodule add https://github.com/fs111/pydoc.vim.git bundle/pydoc
