@@ -106,6 +106,7 @@ if !exists(":DiffOrig")
 endif
 
 " Set various additional settings
+set previewheight=50
 set foldmethod=indent
 set foldlevel=99
 set noerrorbells
@@ -185,8 +186,7 @@ endif " has("autocmd")
 let g:pymode_rope_completion=0
 
 " Documentation
-let g:pymode_doc=1
-let g:pymode_doc_key='K'
+let g:pymode_doc=0
 
 " " Lint
 let g:pymode_lint=1
@@ -220,11 +220,16 @@ let g:pymode_rope_rename_bind = '<leader>r'
 
 augroup vimrc_autocmds
     autocmd!
-    " highlight characters past column 80
+    " highlight characters past column 80 (can mess with pop-up prompts)
     autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Yellow
-    autocmd FileType python match Excess /\%80v.*/
+    " autocmd FileType python match Excess /\%80v.*/
     autocmd FileType python set nowrap
 augroup END
+
+" jedi-vim
+let g:jedi#show_call_signatures = 1
+let g:jedi#documentation_command = '<S-K>'
+let g:jedi#use_splits_not_buffers = 'top'
 
 " TaskList settings
 map <leader>l <Plug>TaskList
@@ -234,8 +239,11 @@ map <leader>z :GundoToggle<Enter>
 let g:gundo_close_on_revert=1
 
 " SuperTab
-let g:SuperTabDefaultCompletionType="context"
-set completeopt=menuone,longest,preview
+let g:SuperTabDefaultCompletionType = "context"
+" to force to always use omni completion for jedi-vim integration
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabMappingForward = '<tab>'
+let g:SuperTabMappingBackward = '<s-tab>'
 
 " Command-T
 let g:CommandTAcceptSelectionMap='<C-CR>'
