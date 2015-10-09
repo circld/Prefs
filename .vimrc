@@ -246,8 +246,16 @@ let g:SuperTabMappingForward = '<tab>'
 let g:SuperTabMappingBackward = '<s-tab>'
 
 " Command-T
-let g:CommandTAcceptSelectionMap='<C-CR>'
-let g:CommandTAcceptSelectionSplitMap='<CR>'
+" let g:CommandTAcceptSelectionMap='<C-CR>'
+" let g:CommandTAcceptSelectionSplitMap='<CR>'
+
+" CtrlP
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-v>'],
+    \ 'AcceptSelection("h")': ['<cr>'],
+    \ }
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
