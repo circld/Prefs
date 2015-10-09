@@ -250,12 +250,23 @@ let g:SuperTabMappingBackward = '<s-tab>'
 " let g:CommandTAcceptSelectionSplitMap='<CR>'
 
 " CtrlP
-let g:ctrlp_map = '<leader>t'
+" let g:ctrlp_map = '<leader>t'
+nnoremap <leader>t :CtrlP ~/<cr>
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-v>'],
     \ 'AcceptSelection("h")': ['<cr>'],
     \ }
+" speed up indexing
+" requires silver_searcher: https://github.com/ggreer/the_silver_searcher
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Airline
 let g:airline#extensions#tabline#enabled=1

@@ -23,6 +23,7 @@ git submodule add https://github.com/bling/vim-airline bundle/vim-airline.git bu
 git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
 git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 git submodule add https://github.com/garbas/vim-snipmate.git bundle/vim-snipmate
+git submodule add https://github.com/FelikZ/ctrlp-py-matcher bundle/ctrlp-py-matcher
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
