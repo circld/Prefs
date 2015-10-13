@@ -267,3 +267,6 @@ if has("win32")
 else
     let g:airline_theme='behelit'
 endif
+
+" ShellAsync
+nnoremap <leader>s :ShellTerminal<cr>
