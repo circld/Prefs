@@ -24,6 +24,7 @@ git submodule add https://github.com/altercation/vim-colors-solarized.git bundle
 git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 git submodule add https://github.com/garbas/vim-snipmate.git bundle/vim-snipmate
 git submodule add https://github.com/FelikZ/ctrlp-py-matcher bundle/ctrlp-py-matcher
+git submodule add https://github.com/troydm/shellasync.vim bundle/shellasync
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
