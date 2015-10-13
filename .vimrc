@@ -134,8 +134,11 @@ map <leader>k <C-W>k
 " close split window below
 map <leader>x :close <Enter>
 
-" highlight hql files as sql
+" highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
+augroup HiveQuery
+    autocmd! filetype sql nnoremap <leader>h :w <bar> :new<bar>0read!hive -f #<cr>
+augroup END
 
 set autochdir
 
