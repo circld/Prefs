@@ -122,12 +122,6 @@ map <leader>k <C-W>k
 " close split window below
 map <leader>x :close <Enter>
 
-" highlight hql files as sql & run queries from vim
-au BufNewFile,BufRead *.hql set filetype=sql
-augroup HiveQuery
-    autocmd! filetype sql nnoremap <leader>h :w <bar> :Shell! hive -f %<cr>
-augroup END
-
 set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)
@@ -235,10 +229,13 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabMappingForward = '<tab>'
 let g:SuperTabMappingBackward = '<s-tab>'
-
-" Command-T
-" let g:CommandTAcceptSelectionMap='<C-CR>'
-" let g:CommandTAcceptSelectionSplitMap='<CR>'
+" sensible sql keyword completion, fall back on other words in file
+augroup sql_completion
+    autocmd FileType sql
+    \  if &omnifunc != '' | 
+    \    call SuperTabChain(&omnifunc, "<c-p>") |
+    \  endif
+augroup END
 
 " CtrlP
 " let g:ctrlp_map = '<leader>t'
@@ -270,3 +267,12 @@ endif
 
 " ShellAsync
 nnoremap <leader>s :ShellTerminal<cr>
+
+" highlight hql files as sql & run queries from vim
+au BufNewFile,BufRead *.hql set filetype=sql
+augroup HiveQuery
+    autocmd! filetype sql nnoremap <leader>h :w <bar> :Shell! hive -f %<cr>
+augroup END
+
+" sql/hql completion
+let g:omni_sql_default_compl_type = 'sqlKeyword'
