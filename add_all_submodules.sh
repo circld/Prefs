@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # install pathogen
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+# curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+mkdir -p ~/.vim/autoload ~/.vim/bundle
 cd ~/.vim && git init
+git submodule add https://github.com/tpope/vim-pathogen bundle/vim-pathogen
+ln -s ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
 
 # install vim plugins
 git submodule add https://github.com/klen/python-mode bundle/python-mode

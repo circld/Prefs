@@ -4,15 +4,16 @@
 ./add_all_submodules.sh
 
 # replace snippets with customs snippets
-./replace_snippets.sh
+cp -f ~/Prefs/snippets/* ~/.vim/bundle/vim-snippets/snippets
 
 # install silver-searcher (unix/linux)
-apt-get install silversearcher-ag
+sudo apt-get install silversearcher-ag
 
 # add place-holder .vimrc if doesn't exist
-if [ -e ~/.vimrc ]
+if [ -e ~/.vimrc ] 
 then
     echo ".vimrc exists; skipping .vimrc placeholder file creation step."
 else
+    echo "creating ~/.vimrc..."
     echo "source ~/Prefs/.vimrc" > ~/.vimrc
 fi
