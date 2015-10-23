@@ -166,6 +166,49 @@ if has("autocmd")
       autocmd Syntax gitcommit setlocal textwidth=74
 endif " has("autocmd")
 
+
+"""" WINDOW MANAGEMENT """"
+" sane and intuitive vim windows management
+" http://www.agillo.net/simple-vim-window-management/
+
+function! WinMove(key) 
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+  if (t:curwin == winnr())  " we havent moved
+    if (match(a:key,'[jk]'))  " were we going up/down
+      wincmd v
+    else 
+      wincmd s
+    endif
+    exec "wincmd ".a:key
+  endif
+endfunction
+ 
+" moving around/creating splits
+map <leader>h              :call WinMove('h')<cr>
+map <leader>k              :call WinMove('k')<cr>
+map <leader>l              :call WinMove('l')<cr>
+map <leader>j              :call WinMove('j')<cr>
+
+" closing & rotating splits
+map <leader>wc :wincmd q<cr>
+map <leader>wr <C-W>r
+
+" moving windows
+map <leader>H              :wincmd H<cr>
+map <leader>K              :wincmd K<cr>
+map <leader>L              :wincmd L<cr>
+map <leader>J              :wincmd J<cr>
+
+" resizing using arrow keys
+nmap <left>  :3wincmd <<cr>
+nmap <right> :3wincmd ><cr>
+nmap <up>    :3wincmd +<cr>
+nmap <down>  :3wincmd -<cr>
+
+
+"""" PLUGINS """"
+
 " Python-mode
 " rope completion disabled for Jedi vim
 let g:pymode_rope_completion=0
@@ -215,9 +258,10 @@ augroup END
 let g:jedi#show_call_signatures = 1
 let g:jedi#documentation_command = '<S-K>'
 let g:jedi#use_splits_not_buffers = 'top'
+let g:jedi#goto_command = '<leader>g'
 
 " TaskList settings
-map <leader>l <Plug>TaskList
+map <leader>d <Plug>TaskList
 
 " Gundo
 map <leader>z :GundoToggle<Enter>
@@ -271,8 +315,13 @@ nnoremap <leader>s :ShellTerminal<cr>
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
 augroup HiveQuery
-    autocmd! filetype sql nnoremap <leader>h :w <bar> :Shell! hive -f %<cr>
+    autocmd! filetype sql nnoremap <leader>q :w <bar> :Shell! hive -f %<cr>
 augroup END
 
 " sql/hql completion
 let g:omni_sql_default_compl_type = 'sqlKeyword'
+
+" vim-test
+let test#strategy = 'dispatch'
+nmap <silent> <leader>U :TestFile<CR>
+nmap <silent> <leader>u :TestLast<CR>
