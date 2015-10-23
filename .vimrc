@@ -109,19 +109,6 @@ map Y y$
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
 
-" swap split windows & maximize
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-set wmh=0  " set stacked height to 0 by default
-
-" split windows set to equal
-map <leader>=  <C-W>=
-map <leader>j <C-W>j
-map <leader>k <C-W>k
-
-" close split window below
-map <leader>x :close <Enter>
-
 set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)
@@ -168,6 +155,11 @@ endif " has("autocmd")
 
 
 """" WINDOW MANAGEMENT """"
+
+set wmh=0  " set stacked height to 0 by default
+" split windows set to equal
+map <leader>=  <C-W>=
+
 " sane and intuitive vim windows management
 " http://www.agillo.net/simple-vim-window-management/
 
