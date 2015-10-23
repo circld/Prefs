@@ -30,6 +30,8 @@ git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 git submodule add https://github.com/garbas/vim-snipmate.git bundle/vim-snipmate
 git submodule add https://github.com/FelikZ/ctrlp-py-matcher bundle/ctrlp-py-matcher
 git submodule add https://github.com/troydm/shellasync.vim bundle/shellasync
+git submodule add https://github.com/janko-m/vim-test.git bundle/vim-test
+git submodule add https://github.com/tpope/vim-dispatch.git bundle/vim-dispatch
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
