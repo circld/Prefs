@@ -279,7 +279,7 @@ nnoremap <leader>t :CtrlP ~/<cr>
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-v>'],
-    \ 'AcceptSelection("h")': ['<cr>'],
+    \ 'AcceptSelection("v")': ['<cr>'],
     \ }
 " speed up indexing
 " requires silver_searcher: https://github.com/ggreer/the_silver_searcher
@@ -302,7 +302,7 @@ else
 endif
 
 " ShellAsync
-nnoremap <leader>s :ShellTerminal<cr>
+nnoremap <leader>s :ShellTerminal<cr><Esc>:wincmd L<cr>A
 
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
