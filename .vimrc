@@ -102,6 +102,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
 set laststatus=2
 set splitbelow
+set splitright
 set nobackup
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
