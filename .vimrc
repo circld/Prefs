@@ -104,6 +104,7 @@ set laststatus=2
 set splitbelow
 set splitright
 set nobackup
+set ignorecase
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
