@@ -309,7 +309,7 @@ nnoremap <leader>s :ShellTerminal<cr><Esc>:wincmd L<cr>A
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
 augroup HiveQuery
-    autocmd! filetype sql nnoremap <leader>q :w <bar> :Shell! hive -f %<cr>
+    autocmd! filetype sql nnoremap <leader>q :w <bar> :Shell! hive -f %<cr>:set nu<cr>:wincmd L<cr>
 augroup END
 
 " sql/hql completion
