@@ -316,6 +316,12 @@ augroup END
 let g:omni_sql_default_compl_type = 'sqlKeyword'
 
 " vim-test
-let test#strategy = 'dispatch'
+let g:test#python#runner = 'nose'
+function! Dispatchbg(cmd) abort
+    execute 'Dispatch!'.a:cmd
+endfunction
+let g:test#custom_strategies = {'dispatch_bg': function('Dispatchbg')}
+let g:test#strategy = 'dispatch_bg'
 nmap <silent> <leader>U :TestFile<CR>
 nmap <silent> <leader>u :TestLast<CR>
+nmap <leader>c :Copen<cr>
