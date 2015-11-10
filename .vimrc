@@ -155,6 +155,15 @@ if has("autocmd")
       autocmd Syntax gitcommit setlocal textwidth=74
 endif " has("autocmd")
 
+"""" FILETYPES """"
+" highlight hql files as sql & run queries from vim
+au BufNewFile,BufRead *.hql set filetype=sql
+augroup HiveQuery
+    autocmd! filetype sql nnoremap <leader>q :w <bar> :Shell! hive -f %<cr>:set nu<cr>:wincmd L<cr>
+augroup END
+
+" sql/hql completion
+let g:omni_sql_default_compl_type = 'sqlKeyword'
 
 """" WINDOW MANAGEMENT """"
 
@@ -305,15 +314,6 @@ endif
 
 " ShellAsync
 nnoremap <leader>s :ShellTerminal<cr><Esc>:wincmd L<cr>A
-
-" highlight hql files as sql & run queries from vim
-au BufNewFile,BufRead *.hql set filetype=sql
-augroup HiveQuery
-    autocmd! filetype sql nnoremap <leader>q :w <bar> :Shell! hive -f %<cr>:set nu<cr>:wincmd L<cr>
-augroup END
-
-" sql/hql completion
-let g:omni_sql_default_compl_type = 'sqlKeyword'
 
 " vim-test
 let g:test#python#runner = 'nose'
