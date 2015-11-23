@@ -209,6 +209,13 @@ nmap <right> :3wincmd ><cr>
 nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
+" moving between buffers
+map <leader>1 :b1<cr>
+map <leader>2 :b2<cr>
+map <leader>3 :b3<cr>
+map <leader>4 :b4<cr>
+map <leader>5 :b5<cr>
+map <leader>0 :b#<cr>
 
 """" PLUGINS """"
 
@@ -324,4 +331,4 @@ let g:test#custom_strategies = {'dispatch_bg': function('Dispatchbg')}
 let g:test#strategy = 'dispatch_bg'
 nmap <silent> <leader>U :TestFile<CR>
 nmap <silent> <leader>u :TestLast<CR>
-nmap <leader>c :Copen<cr>
+nmap <leader>c :Copen<cr><leader>L
