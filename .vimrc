@@ -320,7 +320,8 @@ else
 endif
 
 " ShellAsync
-nnoremap <leader>s :ShellTerminal<cr><Esc>:wincmd L<cr>A
+nnoremap <leader>S :ShellTerminal<cr><Esc>:wincmd L<cr>A
+nnoremap <leader>s :Dispatch! 
 
 " vim-test
 let g:test#python#runner = 'nose'
