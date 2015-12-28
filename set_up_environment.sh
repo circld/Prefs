@@ -29,7 +29,7 @@ then
 fi
 if [ ! -e ~/.dotfiles/command_prompt.sh ]
 then
-    curl -LSso ~/.dotfiles/ https://raw.githubusercontent.com/cowboy/dotfiles/master/source/50_prompt.sh
+    curl -LSso ~/.dotfiles/command_prompt.sh https://raw.githubusercontent.com/cowboy/dotfiles/master/source/50_prompt.sh
 fi
 
 # add placeholder .bash_profile if doesn't exist
@@ -40,4 +40,5 @@ else
     echo "creating ~/.bash_profile ..."
     echo "source ~/Prefs/.bash_profile" > ~/.bash_profile
     echo "source ~/.dotfiles/command_prompt.sh" >> ~/.bash_profile
+    cp ~/.bash_profile ~/.bashrc
 fi

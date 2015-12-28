@@ -333,3 +333,7 @@ let g:test#strategy = 'dispatch_bg'
 nmap <silent> <leader>U :TestFile<CR>
 nmap <silent> <leader>u :TestLast<CR>
 nmap <leader>c :Copen<cr><leader>L
+
+" vim-taskwarrior
+let g:task_info_vsplit = 1
+let g:task_rc_override = 'rc.defaultwidth=0'
