@@ -159,7 +159,7 @@ endif " has("autocmd")
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
 augroup HiveQuery
-    autocmd! filetype sql nnoremap <leader>q :w <bar> :Shell! hive -f %<cr>:set nu<cr>:wincmd L<cr>
+    autocmd! filetype sql nnoremap <leader>q :w <bar> :Dispatch! hive -f %<cr>
 augroup END
 
 " sql/hql completion
@@ -332,7 +332,7 @@ let g:test#custom_strategies = {'dispatch_bg': function('Dispatchbg')}
 let g:test#strategy = 'dispatch_bg'
 nmap <silent> <leader>U :TestFile<CR>
 nmap <silent> <leader>u :TestLast<CR>
-nmap <leader>c :Copen<cr><leader>L
+nmap <leader>c :Copen<cr><leader>LGzb
 
 " vim-taskwarrior
 let g:task_info_vsplit = 1
