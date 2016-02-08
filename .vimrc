@@ -100,7 +100,10 @@ set foldlevel=99
 set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
+set linebreak
+set textwidth=0
 set laststatus=2
+set cursorline
 set splitbelow
 set splitright
 set nobackup
@@ -110,7 +113,7 @@ map <S-Enter> O<Esc>
 map Y y$
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
-
+nnoremap <leader>n :exec &rnu? "se nornu!" : "se rnu!"<cr>
 set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)

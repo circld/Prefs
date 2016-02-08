@@ -34,6 +34,7 @@ git submodule add https://github.com/janko-m/vim-test.git bundle/vim-test
 git submodule add https://github.com/tpope/vim-dispatch.git bundle/vim-dispatch
 git submodule add https://github.com/farseer90718/vim-taskwarrior bundle/vim-taskwarrior
 git submodule add https://github.com/tomtom/tcomment_vim bundle/tcomment_vim
+git submodule add https://github.com/tpope/vim-sensible bundle/vim-sensible
 git submodule add https://github.com/tpope/vim-repeat bundle/vim-repeat
 git submodule add https://github.com/tpope/vim-abolish bundle/vim-abolish
 
