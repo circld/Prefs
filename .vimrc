@@ -166,13 +166,16 @@ augroup HiveQuery
 augroup END
 
 " sql/hql completion
-let g:omni_sql_default_compl_type = 'sqlKeyword'
+let g:ftplugin_sql_omni_key = '<C-B>'
+" let g:omni_sql_default_compl_type = 'sqlKeyword'
+
 
 """" WINDOW MANAGEMENT """"
 
 set wmh=0  " set stacked height to 0 by default
-" split windows set to equal
+" fast resizing of windows
 map <leader>=  <C-W>=
+map <leader>-  <C-W>_
 
 " sane and intuitive vim windows management
 " http://www.agillo.net/simple-vim-window-management/
