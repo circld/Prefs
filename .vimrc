@@ -65,7 +65,7 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " autocmd FileType text setlocal textwidth=78
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -101,6 +101,7 @@ set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
 set linebreak
+set breakindent
 set textwidth=0
 set laststatus=2
 set cursorline
@@ -167,7 +168,7 @@ augroup END
 
 " sql/hql completion
 let g:ftplugin_sql_omni_key = '<C-B>'
-" let g:omni_sql_default_compl_type = 'sqlKeyword'
+let g:omni_sql_default_compl_type = 'sqlKeyword'
 
 
 """" WINDOW MANAGEMENT """"
@@ -216,12 +217,11 @@ nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
 " moving between buffers
-map <leader>1 :b1<cr>
-map <leader>2 :b2<cr>
-map <leader>3 :b3<cr>
-map <leader>4 :b4<cr>
-map <leader>5 :b5<cr>
-map <leader>0 :b#<cr>
+map gn :bn<cr>
+map gN :bp<cr>
+map gd :bd<cr>
+map gl :b#<cr>
+map gb :buffers<cr>
 
 """" PLUGINS """"
 
