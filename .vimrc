@@ -181,19 +181,19 @@ map <leader>-  <C-W>_
 " sane and intuitive vim windows management
 " http://www.agillo.net/simple-vim-window-management/
 
-function! WinMove(key) 
+function! WinMove(key)
   let t:curwin = winnr()
   exec "wincmd ".a:key
   if (t:curwin == winnr())  " we havent moved
     if (match(a:key,'[jk]'))  " were we going up/down
       wincmd v
-    else 
+    else
       wincmd s
     endif
     exec "wincmd ".a:key
   endif
 endfunction
- 
+
 " moving around/creating splits
 map <leader>h              :call WinMove('h')<cr>
 map <leader>k              :call WinMove('k')<cr>
@@ -292,7 +292,7 @@ let g:SuperTabMappingBackward = '<s-tab>'
 " sensible sql keyword completion, fall back on other words in file
 augroup sql_completion
     autocmd FileType sql
-    \  if &omnifunc != '' | 
+    \  if &omnifunc != '' |
     \    call SuperTabChain(&omnifunc, "<c-p>") |
     \  endif
 augroup END
@@ -327,7 +327,7 @@ endif
 
 " ShellAsync
 nnoremap <leader>S :ShellTerminal<cr><Esc>:wincmd L<cr>A
-nnoremap <leader>s :Dispatch! 
+nnoremap <leader>s :Dispatch!
 
 " vim-test
 let g:test#python#runner = 'nose'
@@ -343,3 +343,8 @@ nmap <leader>c :Copen<cr><leader>LGzb
 " vim-taskwarrior
 let g:task_info_vsplit = 1
 let g:task_rc_override = 'rc.defaultwidth=0'
+
+" NERDTree
+let NERDTreeShowLineNumbers=1
+let NERDTreeHighlightCursorLine=1
+nmap <leader>' :NERDTree<cr>
