@@ -315,6 +315,7 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore "**/*.pyc"
       \ -g ""'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_clear_cache_on_exit = 0
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
@@ -347,4 +348,5 @@ let g:task_rc_override = 'rc.defaultwidth=0'
 " NERDTree
 let NERDTreeShowLineNumbers=1
 let NERDTreeHighlightCursorLine=1
+let NERDTreeShowHidden=1
 nmap <leader>' :NERDTree<cr>
