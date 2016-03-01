@@ -3,6 +3,10 @@ source ~/.dotfiles/source/command_prompt.sh
 # vi input mode for bash
 set -o vi
 
+# set vim to default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 alias R='R -q'
 alias vi="vim"
 alias data="cd \"/c/Users/Paul/Dropbox/Statistics & Data\""
