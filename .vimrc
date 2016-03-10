@@ -275,6 +275,7 @@ let g:jedi#show_call_signatures = 1
 let g:jedi#documentation_command = '<S-K>'
 let g:jedi#use_splits_not_buffers = 'top'
 let g:jedi#goto_command = '<leader>g'
+let g:jedi#usages_command = '<leader><s-n>'
 
 " TaskList settings
 map <leader>d <Plug>TaskList
@@ -349,4 +350,6 @@ let g:task_rc_override = 'rc.defaultwidth=0'
 let NERDTreeShowLineNumbers=1
 let NERDTreeHighlightCursorLine=1
 let NERDTreeShowHidden=1
+let NERDTreeWinSize=40
+let NERDTreeQuitOnOpen=1
 nmap <leader>' :NERDTree<cr>
