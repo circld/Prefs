@@ -1,3 +1,5 @@
 $include /etc/inputrc
 set completion-ignore-case on
 set editing-mode vi
+set keymap vi-insert
+Control-l: clear-screen

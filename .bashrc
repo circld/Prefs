@@ -1,4 +1,4 @@
-source ~/.dotfiles/source/command_prompt.sh
+source ~/.dotfiles/command_prompt.sh
 
 # vi input mode for bash
 set -o vi
