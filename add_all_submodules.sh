@@ -38,6 +38,7 @@ git submodule add https://github.com/tomtom/tcomment_vim bundle/tcomment_vim
 git submodule add https://github.com/tpope/vim-sensible bundle/vim-sensible
 git submodule add https://github.com/tpope/vim-repeat bundle/vim-repeat
 git submodule add https://github.com/tpope/vim-abolish bundle/vim-abolish
+git submodule add https://github.com/christoomey/vim-tmux-navigator bundle/vim-tmux-navigator
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
