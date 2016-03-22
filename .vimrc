@@ -320,6 +320,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
 " apply different themes based on OS
 if has("win32")
     let g:airline_theme='zenburn'
