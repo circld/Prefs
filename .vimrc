@@ -101,7 +101,7 @@ set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
 set linebreak
-set breakindent
+" set breakindent
 set textwidth=0
 set laststatus=2
 set cursorline
@@ -112,6 +112,8 @@ set ignorecase
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
+nnoremap vv vV
+nnoremap V v$
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
 nnoremap <leader>n :exec &rnu? "se nornu!" : "se rnu!"<cr>

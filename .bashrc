@@ -12,4 +12,11 @@ alias vi="vim"
 alias data="cd \"/c/Users/Paul/Dropbox/Statistics & Data\""
 alias desk="cd ~/Desktop"
 alias todo="vi ~/todo.txt"
-alias win="sh ~/Prefs/.tmux/dev-tmux.sh"
+
+work() {
+    sh ~/Prefs/.tmux/layouts/work.sh $1
+}
+
+lap() {
+    sh ~/Prefs/.tmux/layouts/laptop.sh $1
+}
