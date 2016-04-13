@@ -20,3 +20,7 @@ work() {
 lap() {
     sh ~/Prefs/.tmux/layouts/laptop.sh $1
 }
+
+arch() {
+    sh ~/Prefs/.tmux/layouts/thinkpad.sh $1
+}
