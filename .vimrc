@@ -109,6 +109,7 @@ set splitbelow
 set splitright
 set nobackup
 set ignorecase
+set shortmess+=I
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y y$
