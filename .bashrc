@@ -1,4 +1,5 @@
 source ~/.dotfiles/command_prompt.sh
+# export PS1="\[\e[34m\]\D{%a.%m.%d}\[\e[34m\] \A\[\e[m\] \[\e[36m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]\[\e[37m\]:\[\e[m\]\[\e[32m\]\W\[\e[m\] >> "
 
 # vi input mode for bash
 set -o vi
