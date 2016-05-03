@@ -170,8 +170,8 @@ augroup HiveQuery
 augroup END
 
 " sql/hql completion
-let g:ftplugin_sql_omni_key = '<C-B>'
-let g:omni_sql_default_compl_type = 'sqlKeyword'
+" let g:ftplugin_sql_omni_key = '<C-B>'
+" let g:omni_sql_default_compl_type = 'sqlKeyword'
 
 
 """" WINDOW MANAGEMENT """"
@@ -279,6 +279,7 @@ let g:jedi#documentation_command = '<S-K>'
 let g:jedi#use_splits_not_buffers = 'top'
 let g:jedi#goto_command = '<leader>g'
 let g:jedi#usages_command = '<leader><s-n>'
+let g:jedi#completions_enabled = 0
 
 " TaskList settings
 map <leader>d <Plug>TaskList
@@ -286,20 +287,6 @@ map <leader>d <Plug>TaskList
 " Gundo
 map <leader>z :GundoToggle<Enter>
 let g:gundo_close_on_revert=1
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = "context"
-" to force to always use omni completion for jedi-vim integration
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabMappingForward = '<tab>'
-let g:SuperTabMappingBackward = '<s-tab>'
-" sensible sql keyword completion, fall back on other words in file
-augroup sql_completion
-    autocmd FileType sql
-    \  if &omnifunc != '' |
-    \    call SuperTabChain(&omnifunc, "<c-p>") |
-    \  endif
-augroup END
 
 " CtrlP
 " let g:ctrlp_map = '<leader>t'
@@ -357,3 +344,14 @@ let NERDTreeShowHidden=1
 let NERDTreeWinSize=40
 let NERDTreeQuitOnOpen=1
 nmap <leader>' :NERDTree<cr>
+
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ['<c-tab>', '<down>']
+let g:ycm_key_list_previous_completion = ['<c-s-tab>', '<up>']
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = '<c-tab>'
+
+" UltiSnips
+let &runtimepath .= ','.expand('~/Prefs')
+let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']

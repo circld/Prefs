@@ -29,7 +29,6 @@ git submodule add https://github.com/vim-airline/vim-airline-themes.git bundle/v
 git submodule add https://github.com/powerline/fonts.git bundle/vim-airline-fonts
 git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
 git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
-git submodule add https://github.com/garbas/vim-snipmate.git bundle/vim-snipmate
 git submodule add https://github.com/FelikZ/ctrlp-py-matcher bundle/ctrlp-py-matcher
 git submodule add https://github.com/troydm/shellasync.vim bundle/shellasync
 git submodule add https://github.com/janko-m/vim-test.git bundle/vim-test
@@ -40,6 +39,8 @@ git submodule add https://github.com/tpope/vim-sensible bundle/vim-sensible
 git submodule add https://github.com/tpope/vim-repeat bundle/vim-repeat
 git submodule add https://github.com/tpope/vim-abolish bundle/vim-abolish
 git submodule add https://github.com/christoomey/vim-tmux-navigator bundle/vim-tmux-navigator
+git submodule add https://github.com/sirver/ultisnips bundle/ultisnips
+git submodule add https://github.com/Valloric/YouCompleteMe bundle/YouCompleteMe
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
@@ -51,3 +52,6 @@ git submodule init
 git submodule update
 git submodule foreach git submodule init
 git submodule foreach git submodule update
+
+# install YouCompleteMe
+python ~/.vim/bundle/YouCompleteMe/install.py
