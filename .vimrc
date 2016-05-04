@@ -118,6 +118,9 @@ nnoremap V v$
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
 nnoremap <leader>n :exec &rnu? "se nornu!" : "se rnu!"<cr>
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+set completeopt=menu,preview
 set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)
@@ -126,11 +129,6 @@ syntax enable
 " let g:solarized_termcolors=16
 set background=dark
 colorscheme solarized
-
-" window size/position
-" set columns=80
-" set lines=44
-" winpos 0 0
 
 " font sizing adjustment
 if has("gui_running")
@@ -170,8 +168,8 @@ augroup HiveQuery
 augroup END
 
 " sql/hql completion
-" let g:ftplugin_sql_omni_key = '<C-B>'
-" let g:omni_sql_default_compl_type = 'sqlKeyword'
+let g:ftplugin_sql_omni_key = '<C-B>'
+let g:omni_sql_default_compl_type = 'syntax'
 
 
 """" WINDOW MANAGEMENT """"
@@ -275,6 +273,7 @@ augroup END
 
 " jedi-vim
 let g:jedi#show_call_signatures = 1
+let g:jedi#show_call_signatures_delay = 0
 let g:jedi#documentation_command = '<S-K>'
 let g:jedi#use_splits_not_buffers = 'top'
 let g:jedi#goto_command = '<leader>g'
@@ -346,8 +345,10 @@ let NERDTreeQuitOnOpen=1
 nmap <leader>' :NERDTree<cr>
 
 " YouCompleteMe
+let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = ['<c-tab>', '<down>']
 let g:ycm_key_list_previous_completion = ['<c-s-tab>', '<up>']
+let g:ycm_seed_identifiers_with_syntax = 1
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<c-tab>'
@@ -355,3 +356,5 @@ let g:SuperTabDefaultCompletionType = '<c-tab>'
 " UltiSnips
 let &runtimepath .= ','.expand('~/Prefs')
 let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']
+
+set omnifunc=syntaxcomplete#Complete
