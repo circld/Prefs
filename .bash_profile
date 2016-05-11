@@ -1,4 +1,4 @@
-source ~/.dotfiles/command_prompt.sh
+# source ~/.dotfiles/command_prompt.sh
 source ~/Prefs/.bashrc
 
 export VISUAL="vim"

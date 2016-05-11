@@ -30,7 +30,6 @@ git submodule add https://github.com/powerline/fonts.git bundle/vim-airline-font
 git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
 git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 git submodule add https://github.com/FelikZ/ctrlp-py-matcher bundle/ctrlp-py-matcher
-git submodule add https://github.com/troydm/shellasync.vim bundle/shellasync
 git submodule add https://github.com/janko-m/vim-test.git bundle/vim-test
 git submodule add https://github.com/tpope/vim-dispatch.git bundle/vim-dispatch
 git submodule add https://github.com/farseer90718/vim-taskwarrior bundle/vim-taskwarrior
@@ -41,6 +40,7 @@ git submodule add https://github.com/tpope/vim-abolish bundle/vim-abolish
 git submodule add https://github.com/christoomey/vim-tmux-navigator bundle/vim-tmux-navigator
 git submodule add https://github.com/sirver/ultisnips bundle/ultisnips
 git submodule add https://github.com/Valloric/YouCompleteMe bundle/YouCompleteMe
+git submodule add https://github.com/easymotion/vim-easymotion bundle/easymotion
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
