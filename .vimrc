@@ -101,7 +101,7 @@ set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set nu
 set linebreak
-" set breakindent
+set breakindent
 set textwidth=0
 set laststatus=2
 set cursorline
@@ -273,7 +273,7 @@ augroup END
 
 " jedi-vim
 let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
@@ -351,4 +351,4 @@ nmap <leader>' :NERDTree<cr>
 " UltiSnips
 let &runtimepath .= ','.expand('~/Prefs')
 let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']
-let g:UltiSnipsExpandTrigger = '<c-s>'
+let g:UltiSnipsExpandTrigger = '<c-g>'
