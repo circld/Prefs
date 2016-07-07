@@ -13,8 +13,6 @@ git submodule add https://github.com/klen/python-mode bundle/python-mode
 git submodule add https://github.com/tpope/vim-fugitive.git bundle/fugitive
 git submodule add https://github.com/tpope/vim-surround.git bundle/surround
 git submodule add https://github.com/tpope/vim-git.git bundle/git
-git submodule add https://github.com/ervandew/supertab.git bundle/supertab
-# git submodule add https://github.com/wincent/Command-T.git bundle/command-t
 git submodule add https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 git submodule add https://github.com/mitechie/pyflakes-pathogen.git
 git submodule add https://github.com/sjl/gundo.vim.git bundle/gundo
@@ -39,8 +37,8 @@ git submodule add https://github.com/tpope/vim-repeat bundle/vim-repeat
 git submodule add https://github.com/tpope/vim-abolish bundle/vim-abolish
 git submodule add https://github.com/christoomey/vim-tmux-navigator bundle/vim-tmux-navigator
 git submodule add https://github.com/sirver/ultisnips bundle/ultisnips
-git submodule add https://github.com/Valloric/YouCompleteMe bundle/YouCompleteMe
 git submodule add https://github.com/easymotion/vim-easymotion bundle/easymotion
+git submodule add https://github.com/ajh17/VimCompletesMe bundle/VimCompletesMe
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim

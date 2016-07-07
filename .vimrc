@@ -348,20 +348,7 @@ let NERDTreeWinSize=40
 let NERDTreeQuitOnOpen=1
 nmap <leader>' :NERDTree<cr>
 
-" YouCompleteMe
-let g:ycm_filetype_blacklist = {}
-let g:ycm_key_list_select_completion = ['<c-tab>', '<down>']
-let g:ycm_key_list_previous_completion = ['<c-s-tab>', '<up>']
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_use_ultisnips_completer = 1
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = '<c-tab>'
-
 " UltiSnips
 let &runtimepath .= ','.expand('~/Prefs')
 let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']
-
-set omnifunc=syntaxcomplete#Complete
+let g:UltiSnipsExpandTrigger = '<c-s>'
