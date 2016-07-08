@@ -352,3 +352,19 @@ nmap <leader>' :NERDTree<cr>
 let &runtimepath .= ','.expand('~/Prefs')
 let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']
 let g:UltiSnipsExpandTrigger = '<c-g>'
+
+" EasyMotion (remap all movement keys!)
+map w <Plug>(easymotion-w)
+map W <Plug>(easymotion-W)
+map b <Plug>(easymotion-b)
+map B <Plug>(easymotion-B)
+map t <Plug>(easymotion-t)
+map T <Plug>(easymotion-T)
+map f <Plug>(easymotion-f)
+map F <Plug>(easymotion-F)
+map j <Plug>(easymotion-j)
+map k <Plug>(easymotion-k)
+map e <Plug>(easymotion-e)
+map E <Plug>(easymotion-E)
+map ge <Plug>(easymotion-ge)
+map gE <Plug>(easymotion-gE)
