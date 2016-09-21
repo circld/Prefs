@@ -371,4 +371,3 @@ map gE <Plug>(easymotion-gE)
 
 " VimCompletesMe
 let g:vcm_direction = 'p'
->>>>>>> .vimrc: easymotion replace movement keys; .bashrc: ls color
