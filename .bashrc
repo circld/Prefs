@@ -12,6 +12,7 @@ alias R='R -q'
 alias vi="vim"
 alias data="cd \"/c/Users/Paul/Dropbox/Statistics & Data\""
 alias desk="cd ~/Desktop"
+alias ls="ls --color=auto -al"
 
 work() {
     sh ~/Prefs/.tmux/layouts/work.sh $1

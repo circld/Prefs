@@ -362,9 +362,13 @@ map t <Plug>(easymotion-t)
 map T <Plug>(easymotion-T)
 map f <Plug>(easymotion-f)
 map F <Plug>(easymotion-F)
-map j <Plug>(easymotion-j)
-map k <Plug>(easymotion-k)
+map j <Plug>(easymotion-eol-j)
+map k <Plug>(easymotion-eol-k)
 map e <Plug>(easymotion-e)
 map E <Plug>(easymotion-E)
 map ge <Plug>(easymotion-ge)
 map gE <Plug>(easymotion-gE)
+
+" VimCompletesMe
+let g:vcm_direction = 'p'
+>>>>>>> .vimrc: easymotion replace movement keys; .bashrc: ls color
