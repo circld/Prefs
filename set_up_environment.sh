@@ -25,16 +25,6 @@ fi
 
 #### bash
 
-# create .dotfiles directory if doesn't exist and add command_prompt.sh
-if [ ! -d ~/.dotfiles ]
-then
-    mkdir ~/.dotfiles
-fi
-if [ ! -e ~/.dotfiles/command_prompt.sh ]
-then
-    curl -LSso ~/.dotfiles/command_prompt.sh https://raw.githubusercontent.com/cowboy/dotfiles/master/source/50_prompt.sh
-fi
-
 # add placeholder .bash_profile if doesn't exist
 if [ -e ~/.bash_profile ] 
 then
@@ -62,6 +52,8 @@ else
     echo "\$include ~/Prefs/.inputrc" > ~/.inputrc
 fi
 
+#### tmux
+
 # add placeholder .tmux.conf if doesn't exist
 if [ -e ~/.tmux.conf ] 
 then
@@ -69,4 +61,21 @@ then
 else
     echo "creating ~/.tmux.conf ..."
     echo "source-file ~/Prefs/.tmux.conf" > ~/.tmux.conf
+fi
+
+if [ -e ~/.tmux/plugins ] 
+then
+    echo ".tmux/plugins exists; skipping tmux plugin installation step."
+else
+    echo "installing tmux plugins ..."
+    mkdir -p ~/.tmux/plugins/
+
+    # install tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    
+    # install other plugins
+
+    tmux source ~/.tmux.conf
+
+
 fi
