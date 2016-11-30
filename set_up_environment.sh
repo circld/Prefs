@@ -3,7 +3,7 @@
 #### vim
 
 # add vim plugins
-./add_all_submodules.sh
+# ./add_all_submodules.sh
 
 # install fonts
 sh ~/.vim/bundle/vim-airline-fonts/install.sh
@@ -12,7 +12,7 @@ sh ~/.vim/bundle/vim-airline-fonts/install.sh
 cp -f ~/Prefs/snippets/* ~/.vim/bundle/vim-snippets/snippets
 
 # install silver-searcher (unix/linux)
-sudo apt-get install silversearcher-ag
+# sudo apt-get install silversearcher-ag
 
 # add placeholder .vimrc if doesn't exist
 if [ -e ~/.vimrc ] 
@@ -77,5 +77,7 @@ else
 
     tmux source ~/.tmux.conf
 
-
 fi
+
+# git
+cp .gitconfig ~/.gitconfig

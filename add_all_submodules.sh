@@ -50,6 +50,3 @@ git submodule init
 git submodule update
 git submodule foreach git submodule init
 git submodule foreach git submodule update
-
-# install YouCompleteMe
-python ~/.vim/bundle/YouCompleteMe/install.py
