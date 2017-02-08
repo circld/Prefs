@@ -3,13 +3,13 @@
 #### vim
 
 # add vim plugins
-# ./add_all_submodules.sh
+./add_all_submodules.sh
 
 # install fonts
 sh ~/.vim/bundle/vim-airline-fonts/install.sh
 
 # replace snippets with customs snippets
-cp -f ~/Prefs/snippets/* ~/.vim/bundle/vim-snippets/snippets
+cp -f ~/Prefs/custom_snippets/* ~/.vim/bundle/vim-snippets/snippets
 
 # install silver-searcher (unix/linux)
 # sudo apt-get install silversearcher-ag
