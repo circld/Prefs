@@ -353,6 +353,7 @@ nmap <leader>' :NERDTree<cr>
 let &runtimepath .= ','.expand('~/Prefs')
 let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']
 let g:UltiSnipsExpandTrigger = '<c-g>'
+let g:ultisnips_python_style = 'google'
 
 " EasyMotion (remap all movement keys!)
 map w <Plug>(easymotion-w)
