@@ -161,6 +161,8 @@ if has("autocmd")
 endif " has("autocmd")
 
 """" FILETYPES """"
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
 augroup HiveQuery
@@ -356,6 +358,7 @@ let g:UltiSnipsExpandTrigger = '<c-g>'
 let g:ultisnips_python_style = 'google'
 
 " EasyMotion (remap all movement keys!)
+let g:EasyMotion_keys = "huwjmkl'r,c.gpfydisanote"
 map w <Plug>(easymotion-w)
 map W <Plug>(easymotion-W)
 map b <Plug>(easymotion-b)
