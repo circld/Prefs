@@ -4,6 +4,9 @@ export PS1="\[\e[34m\]\D{%a.%m.%d}\[\e[34m\] \A\[\e[m\] \[\e[36m\]\u\[\e[m\]@\[\
 # vi input mode for bash
 set -o vi
 
+# ensure airline fonts display properly
+export LANG='en_US.UTF8'
+
 # free ctrl-s to be forward history search by reassigning `stop` to ctrl-X
 stty stop ^X
 
