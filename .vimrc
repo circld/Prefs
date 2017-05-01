@@ -116,11 +116,11 @@ map Y y$
 nnoremap vv vV
 nnoremap V v$
 inoremap <C-c> <Esc>
-inoremap <F3>{ A {<CR>}<Esc>%o
+inoremap <F3>{ <Esc>A {<CR>}<Esc>%o
 nnoremap <F3>{ A{<CR>}<Esc>%o
-inoremap <F3>( A (<CR>)<Esc>%o
+inoremap <F3>( <Esc>A (<CR>)<Esc>%o
 nnoremap <F3>( A(<CR>)<Esc>%o
-inoremap <F3>[ A [<CR>]<Esc>%o
+inoremap <F3>[ <Esc>A [<CR>]<Esc>%o
 nnoremap <F3>[ A[<CR>]<Esc>%o
 nnoremap <C-c> :noh<Enter><Esc>
 set complete=.,b,u,]
