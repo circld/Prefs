@@ -116,8 +116,13 @@ map Y y$
 nnoremap vv vV
 nnoremap V v$
 inoremap <C-c> <Esc>
+inoremap <F3>{ A {<CR>}<Esc>%o
+nnoremap <F3>{ A{<CR>}<Esc>%o
+inoremap <F3>( A (<CR>)<Esc>%o
+nnoremap <F3>( A(<CR>)<Esc>%o
+inoremap <F3>[ A [<CR>]<Esc>%o
+nnoremap <F3>[ A[<CR>]<Esc>%o
 nnoremap <C-c> :noh<Enter><Esc>
-nnoremap <leader>n :exec &rnu? "se nornu!" : "se rnu!"<cr>
 set complete=.,b,u,]
 set wildmode=longest,list:longest
 set completeopt=menu,preview
@@ -162,6 +167,8 @@ endif " has("autocmd")
 
 """" FILETYPES """"
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript inoremap <buffer> <F2> <Esc>A;<Esc>
+autocmd FileType javascript nnoremap <buffer> <F2> <Esc>A;<Esc>
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
 
@@ -233,10 +240,10 @@ map gb :buffers<cr>
 " Python-mode
 " rope completion disabled for Jedi vim
 let g:pymode_rope_completion=0
+let g:pymode_rope=0
 
 " Documentation
 let g:pymode_doc=0
-let g:pymode_rope = 0
 
 " " Lint
 let g:pymode_lint=1
@@ -319,6 +326,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline_powerline_fonts = 1
 " apply different themes based on OS
 if has("win32")
@@ -360,21 +368,46 @@ let g:UltiSnipsExpandTrigger = '<c-g>'
 let g:ultisnips_python_style = 'google'
 
 " EasyMotion (remap all movement keys!)
+let g:easy_motion_on=0
+function! ToggleEasyMotionMovementKeys()
+    if g:easy_motion_on
+        unmap w
+        unmap W
+        unmap b
+        unmap B
+        unmap t
+        unmap T
+        unmap f
+        unmap F
+        unmap j
+        unmap k
+        unmap e
+        unmap E
+        unmap ge
+        unmap gE
+        let g:easy_motion_on=0
+    else
+        map w <Plug>(easymotion-w)
+        map W <Plug>(easymotion-W)
+        map b <Plug>(easymotion-b)
+        map B <Plug>(easymotion-B)
+        map t <Plug>(easymotion-t)
+        map T <Plug>(easymotion-T)
+        map f <Plug>(easymotion-f)
+        map F <Plug>(easymotion-F)
+        map j <Plug>(easymotion-eol-j)
+        map k <Plug>(easymotion-eol-k)
+        map e <Plug>(easymotion-e)
+        map E <Plug>(easymotion-E)
+        map ge <Plug>(easymotion-ge)
+        map gE <Plug>(easymotion-gE)
+        let g:easy_motion_on=1
+    endif
+endfunction
+
 let g:EasyMotion_keys = "huwjmkl'r,c.gpfydisanote"
-map w <Plug>(easymotion-w)
-map W <Plug>(easymotion-W)
-map b <Plug>(easymotion-b)
-map B <Plug>(easymotion-B)
-map t <Plug>(easymotion-t)
-map T <Plug>(easymotion-T)
-map f <Plug>(easymotion-f)
-map F <Plug>(easymotion-F)
-map j <Plug>(easymotion-eol-j)
-map k <Plug>(easymotion-eol-k)
-map e <Plug>(easymotion-e)
-map E <Plug>(easymotion-E)
-map ge <Plug>(easymotion-ge)
-map gE <Plug>(easymotion-gE)
+nnoremap <leader>n :call ToggleEasyMotionMovementKeys()<CR>
+call ToggleEasyMotionMovementKeys()
 
 " VimCompletesMe
 let g:vcm_direction = 'p'
