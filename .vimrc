@@ -116,6 +116,8 @@ map Y y$
 nnoremap vv vV
 nnoremap V v$
 inoremap <C-c> <Esc>
+inoremap <F2> <Esc>A;<Esc>
+nnoremap <F2> <Esc>A;<Esc>
 inoremap <F3>{ <Esc>A {<CR>}<Esc>%o
 nnoremap <F3>{ A{<CR>}<Esc>%o
 inoremap <F3>( <Esc>A (<CR>)<Esc>%o
@@ -167,8 +169,7 @@ endif " has("autocmd")
 
 """" FILETYPES """"
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType javascript inoremap <buffer> <F2> <Esc>A;<Esc>
-autocmd FileType javascript nnoremap <buffer> <F2> <Esc>A;<Esc>
+autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
 
