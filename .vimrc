@@ -112,7 +112,7 @@ set ignorecase
 set shortmess+=I
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
-map Y y$
+map Y v$hy
 nnoremap vv vV
 nnoremap V v$
 inoremap <C-c> <Esc>
@@ -125,6 +125,7 @@ nnoremap <F3>( A(<CR>)<Esc>%o
 inoremap <F3>[ <Esc>A [<CR>]<Esc>%o
 nnoremap <F3>[ A[<CR>]<Esc>%o
 nnoremap <C-c> :noh<Enter><Esc>
+nnoremap <leader>p :exec &paste? "se paste!" : "se nopaste!"<cr>
 set complete=.,b,u,]
 set wildmode=longest,list:longest
 set completeopt=menu,preview
