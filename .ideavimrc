@@ -5,10 +5,27 @@ set noerrorbells
 " mappings from vimrc file
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
-map Y y$
+map Y v$hy
+nnoremap vv vV
+nnoremap V v$h
 inoremap <C-c> <Esc>
 nnoremap <C-c> :noh<Enter><Esc>
+inoremap <F2> <Esc>A;<Esc>
+nnoremap <F2> <Esc>A;<Esc>
+inoremap <F3>{ <Esc>A {<CR>}<Esc>%o
+nnoremap <F3>{ A{<CR>}<Esc>%o
+inoremap <F3>( <Esc>A (<CR>)<Esc>%o
+nnoremap <F3>( A(<CR>)<Esc>%o
+inoremap <F3>[ <Esc>A [<CR>]<Esc>%o
+nnoremap <F3>[ A[<CR>]<Esc>%o
 
 " remap <Leader> key (note: may not work in consoles! Default: \)
 let mapleader=" "
 set autochdir
+
+" Press `f` to activate AceJump
+nnoremap f :action AceAction<CR>
+" Press `F` to activate Target Mode
+nnoremap F :action AceTargetAction<CR>
+" Press `g` to activate Line Mode
+nnoremap gk :action AceLineAction<CR>

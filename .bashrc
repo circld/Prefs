@@ -5,7 +5,8 @@ export PS1="\[\e[34m\]\D{%a.%m.%d}\[\e[34m\] \A\[\e[m\] \[\e[36m\]\u\[\e[m\]@\[\
 set -o vi
 
 # ensure airline fonts display properly
-export LANG='en_US.UTF8'
+export LANG='en_US.UTF-8'
+export PYTHONIOENCODING=utf-8
 
 # free ctrl-s to be forward history search by reassigning `stop` to ctrl-X
 stty stop ^X
@@ -24,6 +25,13 @@ if [ "$(uname)" == "Darwin" ]; then
     alias ls="ls -Gal"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias ls="ls --color=auto -al"
+fi
+
+if [ -n "$VIRTUAL_ENV" ]; then
+  source "$VIRTUAL_ENV/bin/activate"
+  if [ -n "$TMUX" ]; then
+        tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+  fi
 fi
 
 work() {
