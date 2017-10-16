@@ -1,5 +1,5 @@
 {
-    "_comment": "rm ~/Library/Preferences/com.amethyst.Amethyst.plist"
+    /* rm ~/Library/Preferences/com.amethyst.Amethyst.plist */
     "layouts": [
         "tall",
         "wide",
@@ -48,11 +48,11 @@
     },
     "focus-screen-1": {
         "mod": "mod1",
-        "key": "w"
+        "key": "g"
     },
     "focus-screen-2": {
         "mod": "mod1",
-        "key": "e"
+        "key": "c"
     },
     "focus-screen-3": {
         "mod": "mod1",
@@ -64,11 +64,11 @@
     },
     "throw-screen-1": {
         "mod": "mod2",
-        "key": "w"
+        "key": "g"
     },
     "throw-screen-2": {
         "mod": "mod2",
-        "key": "e"
+        "key": "c"
     },
     "throw-screen-3": {
         "mod": "mod2",
