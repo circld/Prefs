@@ -25,7 +25,6 @@ git submodule add https://github.com/vim-scripts/The-NERD-tree.git bundle/nerdtr
 git submodule add https://github.com/vim-airline/vim-airline bundle/vim-airline.git bundle/vim-airline
 git submodule add https://github.com/vim-airline/vim-airline-themes.git bundle/vim-airline-themes
 git submodule add https://github.com/powerline/fonts.git bundle/vim-airline-fonts
-git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
 git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 git submodule add https://github.com/FelikZ/ctrlp-py-matcher bundle/ctrlp-py-matcher
 git submodule add https://github.com/janko-m/vim-test.git bundle/vim-test
@@ -45,6 +44,10 @@ git submodule add https://github.com/Townk/vim-autoclose bundle/vim-autoclose
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
 git submodule add https://github.com/MarcWeber/vim-addon-mw-utils.git bundle/vim-addon-mw-utils
 git submodule add https://github.com/honza/vim-snippets.git bundle/vim-snippets
+
+# vim aesthetics
+git submodule add https://github.com/altercation/vim-colors-solarized.git bundle/vim-colors-solarized
+git submodule add https://github.com/liuchengxu/space-vim-dark.git bundle/space-vim-dark
 
 # finish submodule config
 git submodule init

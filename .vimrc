@@ -133,10 +133,8 @@ set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)
 syntax enable
-" set t_Co=16
-" let g:solarized_termcolors=16
 set background=dark
-colorscheme solarized
+colorscheme space-vim-dark
 
 " font sizing adjustment
 if has("gui_running")
