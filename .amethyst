@@ -1,10 +1,8 @@
 {
-    /* rm ~/Library/Preferences/com.amethyst.Amethyst.plist */
     "layouts": [
-        "tall",
-        "wide",
-        "fullscreen",
-        "column"
+        "bsp",
+        "row",
+        "fullscreen"
     ],
     "Valid modifiers are": [
         "option",
