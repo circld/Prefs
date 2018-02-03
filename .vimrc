@@ -411,3 +411,6 @@ call ToggleEasyMotionMovementKeys()
 
 " VimCompletesMe
 let g:vcm_direction = 'p'
+
+" Rainbow Parentheses
+let g:rainbow_active = 1

@@ -39,6 +39,7 @@ git submodule add https://github.com/sirver/ultisnips bundle/ultisnips
 git submodule add https://github.com/easymotion/vim-easymotion bundle/easymotion
 git submodule add https://github.com/ajh17/VimCompletesMe bundle/VimCompletesMe
 git submodule add https://github.com/Townk/vim-autoclose bundle/vim-autoclose
+git submodule add https://github.com/luochen1990/rainbow bundle/rainbow
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
