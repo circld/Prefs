@@ -9,7 +9,7 @@ export LANG='en_US.UTF-8'
 export PYTHONIOENCODING=utf-8
 
 # free ctrl-s to be forward history search by reassigning `stop` to ctrl-X
-stty stop ^X
+stty stop ^Z
 
 # set vim to default editor
 export VISUAL=vim

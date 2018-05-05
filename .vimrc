@@ -110,6 +110,8 @@ set splitright
 set nobackup
 set ignorecase
 set shortmess+=I
+set textwidth=80
+set colorcolumn=+1
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y v$hy
@@ -171,6 +173,8 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
+
+au BufNewFile,BufRead *.coco set filetype=python
 
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
