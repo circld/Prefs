@@ -285,6 +285,8 @@ augroup vimrc_autocmds
     autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Yellow
     " autocmd FileType python match Excess /\%80v.*/
     autocmd FileType python set nowrap
+    " linewrap should not insert line breaks for txt, md files
+    autocmd FileType text,markdown setlocal formatoptions-=t
 augroup END
 
 " jedi-vim
@@ -383,8 +385,8 @@ function! ToggleEasyMotionMovementKeys()
         unmap T
         unmap f
         unmap F
-        unmap j
-        unmap k
+        " unmap j
+        " unmap k
         unmap e
         unmap E
         unmap ge
@@ -399,8 +401,8 @@ function! ToggleEasyMotionMovementKeys()
         map T <Plug>(easymotion-T)
         map f <Plug>(easymotion-f)
         map F <Plug>(easymotion-F)
-        map j <Plug>(easymotion-eol-j)
-        map k <Plug>(easymotion-eol-k)
+        " map j <Plug>(easymotion-eol-j)
+        " map k <Plug>(easymotion-eol-k)
         map e <Plug>(easymotion-e)
         map E <Plug>(easymotion-E)
         map ge <Plug>(easymotion-ge)
