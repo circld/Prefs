@@ -33,7 +33,7 @@ git submodule add https://github.com/christoomey/vim-tmux-navigator bundle/vim-t
 git submodule add https://github.com/sirver/ultisnips bundle/ultisnips
 git submodule add https://github.com/easymotion/vim-easymotion bundle/easymotion
 git submodule add https://github.com/ajh17/VimCompletesMe bundle/VimCompletesMe
-git submodule add https://github.com/Townk/vim-autoclose bundle/vim-autoclose
+git submodule add https://github.com/jiangmiao/auto-pairs bundle/auto-pairs
 git submodule add https://github.com/luochen1990/rainbow bundle/rainbow
 git submodule add https://github.com/airblade/vim-gitgutter bundle/vim-gitgutter
 

@@ -117,7 +117,7 @@ map <S-Enter> O<Esc>
 map Y v$hy
 nnoremap vv vV
 nnoremap V v$h
-inoremap <C-c> <Esc>
+imap <C-c> <Esc>
 inoremap <F2> <Esc>A;<Esc>
 nnoremap <F2> <Esc>A;<Esc>
 inoremap <F3>{ <Esc>A {<CR>}<Esc>%o
