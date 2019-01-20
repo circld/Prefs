@@ -20,14 +20,14 @@ endif
 set backspace=indent,eol,start
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup        " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file
+  set backup        " keep a backup file
 endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=50        " keep 50 lines of command line history
+set ruler        " show the cursor position all the time
+set showcmd        " display incomplete commands
+set incsearch        " do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions=substitute(&guioptions, "t", "", "g")
@@ -81,7 +81,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent        " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -95,7 +95,7 @@ endif
 
 " Set various additional settings
 set previewheight=50
-set foldmethod=indent
+set foldmethod=manual
 set foldlevel=99
 set noerrorbells
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -169,22 +169,23 @@ if has("autocmd")
 endif " has("autocmd")
 
 """" FILETYPES """"
+autocmd FileType sql setlocal shiftwidth=2 tabstop=2
+autocmd FileType sql let b:autoformat_remove_trailing_spaces=1
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
+autocmd FileType text setlocal shiftwidth=2 tabstop=2 textwidth=0
 
 au BufNewFile,BufRead *.coco set filetype=python
+au BufNewFile,BufRead *.sc set filetype=scala
+au BufNewFile,BufRead *.ipynb set filetype=json
 
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
 augroup HiveQuery
     autocmd! filetype sql nnoremap <leader>q :w <bar> :Dispatch! hive -f %<cr>
 augroup END
-
-" sql/hql completion
-let g:ftplugin_sql_omni_key = '<C-B>'
-let g:omni_sql_default_compl_type = 'syntax'
 
 
 """" WINDOW MANAGEMENT """"
@@ -442,3 +443,15 @@ let g:rainbow_conf = {
 	\		'css': 0,
 	\	}
 	\}
+
+" vim-autoformat
+let g:autoformat_remove_trailing_spaces = 1
+
+" ALE settings
+" TODO figure out how to get linting on *.sc files
+" let g:ale_linters = {'scala': ['scalac']}
+let g:ale_fixers = {
+\    'scala': ['scalafmt'],
+\    '*': ['remove_trailing_lines', 'trim_whitespace']
+\}
+let g:ale_fix_on_save = 1

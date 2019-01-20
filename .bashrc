@@ -22,7 +22,7 @@ alias desk="cd ~/Desktop"
 
 # tweak `ls` alias depending on system
 if [ "$(uname)" == "Darwin" ]; then
-    alias ls="ls -Gal"
+    alias ls="ls -Galh"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias ls="ls --color=auto -al"
 fi
