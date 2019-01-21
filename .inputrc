@@ -1,5 +1,12 @@
 $include /etc/inputrc
+
+# completion
 set completion-ignore-case on
+set skip-completed-text on
+set show-all-if-ambiguous on
+set completion-display-width 1
+
+# vi mode
 set editing-mode vi
 set keymap vi-command
 Control-Space: clear-screen

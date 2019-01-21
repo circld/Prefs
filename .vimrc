@@ -416,9 +416,6 @@ let g:EasyMotion_keys = "huwjmkl'r,c.gpfydisanote"
 nnoremap <leader>n :call ToggleEasyMotionMovementKeys()<CR>
 call ToggleEasyMotionMovementKeys()
 
-" VimCompletesMe
-let g:vcm_direction = 'p'
-
 " Rainbow Parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -449,7 +446,7 @@ let g:autoformat_remove_trailing_spaces = 1
 
 " ALE settings
 " TODO figure out how to get linting on *.sc files
-" let g:ale_linters = {'scala': ['scalac']}
+let g:ale_linters = {'scala': []}
 let g:ale_fixers = {
 \    'scala': ['scalafmt'],
 \    '*': ['remove_trailing_lines', 'trim_whitespace']
@@ -457,3 +454,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 nmap <silent> <leader>an <Plug>(ale_next_wrap)
 nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1

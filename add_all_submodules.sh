@@ -20,7 +20,6 @@ git submodule add https://github.com/vim-scripts/The-NERD-tree.git bundle/nerdtr
 git submodule add https://github.com/vim-airline/vim-airline bundle/vim-airline.git bundle/vim-airline
 git submodule add https://github.com/vim-airline/vim-airline-themes.git bundle/vim-airline-themes
 git submodule add https://github.com/powerline/fonts.git bundle/vim-airline-fonts
-git submodule add https://github.com/davidhalter/jedi-vim.git bundle/jedi-vim
 git submodule add https://github.com/tomtom/tcomment_vim bundle/tcomment_vim
 git submodule add https://github.com/tpope/vim-sensible bundle/vim-sensible
 git submodule add https://github.com/tpope/vim-repeat bundle/vim-repeat
@@ -32,7 +31,11 @@ git submodule add https://github.com/ajh17/VimCompletesMe bundle/VimCompletesMe
 git submodule add https://github.com/jiangmiao/auto-pairs bundle/auto-pairs
 git submodule add https://github.com/luochen1990/rainbow bundle/rainbow
 git submodule add https://github.com/airblade/vim-gitgutter bundle/vim-gitgutter
-git submodule add https://github.com/w0rp/ale.git bindle/ale
+git submodule add https://github.com/w0rp/ale.git bundle/ale
+
+# completion
+git submodule add https://github.com/Shougo/deoplete.nvim.git bundle/deoplete
+git submodule add https://github.com/zchee/deoplete-jedi.git bundle/deoplete-jedi
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim
