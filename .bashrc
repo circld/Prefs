@@ -7,12 +7,13 @@ set -o vi
 # ensure airline fonts display properly
 export LANG='en_US.UTF-8'
 export PYTHONIOENCODING=utf-8
+export INPUTRC=~/.inputrc
 
 # free ctrl-s to be forward history search by reassigning `stop` to ctrl-X
 stty stop ^Z
 
 # set vim to default editor
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 alias R='R -q'
