@@ -307,10 +307,6 @@ let g:jedi#usages_command = '<leader><s-n>'
 " TaskList settings
 map <leader>d <Plug>TaskList
 
-" Gundo
-map <leader>z :GundoToggle<Enter>
-let g:gundo_close_on_revert=1
-
 " CtrlP
 " let g:ctrlp_map = '<leader>t'
 nnoremap <leader>t :CtrlP ~/<cr>
@@ -457,3 +453,7 @@ nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
+" Undotree
+let g:undotree_SetFocusWhenToggle = 1
+nmap <leader>u :UndotreeToggle<CR>
