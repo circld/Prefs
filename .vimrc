@@ -180,6 +180,7 @@ autocmd FileType text setlocal shiftwidth=2 tabstop=2 textwidth=0
 au BufNewFile,BufRead *.coco set filetype=python
 au BufNewFile,BufRead *.sc set filetype=scala
 au BufNewFile,BufRead *.ipynb set filetype=json
+au BufNewFile,BufRead *.ddl set filetype=sql
 
 " highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
@@ -444,6 +445,7 @@ let g:autoformat_remove_trailing_spaces = 1
 " TODO figure out how to get linting on *.sc files
 let g:ale_linters = {'scala': []}
 let g:ale_fixers = {
+\    'json': ['jq'],
 \    'scala': ['scalafmt'],
 \    '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
