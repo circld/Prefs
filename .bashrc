@@ -18,8 +18,7 @@ export EDITOR="$VISUAL"
 
 alias R='R -q'
 alias vi="vim"
-alias data="cd \"/c/Users/Paul/Dropbox/Statistics & Data\""
-alias desk="cd ~/Desktop"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # tweak `ls` alias depending on system
 if [ "$(uname)" == "Darwin" ]; then
