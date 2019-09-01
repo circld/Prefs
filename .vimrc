@@ -443,10 +443,11 @@ let g:autoformat_remove_trailing_spaces = 1
 
 " ALE settings
 " TODO figure out how to get linting on *.sc files
-let g:ale_linters = {'scala': []}
+let g:ale_linters = {'scala': [], 'rust': ['rls', 'rustfmt']}
 let g:ale_fixers = {
-\    'json': ['jq'],
-\    'scala': ['scalafmt'],
+\    'json': ['jq', 'remove_trailing_lines', 'trim_whitespace'],
+\    'scala': ['scalafmt', 'remove_trailing_lines', 'trim_whitespace'],
+\    'rust': ['rustfmt', 'remove_trailing_lines', 'trim_whitespace'],
 \    '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_fix_on_save = 1
@@ -459,3 +460,6 @@ let g:deoplete#enable_at_startup = 1
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
 nmap <leader>u :UndotreeToggle<CR>
+
+" Neovim - configure Python provider
+let g:python3_host_prog = '/usr/local/bin/python3.7'
