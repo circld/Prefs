@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# TODO upgrade to modern package manager
 # install pathogen
 # mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 # curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -35,7 +36,7 @@ git submodule add https://github.com/w0rp/ale.git bundle/ale
 
 # completion
 git submodule add https://github.com/Shougo/deoplete.nvim.git bundle/deoplete
-git submodule add https://github.com/zchee/deoplete-jedi.git bundle/deoplete-jedi
+git clone --recursive https://github.com/deoplete-plugins/deoplete-jedi bundle/deoplete-jedi
 
 # vim-snippets dependencies
 git submodule add https://github.com/tomtom/tlib_vim.git bundle/tlib_vim

@@ -128,9 +128,6 @@ inoremap <F3>[ <Esc>A [<CR>]<Esc>%o
 nnoremap <F3>[ A[<CR>]<Esc>%o
 nnoremap <C-c> :noh<Enter><Esc>
 nnoremap <leader>p :exec &paste? "se paste!" : "se nopaste!"<cr>
-set complete=.,b,u,]
-set wildmode=longest,list:longest
-set completeopt=menu,preview
 set autochdir
 
 " edited sh.exe in git folders to use gvim by default (for colorscheme to work)
@@ -441,21 +438,33 @@ let g:rainbow_conf = {
 " vim-autoformat
 let g:autoformat_remove_trailing_spaces = 1
 
-" ALE settings
+" ALE
 " TODO figure out how to get linting on *.sc files
 let g:ale_linters = {'scala': [], 'rust': ['rls', 'rustfmt']}
 let g:ale_fixers = {
-\    'json': ['jq', 'remove_trailing_lines', 'trim_whitespace'],
-\    'scala': ['scalafmt', 'remove_trailing_lines', 'trim_whitespace'],
-\    'rust': ['rustfmt', 'remove_trailing_lines', 'trim_whitespace'],
+\    'json': ['jq'],
+\    'scala': ['scalafmt'],
+\    'rust': ['rustfmt'],
 \    '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
+let g:ale_completion_enabled = 0
+let g:ale_completion_max_suggestions = 1000
 let g:ale_fix_on_save = 1
+let g:ale_open_list = 'on_save'
+let g:ale_rust_rls_config = {
+\   'rust': {
+\     'clippy_preference': 'on'
+\   }
+\}
+
 nmap <silent> <leader>an <Plug>(ale_next_wrap)
 nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('sources', {
+    \ 'rust': ['ale'],
+    \ })
 
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
