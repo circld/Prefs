@@ -177,17 +177,16 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
 autocmd FileType text setlocal shiftwidth=2 tabstop=2 textwidth=0
 
+au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
+
 au BufNewFile,BufRead *.coco set filetype=python
 au BufNewFile,BufRead *.sc set filetype=scala
 au BufNewFile,BufRead *.ipynb set filetype=json
 au BufNewFile,BufRead *.ddl set filetype=sql
-
-" highlight hql files as sql & run queries from vim
 au BufNewFile,BufRead *.hql set filetype=sql
-augroup HiveQuery
-    autocmd! filetype sql nnoremap <leader>q :w <bar> :Dispatch! hive -f %<cr>
-augroup END
 
+"""" FOLDING """"
+set viewoptions=cursor,folds,slash,unix
 
 """" WINDOW MANAGEMENT """"
 
@@ -243,54 +242,6 @@ map gb :buffers<cr>
 
 """" PLUGINS """"
 
-" Python-mode
-" rope completion disabled for Jedi vim
-let g:pymode_rope_completion=0
-let g:pymode_rope=0
-
-" Documentation
-let g:pymode_doc=0
-
-" " Lint
-let g:pymode_lint=1
-let g:pymode_lint_checker="pyflakes,pep8"
-
-" Auto check on save
-let g:pymode_lint_write=1
-let g:pymode_lint_cwindow=0
-
-let g:pymode_virtualenv=0
-
-" Enable breakpoints
-let g:pymode_breakpoint=1
-let g:pymode_breakpoint_key='<leader>b'
-
-" syntax highlighting
-let g:pymode_syntax=1
-let g:pymode_syntax_all=1
-let g:pymode_indent_errors=g:pymode_syntax_all
-let g:pymode_space_errors=g:pymode_syntax_all
-
-" turn off autofolding
-let g:pymode_folding=0
-
-" turn on pymode_run
-let g:pymode_run=1
-let g:pymode_run_bind='<S-R>'
-
-" map pymode rename
-let g:pymode_rope_rename_bind = '<leader>r'
-
-augroup vimrc_autocmds
-    autocmd!
-    " highlight characters past column 80 (can mess with pop-up prompts)
-    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Yellow
-    " autocmd FileType python match Excess /\%80v.*/
-    autocmd FileType python set nowrap
-    " linewrap should not insert line breaks for txt, md files
-    autocmd FileType text,markdown setlocal formatoptions-=t
-augroup END
-
 " jedi-vim
 let g:jedi#auto_initialization = 1
 let g:jedi#completions_enabled = 1
@@ -308,26 +259,6 @@ let g:jedi#usages_command = '<leader><s-n>'
 " TaskList settings
 map <leader>d <Plug>TaskList
 
-" CtrlP
-" let g:ctrlp_map = '<leader>t'
-nnoremap <leader>t :CtrlP ~/<cr>
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-v>'],
-    \ 'AcceptSelection("v")': ['<cr>'],
-    \ }
-" speed up indexing
-" requires silver_searcher: https://github.com/ggreer/the_silver_searcher
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_clear_cache_on_exit = 0
-
 " Airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
@@ -339,9 +270,6 @@ else
     let g:airline_theme='behelit'
 endif
 
-" ShellAsync
-nnoremap <leader>S :Dispatch!
-
 " vim-test
 let g:test#python#runner = 'nose'
 function! Dispatchbg(cmd) abort
@@ -352,18 +280,6 @@ let g:test#strategy = 'dispatch_bg'
 nmap <silent> <leader>U :TestFile<CR>
 nmap <silent> <leader>u :TestLast<CR>
 nmap <leader>c :Copen<cr><leader>LGzb
-
-" vim-taskwarrior
-let g:task_info_vsplit = 1
-let g:task_rc_override = 'rc.defaultwidth=0'
-
-" NERDTree
-let NERDTreeShowLineNumbers=1
-let NERDTreeHighlightCursorLine=1
-let NERDTreeShowHidden=1
-let NERDTreeWinSize=40
-let NERDTreeQuitOnOpen=1
-nmap <leader>' :NERDTree<cr>
 
 " UltiSnips
 let &runtimepath .= ','.expand('~/Prefs')
@@ -443,15 +359,17 @@ let g:autoformat_remove_trailing_spaces = 1
 
 " ALE settings
 " TODO figure out how to get linting on *.sc files
-let g:ale_linters = {'scala': []}
+let g:ale_linters = {'scala': [], 'python': ['pylint', 'flake8']}
 let g:ale_fixers = {
-\    'json': ['jq'],
-\    'scala': ['scalafmt'],
+\    'json': ['jq', 'remove_trailing_lines', 'trim_whitespace'],
+\    'scala': ['scalafmt', 'remove_trailing_lines', 'trim_whitespace'],
+\    'rust': ['rustfmt', 'remove_trailing_lines', 'trim_whitespace'],
 \    '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_fix_on_save = 1
-nmap <silent> <leader>an <Plug>(ale_next_wrap)
-nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_flake8_auto_pipenv = 1
+let g:ale_python_pylint_auto_pipenv = 1
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -459,3 +377,6 @@ let g:deoplete#enable_at_startup = 1
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
 nmap <leader>u :UndotreeToggle<CR>
+
+" Nerdtree
+nmap <leader>f :NERDTreeToggle<CR>

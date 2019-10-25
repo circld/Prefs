@@ -17,13 +17,14 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 alias R='R -q'
-alias vi="vim"
+alias vi="nvim"
 alias data="cd \"/c/Users/Paul/Dropbox/Statistics & Data\""
 alias desk="cd ~/Desktop"
+alias ls_="bash -c 'ls'"
 
 # tweak `ls` alias depending on system
 if [ "$(uname)" == "Darwin" ]; then
-    alias ls="ls -Galh"
+    alias ls="ls -GalhH"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     alias ls="ls --color=auto -al"
 fi
