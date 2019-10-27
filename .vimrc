@@ -399,6 +399,7 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
     \ 'rust': ['ale'],
     \ })
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
