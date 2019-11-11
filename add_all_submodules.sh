@@ -33,6 +33,7 @@ git submodule add https://github.com/w0rp/ale.git bundle/ale
 git submodule add https://github.com/Vimjas/vim-python-pep8-indent bundle/vim-python-pep8-indent
 git submodule add https://github.com/zhimsel/vim-stay bundle/vim-stay
 git submodule add https://github.com/scrooloose/nerdtree bundle/nerdtree
+git submodule add https://github.com/cespare/vim-toml bundle/vim-toml
 
 # completion
 git submodule add https://github.com/Shougo/deoplete.nvim.git bundle/deoplete

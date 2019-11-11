@@ -137,6 +137,8 @@ set autochdir
 syntax enable
 set background=dark
 colorscheme space-vim-dark
+hi LineNr ctermfg=243
+hi SpecialComment ctermfg=38
 
 " font sizing adjustment
 if has("gui_running")
@@ -393,6 +395,9 @@ let g:ale_python_pylint_auto_pipenv = 1
 
 nmap <silent> <leader>an <Plug>(ale_next_wrap)
 nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+
+highlight ALEWarning ctermfg=240 ctermbg=Yellow
+highlight ALEError ctermfg=240 ctermbg=Red
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
