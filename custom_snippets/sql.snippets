@@ -1,44 +1,117 @@
+priority 1
+
 # custom sql snippet definitions
 snippet tbl
-	create table ${1:table} (
-		${0:columns}
-	);
+create table ${1:table} (
+  ${0:col}
+);
+endsnippet
+
 snippet col
-	${1:name}	${2:type}	${3:default ''}	${0:not null}
+${1:name}  ${2:type}  ${3:default ''}  ${0:not null}
+endsnippet
+
 snippet ccol
-	${1:name}	varchar2(${2:size})	${3:default ''}	${0:not null}
+${1:name}  varchar2(${2:size})  ${3:default ''}  ${0:not null}
+endsnippet
+
 snippet ncol
-	${1:name}	number	${3:default 0}	${0:not null}
+${1:name}  number  ${3:default 0}  ${0:not null}
+endsnippet
+
 snippet dcol
-	${1:name}	date	${3:default sysdate}	${0:not null}
+${1:name}  date  ${3:default sysdate}  ${0:not null}
+endsnippet
+
 snippet ind
-	create index ${0:$1_$2} on ${1:table}(${2:column});
+create index ${0:$1_$2} on ${1:table}(${2:column});
+endsnippet
+
 snippet uind
-	create unique index ${1:name} on ${2:table}(${0:column});
+create unique index ${1:name} on ${2:table}(${0:column});
+endsnippet
+
 snippet tblcom
-	comment on table ${1:table} is '${0:comment}';
+comment on table ${1:table} is '${0:comment}';
+endsnippet
+
 snippet colcom
-	comment on column ${1:table}.${2:column} is '${0:comment}';
+comment on column ${1:table}.${2:column} is '${0:comment}';
+endsnippet
+
 snippet addcol
-	alter table ${1:table} add (${2:column} ${0:type});
+alter table ${1:table} add (${2:column} ${0:type});
+endsnippet
+
 snippet seq
-	create sequence ${1:name} start with ${2:1} increment by ${3:1} minvalue ${0:1};
+create sequence ${1:name} start with ${2:1} increment by ${3:1} minvalue ${0:1};
+endsnippet
+
 snippet s*
-	select
-		${2:sc}${0}
-	  from
-	    ${1:table}
-	;
+select
+  ${2:sc}${0}
+from
+  ${1:table}
+;
+endsnippet
+
 snippet sc
-	${1:column} as ${2:alias} ,
-	${3:sc}
+${1:column} as ${2:alias},
+${3:sc}
+endsnippet
+
 snippet $
-	'${hiveconf:${1:var}}'
+'${hiveconf:${1:var}}'
+endsnippet
+
 snippet case
-	case 
-	  ${2:when}${0}
-	  else ${1:outcome}
-	end
+case
+  ${3:when}$0
+  else ${2:outcome}
+end as ${1:alias}
+endsnippet
+
 snippet when
-	when ${1:cond} then ${2:outcome}
-	${3:when}
+when ${1:cond} then ${2:outcome}
+${3:when}
+endsnippet
+
+snippet scw
+select
+  count(*) as ct
+from
+  ${1:table} $2
+where $2.${3:column}
+endsnippet
+
+snippet join
+join ${1:table} ${2:alias} on ${4:col1} = ${0:$2}.${3:col2}
+endsnippet
+
+snippet coal
+coalesce(${1:col}, ${2:value})
+endsnippet
+
+snippet sub
+(
+  select
+    ${4:col}
+  from
+	${2:table} ${3:alias}
+  where
+    ${5:pred}
+) ${1}$0
+endsnippet
+
+snippet exists
+exists (
+  select
+    null
+  from
+    ${1:table} $2
+  where
+    $2.${3:column}
+)$0
+endsnippet
+
+#vim:ft=snippets

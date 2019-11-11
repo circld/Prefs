@@ -293,7 +293,7 @@ nmap <leader>f :NERDTree<cr>
 
 " UltiSnips
 let &runtimepath .= ','.expand('~/Prefs')
-let g:UltiSnipsSnippetsDirectories = ['UltiSnips', 'custom_snippets']
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 let g:UltiSnipsExpandTrigger = '<c-g>'
 let g:ultisnips_python_style = 'google'
 
