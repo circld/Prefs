@@ -2,19 +2,8 @@
 " options as a side effect.
 set nocompatible
 
-" Pathogen (package/module management)
-filetype off
-execute pathogen#infect()
-execute pathogen#helptags()
-filetype on
-
 " remap <Leader> key (note: may not work in consoles! Default: \)
 let mapleader=" "
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -29,9 +18,6 @@ set ruler        " show the cursor position all the time
 set showcmd        " display incomplete commands
 set incsearch        " do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions=substitute(&guioptions, "t", "", "g")
-
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -44,46 +30,8 @@ if has('mouse')
   set mouse=a
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  " autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent        " always set autoindenting on
-
-endif " has("autocmd")
+syntax on
+set hlsearch
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -112,6 +60,10 @@ set ignorecase
 set shortmess+=I
 set textwidth=80
 set colorcolumn=+1
+syntax enable
+set background=dark
+
+" Custom mappings
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
 map Y v$hy
@@ -133,12 +85,6 @@ set wildmode=longest,list:longest
 set completeopt=menu,preview
 set autochdir
 
-" edited sh.exe in git folders to use gvim by default (for colorscheme to work)
-syntax enable
-set background=dark
-colorscheme space-vim-dark
-hi LineNr ctermfg=243
-hi SpecialComment ctermfg=38
 
 " font sizing adjustment
 if has("gui_running")
@@ -199,7 +145,6 @@ map <leader>-  <C-W>_
 
 " sane and intuitive vim windows management
 " http://www.agillo.net/simple-vim-window-management/
-
 function! WinMove(key)
   let t:curwin = winnr()
   exec "wincmd ".a:key
@@ -242,173 +187,8 @@ map gd :bd<cr>
 map gl :b#<cr>
 map gb :buffers<cr>
 
-"""" PLUGINS """"
-
-" jedi-vim
-let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 1
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#completions_command = ""
-let g:jedi#show_call_signatures = 1
-let g:jedi#show_call_signatures_delay = 0
-let g:jedi#documentation_command = '<S-K>'
-let g:jedi#use_splits_not_buffers = 'top'
-let g:jedi#goto_command = '<leader>g'
-let g:jedi#usages_command = '<leader><s-n>'
-
-" TaskList settings
-map <leader>d <Plug>TaskList
-
-" Airline
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#buffer_nr_show=1
-let g:airline_powerline_fonts = 1
-" apply different themes based on OS
-if has("win32")
-    let g:airline_theme='zenburn'
-else
-    let g:airline_theme='behelit'
-endif
-
-" vim-test
-let g:test#python#runner = 'nose'
-function! Dispatchbg(cmd) abort
-    execute 'Dispatch!'.a:cmd
-endfunction
-let g:test#custom_strategies = {'dispatch_bg': function('Dispatchbg')}
-let g:test#strategy = 'dispatch_bg'
-nmap <silent> <leader>U :TestFile<CR>
-nmap <silent> <leader>u :TestLast<CR>
-nmap <leader>c :Copen<cr><leader>LGzb
-
-" NERDTree
-let NERDTreeShowLineNumbers=1
-let NERDTreeHighlightCursorLine=1
-let NERDTreeShowHidden=1
-let NERDTreeWinSize=40
-let NERDTreeQuitOnOpen=1
-nmap <leader>f :NERDTree<cr>
-
-" UltiSnips
-let &runtimepath .= ','.expand('~/Prefs')
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
-let g:UltiSnipsExpandTrigger = '<c-g>'
-let g:ultisnips_python_style = 'google'
-
-" EasyMotion (remap all movement keys!)
-let g:easy_motion_on=0
-function! ToggleEasyMotionMovementKeys()
-    if g:easy_motion_on
-        unmap w
-        unmap W
-        unmap b
-        unmap B
-        unmap t
-        unmap T
-        unmap f
-        unmap F
-        " unmap j
-        " unmap k
-        unmap e
-        unmap E
-        unmap ge
-        unmap gE
-        let g:easy_motion_on=0
-    else
-        map w <Plug>(easymotion-w)
-        map W <Plug>(easymotion-W)
-        map b <Plug>(easymotion-b)
-        map B <Plug>(easymotion-B)
-        map t <Plug>(easymotion-t)
-        map T <Plug>(easymotion-T)
-        map f <Plug>(easymotion-f)
-        map F <Plug>(easymotion-F)
-        " map j <Plug>(easymotion-eol-j)
-        " map k <Plug>(easymotion-eol-k)
-        map e <Plug>(easymotion-e)
-        map E <Plug>(easymotion-E)
-        map ge <Plug>(easymotion-ge)
-        map gE <Plug>(easymotion-gE)
-        let g:easy_motion_on=1
-    endif
-endfunction
-
-let g:EasyMotion_keys = "huwjmkl'r,c.gpfydisanote"
-nnoremap <leader>n :call ToggleEasyMotionMovementKeys()<CR>
-call ToggleEasyMotionMovementKeys()
-
-" Rainbow Parentheses
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['darkblue', 'darkcyan', 'darkmagenta', 'yellow'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
-
-" vim-autoformat
-let g:autoformat_remove_trailing_spaces = 1
-
-" ALE settings
-" TODO figure out how to get linting on *.sc files
-let g:ale_linters = {
-\    'scala': [],
-\    'python': ['pylint', 'flake8'],
-\    'rust': ['rls', 'rustfmt']
-\}
-let g:ale_fixers = {
-\    'json': ['jq'],
-\    'scala': ['scalafmt'],
-\    'rust': ['rustfmt'],
-\    '*': ['remove_trailing_lines', 'trim_whitespace']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 0
-let g:ale_completion_max_suggestions = 1000
-let g:ale_open_list = 'on_save'
-let g:ale_rust_rls_config = {
-\   'rust': {
-\     'clippy_preference': 'on'
-\   }
-\}
-let g:ale_python_auto_pipenv = 1
-let g:ale_python_flake8_auto_pipenv = 1
-let g:ale_python_pylint_auto_pipenv = 1
-
-nmap <silent> <leader>an <Plug>(ale_next_wrap)
-nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
-
-highlight ALEWarning ctermfg=240 ctermbg=Yellow
-highlight ALEError ctermfg=240 ctermbg=Red
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('sources', {
-    \ 'rust': ['ale'],
-    \ })
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-
-" Undotree
-let g:undotree_SetFocusWhenToggle = 1
-nmap <leader>u :UndotreeToggle<CR>
-
 " Neovim - configure Python provider
-let g:python3_host_prog = '/usr/local/bin/python3.7'
+let g:python3_host_prog = '/Users/paul.garaud/miniconda3/bin/python'
+
+" Load & configure plugins
+so ~/Prefs/plugins.vim

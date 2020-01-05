@@ -49,15 +49,15 @@ endsnippet
 
 snippet s*
 select
-  ${2:sc}${0}
+  ${8:sc}${0}
 from
-  ${1:table}
+  ${1:table} ${2}${3/..*/where  /}${3:$2.${4:column}}${5/..*/group by
+  /}${5:cols}${6/..*/order by  /}${6:cols}${7/..*/limit /}${7:limit}
 ;
 endsnippet
 
 snippet sc
-${1:column} as ${2:alias},
-${3:sc}
+${1:${2:tbl_alias}.${3:column}}${4/..*/ as /}${4:$3}${5/..*/,/}${5:sc}$0
 endsnippet
 
 snippet $
@@ -66,29 +66,29 @@ endsnippet
 
 snippet case
 case
-  ${3:when}$0
-  else ${2:outcome}
-end as ${1:alias}
+  when$4
+  else ${3:outcome}
+end${1/..*/ as /}${1:alias}${2/..*/,/}${2:sc}
 endsnippet
 
 snippet when
-when ${1:cond} then ${2:outcome}
-${3:when}
-endsnippet
-
-snippet scw
-select
-  count(*) as ct
-from
-  ${1:table} $2
-where $2.${3:column}
+when ${1:cond} then ${2:outcome}${3/..*//}${3:when}
 endsnippet
 
 snippet join
-join ${1:table} ${2:alias} on ${4:col1} = ${0:$2}.${3:col2}
+join ${1:table} ${2:alias}
+  on ${4:col1} = $2.${3:col2}${5/..*/  /}${5:and}
 endsnippet
 
-snippet coal
+snippet and
+and $1.$2 = ${3:$4.$5}${6/..*//}${6:and}
+endsnippet
+
+snippet or
+or $1.$2 = ${3:$4.$5}${6/..*//}${6:and}
+endsnippet
+
+snippet co
 coalesce(${1:col}, ${2:value})
 endsnippet
 
@@ -112,6 +112,22 @@ exists (
   where
     $2.${3:column}
 )$0
+endsnippet
+
+snippet cnt
+count(*) as ct${1/..*/,/}${1:sc}$0
+endsnippet
+
+snippet is
+${1:${2}.${3:column}} is null$0
+endsnippet
+
+snippet isn
+${1:${2}.${3:column}} is not null$0
+endsnippet
+
+snippet nif
+nullif(${1:${2}.${3:column}}, ${4:value})$0
 endsnippet
 
 #vim:ft=snippets
