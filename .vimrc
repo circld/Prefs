@@ -1,25 +1,15 @@
-" This must be first (and before pathogen calls), because it changes other
-" options as a side effect.
 set nocompatible
 
 " remap <Leader> key (note: may not work in consoles! Default: \)
 let mapleader=" "
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
 
 if has("vms")
   set nobackup        " do not keep a backup file, use versions instead
 else
   set backup        " keep a backup file
 endif
-set history=50        " keep 50 lines of command line history
-set ruler        " show the cursor position all the time
 set showcmd        " display incomplete commands
-set incsearch        " do incremental searching
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -30,38 +20,38 @@ if has('mouse')
   set mouse=a
 endif
 
-syntax on
-set hlsearch
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
+" Diff vs file when opened
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
      \ | wincmd p | diffthis
 endif
 
 " Set various additional settings
-set previewheight=50
-set foldmethod=manual
-set foldlevel=99
-set noerrorbells
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-set nu
-set linebreak
+set autochdir
+set background=dark
 set breakindent
-set textwidth=0
-set laststatus=2
+set colorcolumn=+1
+set complete=.,b,u,]
+set completeopt=menu,preview
 set cursorline
+set foldlevel=99
+set foldmethod=manual
+set hlsearch
+set ignorecase
+set laststatus=2
+set linebreak
+set nobackup
+set noerrorbells
+set nu
+set previewheight=50
+set shortmess+=I
 set splitbelow
 set splitright
-set nobackup
-set ignorecase
-set shortmess+=I
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set textwidth=0
 set textwidth=80
-set colorcolumn=+1
+set wildmode=longest,list:longest
 syntax enable
-set background=dark
 
 " Custom mappings
 map <Enter> o<Esc>
@@ -69,7 +59,6 @@ map <S-Enter> O<Esc>
 map Y v$hy
 nnoremap vv vV
 nnoremap V v$h
-imap <C-c> <Esc>
 inoremap <F2> <Esc>A;<Esc>
 nnoremap <F2> <Esc>A;<Esc>
 inoremap <F3>{ <Esc>A {<CR>}<Esc>%o
@@ -80,16 +69,8 @@ inoremap <F3>[ <Esc>A [<CR>]<Esc>%o
 nnoremap <F3>[ A[<CR>]<Esc>%o
 nnoremap <C-c> :noh<Enter><Esc>
 nnoremap <leader>p :exec &paste? "se paste!" : "se nopaste!"<cr>
-set complete=.,b,u,]
-set wildmode=longest,list:longest
-set completeopt=menu,preview
-set autochdir
-
-
-" font sizing adjustment
-if has("gui_running")
-    set guifont=Consolas:h10:cANSI
-endif
+" Don't use Ex mode, use Q for formatting
+map Q gq
 
 " Git default vimrc options
 if has("autocmd")
@@ -124,9 +105,7 @@ autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
 autocmd FileType text setlocal shiftwidth=2 tabstop=2 textwidth=0
-
 au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
-
 au BufNewFile,BufRead *.coco set filetype=python
 au BufNewFile,BufRead *.sc set filetype=scala
 au BufNewFile,BufRead *.ipynb set filetype=json
