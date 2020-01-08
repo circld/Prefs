@@ -188,4 +188,4 @@ hi SpecialComment ctermfg=38
 hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
 hi DiffChange gui=NONE guifg=#b2b2b2 guibg=#3a3a3a
 hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
-hi DiffText   gui=NONE guifg=#fabd2f guibg=#3a3a3a
+hi DiffText   gui=NONE guifg=#fabd2f guibg=#827400
