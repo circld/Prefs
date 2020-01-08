@@ -134,30 +134,42 @@ let g:rainbow_conf = {
 	\}
 
 " ALE settings
-" TODO figure out how to get linting on *.sc files
-let g:ale_linters = {
-\    'scala': [],
-\    'python': ['pylint', 'flake8'],
-\    'rust': ['rls', 'rustfmt']
-\}
-let g:ale_fixers = {
-\    'json': ['jq'],
-\    'scala': ['scalafmt'],
-\    'rust': ['rustfmt'],
-\    '*': ['remove_trailing_lines', 'trim_whitespace']
-\}
+let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:ale_completion_max_suggestions = 1000
 let g:ale_open_list = 'on_save'
+let g:ale_markdown_remark_lint_executable = expand('~/.node_modules_global/bin/remark')
+let g:ale_markdown_remark_lint_options = '--use remark-preset-lint-recommended'
+let g:ale_markdown_remark_lint_use_global = 1
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_flake8_auto_pipenv = 1
+let g:ale_python_pylint_auto_pipenv = 1
+
+" TODO figure out how to get linting on *.sc files
+let g:ale_linters = {
+\    'json': ['jsonlint'],
+\    'javascript': ['eslint', 'prettier'],
+\    'css': ['eslint', 'prettier'],
+\    'markdown': ['remark-lint'],
+\    'python': ['pylint', 'flake8'],
+\    'rust': ['rls', 'rustfmt'],
+\    'scala': []
+\}
+let g:ale_fixers = {
+\    'json': ['prettier', 'eslint', 'jq'],
+\    'javascript': ['prettier', 'eslint', 'jq'],
+\    'css': ['prettier', 'eslint'],
+\    'markdown': ['prettier'],
+\    'rust': ['rustfmt'],
+\    'scala': ['scalafmt'],
+\    '*': ['remove_trailing_lines', 'trim_whitespace']
+\}
 let g:ale_rust_rls_config = {
 \   'rust': {
 \     'clippy_preference': 'on'
 \   }
 \}
-let g:ale_python_auto_pipenv = 1
-let g:ale_python_flake8_auto_pipenv = 1
-let g:ale_python_pylint_auto_pipenv = 1
 
 nmap <silent> <leader>an <Plug>(ale_next_wrap)
 nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
