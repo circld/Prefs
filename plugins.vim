@@ -41,11 +41,6 @@ call plug#end()
 
 " plugin configuration
 
-" colorscheme
-colorscheme space-vim-dark
-hi LineNr ctermfg=243
-hi SpecialComment ctermfg=38
-
 " Airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
@@ -183,3 +178,14 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
 nmap <leader>u :UndotreeToggle<CR>
+
+" colorscheme
+let g:space_vim_dark_background = 235
+colorscheme space-vim-dark
+set termguicolors
+hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
+hi SpecialComment ctermfg=38
+hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
+hi DiffChange gui=NONE guifg=#b2b2b2 guibg=#3a3a3a
+hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
+hi DiffText   gui=NONE guifg=#fabd2f guibg=#3a3a3a
