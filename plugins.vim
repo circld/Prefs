@@ -111,7 +111,7 @@ call ToggleEasyMotionMovementKeys()
 " Rainbow Parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	\	'guifgs': ['#0087ff', '#875fdf', '#df5fdf', '#df5f87'],
 	\	'ctermfgs': ['darkblue', 'darkcyan', 'darkmagenta', 'yellow'],
 	\	'operators': '_,_',
 	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
