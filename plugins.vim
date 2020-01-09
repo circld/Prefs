@@ -145,6 +145,8 @@ let g:ale_markdown_remark_lint_use_global = 1
 let g:ale_python_auto_pipenv = 1
 let g:ale_python_flake8_auto_pipenv = 1
 let g:ale_python_pylint_auto_pipenv = 1
+let g:ale_sql_sqlformat_executable = expand('~/.node_modules_global/bin/sql-formatter-cli')
+let g:ale_sql_sqlformat_options = '-i "-" -o "-"'
 
 " TODO figure out how to get linting on *.sc files
 let g:ale_linters = {
@@ -154,7 +156,8 @@ let g:ale_linters = {
 \    'markdown': ['remark-lint'],
 \    'python': ['pylint', 'flake8'],
 \    'rust': ['rls', 'rustfmt'],
-\    'scala': []
+\    'scala': [],
+\    'sql': ['sqlint']
 \}
 let g:ale_fixers = {
 \    'json': ['prettier', 'eslint', 'jq'],
@@ -163,6 +166,7 @@ let g:ale_fixers = {
 \    'markdown': ['prettier'],
 \    'rust': ['rustfmt'],
 \    'scala': ['scalafmt'],
+\    'sql': ['sqlformat'],
 \    '*': ['remove_trailing_lines', 'trim_whitespace']
 \}
 let g:ale_rust_rls_config = {
