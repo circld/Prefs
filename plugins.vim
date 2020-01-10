@@ -66,6 +66,10 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom_snippets"]
 let g:UltiSnipsExpandTrigger = '<c-g>'
 let g:ultisnips_python_style = 'google'
 
+" Easy-Align
+vmap <Enter> <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 " EasyMotion (remap all movement keys!)
 let g:easy_motion_on=0
 function! ToggleEasyMotionMovementKeys()

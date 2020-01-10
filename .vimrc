@@ -99,10 +99,9 @@ endif " has("autocmd")
 
 """" FILETYPES """"
 autocmd FileType sql setlocal shiftwidth=2 tabstop=2
-autocmd FileType sql let b:autoformat_remove_trailing_spaces=1
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType json setlocal shiftwidth=2 tabstop=2
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType json setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
 autocmd FileType text setlocal shiftwidth=2 tabstop=2 textwidth=0
 au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
