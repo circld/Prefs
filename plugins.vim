@@ -125,7 +125,7 @@ let g:rainbow_conf = {
 	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
 	\		},
 	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\			'guifgs': ['#0087ff', '#875fdf', '#df5fdf', '#df5f87'],
 	\		},
 	\		'vim': {
 	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
@@ -167,7 +167,6 @@ let g:ale_fixers = {
 \    'json': ['prettier', 'eslint', 'jq'],
 \    'javascript': ['prettier', 'eslint', 'jq'],
 \    'css': ['prettier', 'eslint'],
-\    'markdown': ['prettier'],
 \    'rust': ['rustfmt'],
 \    'scala': ['scalafmt'],
 \    'sql': ['sqlformat'],

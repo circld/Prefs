@@ -98,7 +98,7 @@ if has("autocmd")
 endif " has("autocmd")
 
 """" FILETYPES """"
-autocmd FileType sql setlocal shiftwidth=2 tabstop=2
+autocmd FileType sql setlocal shiftwidth=2 tabstop=2 foldmethod=indent
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 autocmd FileType json setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
