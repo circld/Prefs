@@ -178,8 +178,8 @@ let g:ale_rust_rls_config = {
 \   }
 \}
 
-nmap <silent> <leader>an <Plug>(ale_next_wrap)
-nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+nmap <silent> ]r <Plug>(ale_next_wrap)
+nmap <silent> [r <Plug>(ale_previous_wrap)
 
 highlight ALEWarning ctermfg=240 ctermbg=Yellow
 highlight ALEError ctermfg=240 ctermbg=Red
@@ -203,7 +203,7 @@ let g:space_vim_dark_background = 235
 colorscheme space-vim-dark
 set termguicolors
 hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
-hi SpecialComment ctermfg=38
+hi SpecialComment ctermfg=38 guifg=#0087d7
 hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
 hi DiffChange gui=NONE guifg=#b2b2b2 guibg=#3a3a3a
 hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
