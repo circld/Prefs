@@ -202,6 +202,8 @@ nmap <leader>u :UndotreeToggle<CR>
 let g:space_vim_dark_background = 235
 colorscheme space-vim-dark
 set termguicolors
+hi EasyMotionTarget2First guifg=#5fd700
+hi EasyMotionTarget2Second guifg=#fabd2f
 hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
 hi SpecialComment ctermfg=38 guifg=#0087d7
 hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a

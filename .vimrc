@@ -38,6 +38,7 @@ set foldlevel=99
 set foldmethod=manual
 set hlsearch
 set ignorecase
+set smartcase
 set laststatus=2
 set linebreak
 set nobackup
@@ -56,7 +57,7 @@ syntax enable
 " Custom mappings
 map <Enter> o<Esc>
 map <S-Enter> O<Esc>
-map Y v$hy
+nnoremap Y v$hy
 nnoremap vv vV
 nnoremap V v$h
 inoremap <F2> <Esc>A;<Esc>
