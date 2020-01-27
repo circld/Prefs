@@ -169,7 +169,7 @@ function! custom_config#after() abort
     let g:_spacevim_mappings_windows.L = ['wincmd L',
           \ 'move-window-rightmost',
           \ [
-          \ '[WIN H] is to move the current window to the rightmost position',
+          \ '[WIN L] is to move the current window to the rightmost position',
           \ '',
           \ 'Custom command; no definition.',
           \ ]
