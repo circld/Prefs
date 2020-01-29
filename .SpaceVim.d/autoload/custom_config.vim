@@ -118,11 +118,6 @@ function! custom_config#before() abort
       \	}
       \}
 
-    " deoplete
-    call deoplete#custom#option('sources', {
-        \ 'rust': ['ale'],
-        \ })
-
   endfunction
 
 function! custom_config#after() abort
@@ -142,6 +137,11 @@ function! custom_config#after() abort
       inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
       inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
     augroup END
+
+    " deoplete
+    call deoplete#custom#option('sources', {
+        \ 'rust': ['ale'],
+        \ })
 
     " UltiSnips
     inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
@@ -193,8 +193,17 @@ function! custom_config#after() abort
           \ ]
           \ ]
 
+    nnoremap <silent> [Window]x :bd<CR>
+    let g:_spacevim_mappings_windows.x = ['bd',
+          \ 'delete-and-close-current-window',
+          \ [
+          \ '[WIN x] deletes the current buffer and closes the window',
+          \ '',
+          \ 'Custom command; no definition.',
+          \ ]
+          \ ]
+
     " Experimental
     " TODO: bring back easymotion shortcuts?
-
 
   endfunction
