@@ -42,6 +42,8 @@ function! custom_config#before() abort
 
     " SPCsymotion-eol-bd- commands
     call SpaceVim#custom#SPC('nore', ['b', 'l'], 'b#', 'switch-to-last-buffer', 1)
+    call SpaceVim#custom#SPC('nore', ['g', 'l'], 'Glog', 'traverse-diff-history', 1)
+    call SpaceVim#custom#SPC('nore', ['g', 'L'], '0Glog', 'traverse-file-history', 1)
     call SpaceVim#custom#SPC('nore', ['d', 'a'], 'windo difft', 'diff-all-windows', 1)
     call SpaceVim#custom#SPC('nore', ['d', 'x'], 'windo diffoff', 'turn-off-diff', 1)
     call SpaceVim#custom#SPC('nmap', ['j', 'Q'], '<Plug>(easymotion-eol-bd-jk)', 'jump-to-an-eol', 0)
