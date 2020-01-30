@@ -52,7 +52,7 @@ select
   ${8:sc}${0}
 from
   ${1:table} ${2}${3/..*/where  /}${3:$2.${4:column}}${5/..*/group by
-  /}${5:cols}${6/..*/order by  /}${6:cols}${7/..*/limit /}${7:limit}
+  /}${5:cols}${6/..*/order by  /}${6:$5}${7/..*/limit /}${7:limit}
 ;
 endsnippet
 

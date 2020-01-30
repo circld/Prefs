@@ -27,11 +27,11 @@
     enable_statusline_mode = false
     relativenumber = false
     warning_symbol = '!'
-    # lint_on_save = true
+    lint_on_the_fly = true
     enable_neomake = false
     enable_ale = true
     snippet_engine = 'ultisnips'
-    disabled_plugins = ["rainbow_parentheses", "delimitMate"]
+    disabled_plugins = ["delimitMate", "rainbow_parentheses"]
 
     # custom configuration
     bootstrap_before = "custom_config#before"
@@ -74,6 +74,11 @@
 
 [[custom_plugins]]
     name = "luochen1990/rainbow"
+    lazy = false
+    merged = false
+
+[[custom_plugins]]
+    name = "tpope/vim-unimpaired"
     lazy = false
     merged = false
 
