@@ -122,6 +122,9 @@ function! custom_config#before() abort
 
 function! custom_config#after() abort
 
+    " Conflicting mappings
+    map f <Plug>(better-easymotion-overwin-f)
+
     " Appearance
     hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
     hi SpecialComment ctermfg=38 guifg=#0087d7
@@ -205,8 +208,5 @@ function! custom_config#after() abort
           \ 'Custom command; no definition.',
           \ ]
           \ ]
-
-    " Experimental
-    " TODO: bring back easymotion shortcuts?
 
   endfunction
