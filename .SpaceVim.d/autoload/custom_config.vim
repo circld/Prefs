@@ -69,9 +69,9 @@ function! custom_config#before() abort
     let g:ale_sql_sqlformat_options = '-i "-" -o "-"'
 
     let g:ale_linters = {
-    \    'json': ['jsonlint'],
-    \    'javascript': ['eslint', 'prettier'],
     \    'css': ['eslint', 'prettier'],
+    \    'javascript': ['eslint', 'prettier'],
+    \    'json': ['jsonlint'],
     \    'markdown': ['remark-lint'],
     \    'python': ['flake8'],
     \    'rust': ['rls', 'rustfmt'],
@@ -80,11 +80,11 @@ function! custom_config#before() abort
     \    'vim': ['vint']
     \}
     let g:ale_fixers = {
-    \    'json': ['prettier', 'eslint', 'jq'],
-    \    'javascript': ['prettier', 'eslint', 'jq'],
     \    'css': ['prettier', 'eslint'],
-    \    'rust': ['rustfmt'],
+    \    'javascript': ['prettier', 'eslint', 'jq'],
+    \    'json': ['prettier', 'eslint', 'jq'],
     \    'python': ['autoflake', 'isort', 'yapf'],
+    \    'rust': ['rustfmt'],
     \    'scala': ['scalafmt'],
     \    'sql': ['sqlformat'],
     \    '*': ['remove_trailing_lines', 'trim_whitespace']
@@ -125,7 +125,9 @@ function! custom_config#before() abort
 function! custom_config#after() abort
 
     " Conflicting mappings
-    map f <Plug>(better-easymotion-overwin-f)
+    nmap f <Plug>(easymotion-overwin-f)
+    xmap f <Plug>(easymotion-bd-f)
+    omap f <Plug>(easymotion-bd-f)
 
     " Appearance
     hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
