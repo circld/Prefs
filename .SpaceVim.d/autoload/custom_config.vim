@@ -128,6 +128,11 @@ function! custom_config#after() abort
     nmap f <Plug>(easymotion-overwin-f)
     xmap f <Plug>(easymotion-bd-f)
     omap f <Plug>(easymotion-bd-f)
+    nunmap <p
+    nunmap >p
+    nunmap <P
+    nunmap >P
+    iunmap jk
 
     " Appearance
     hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
@@ -139,6 +144,7 @@ function! custom_config#after() abort
     hi link diffRemoved DiffDelete
     hi link diffChanged DiffChange
     hi link diffAdded DiffAdd
+    hi EasyMotionTarget guifg=#5fd700
 
     " For saner snippets
     augroup SanerSnippets

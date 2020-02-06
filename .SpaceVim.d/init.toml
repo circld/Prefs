@@ -20,7 +20,7 @@
     # install nerd fonts
     statusline_separator = "arrow"
     statusline_inactive_separator = "arrow"
-    buffer_index_type = 4
+    buffer_index_type = 2
     # nerd fonts: https://github.com/SpaceVim/SpaceVim/issues/771
     sidebar_width = 45
     enable_tabline_filetype_icon = true
