@@ -5,6 +5,7 @@ function! custom_config#before() abort
 
     " Options
     set autochdir
+    set completeopt=menu,preview
     set foldlevel=99
     set ignorecase
     set smartcase
@@ -146,19 +147,6 @@ function! custom_config#after() abort
     hi link diffAdded DiffAdd
     hi EasyMotionTarget guifg=#5fd700
 
-    " For saner snippets
-    augroup SanerSnippets
-      autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-      " use TAB for cycling completions
-      inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
-      inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
-    augroup END
-
-    " deoplete
-    call deoplete#custom#option('sources', {
-        \ 'rust': ['ale'],
-        \ })
-
     " UltiSnips
     inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
     snoremap <silent> <Tab> <Tab>
@@ -170,6 +158,25 @@ function! custom_config#after() abort
     let g:ultisnips_python_style = 'google'
     let g:UltiSnipsJumpForwardTrigger = '<PageDown>'
     let g:UltiSnipsJumpBackwardTrigger = '<PageUp>'
+
+    " For saner snippets
+    augroup SanerSnippets
+      autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
+      " <CR> always inserts newline (<buffer> necessary to override auto-pairs
+      " conflict)
+      inoremap <buffer><silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+      " use TAB for cycling completions
+      inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
+      inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
+    augroup END
+
+    " deoplete
+    call deoplete#custom#option({
+          \ 'sources': {
+            \ 'rust': ['ale'],
+          \ },
+          \ 'smart_case': v:true,
+        \ })
 
     " WIN commands
     nnoremap <silent> [Window]H :<C-u>wincmd H<CR>

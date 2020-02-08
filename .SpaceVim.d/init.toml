@@ -31,7 +31,7 @@
     enable_neomake = false
     enable_ale = true
     snippet_engine = 'ultisnips'
-    disabled_plugins = ["delimitMate", "rainbow_parentheses"]
+    disabled_plugins = ["Raimondi/delimitMate", "rainbow_parentheses"]
 
     # custom configuration
     bootstrap_before = "custom_config#before"
