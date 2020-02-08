@@ -49,11 +49,11 @@ endsnippet
 
 snippet s*
 select
-  ${8:sc}${0}
+  ${3:sc}
 from
-  ${1:table} ${2}${3/..*/where  /}${3:$2.${4:column}}${5/..*/group by
-  /}${5:cols}${6/..*/order by  /}${6:$5}${7/..*/limit /}${7:limit}
-;
+  ${1:table} ${2}${5/..*/where  /}${5:$2.${6:column}}${4/..*/group by
+  /}${4:cols}${7/..*/order by  /}${7:$4}${7/..*/limit /}${8:limit}
+;${0}
 endsnippet
 
 snippet sc
