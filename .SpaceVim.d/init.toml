@@ -7,31 +7,26 @@
 #=============================================================================
 
 # All SpaceVim option below [option] section
+# nerd fonts: https://github.com/SpaceVim/SpaceVim/issues/771
 [options]
-    # set spacevim theme. by default colorscheme layer is not loaded,
-    # if you want to use more colorscheme, please load the colorscheme
-    # layer
+    autocomplete_parens = 0
+    buffer_index_type = 2
     colorscheme = "SpaceVim"
     colorscheme_bg = "dark"
-    # Disable guicolors in basic mode, many terminal do not support 24bit
-    # true colors
-    enable_guicolors = true
-    # Disable statusline separator, if you want to use other value, please
-    # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_inactive_separator = "arrow"
-    buffer_index_type = 2
-    # nerd fonts: https://github.com/SpaceVim/SpaceVim/issues/771
-    sidebar_width = 45
-    enable_tabline_filetype_icon = true
-    enable_statusline_mode = false
-    relativenumber = false
-    warning_symbol = '!'
-    lint_on_the_fly = true
-    enable_neomake = false
+    disabled_plugins = ["delimitMate", "rainbow_parentheses"]
     enable_ale = true
+    enable_guicolors = true
+    enable_insert_leader = false
+    enable_neomake = false
+    enable_statusline_mode = false
+    enable_tabline_filetype_icon = true
+    lint_on_the_fly = true
+    relativenumber = false
+    sidebar_width = 45
     snippet_engine = 'ultisnips'
-    disabled_plugins = ["Raimondi/delimitMate", "rainbow_parentheses"]
+    statusline_inactive_separator = "arrow"
+    statusline_separator = "arrow"
+    warning_symbol = '!'
 
     # custom configuration
     bootstrap_before = "custom_config#before"
@@ -46,8 +41,8 @@
 
 [[layers]]
   name = 'autocomplete'
-  auto-completion-return-key-behavior = "complete"
-  auto-completion-tab-key-behavior = "smart"
+  auto-completion-return-key-behavior = 'nil'
+  auto-completion-tab-key-behavior = 'smart'
 
 [[layers]]
   name = 'shell'

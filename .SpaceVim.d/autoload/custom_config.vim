@@ -37,8 +37,7 @@ function! custom_config#before() abort
       au BufNewFile,BufRead *.coco set filetype=python
       au BufNewFile,BufRead *.sc set filetype=scala
       au BufNewFile,BufRead *.ipynb set filetype=json
-      au BufNewFile,BufRead *.ddl set filetype=sql
-      au BufNewFile,BufRead *.hql set filetype=sql
+      au BufNewFile,BufRead *.ddl,*.hql set filetype=sql
     augroup END
 
     " SPCsymotion-eol-bd- commands
@@ -134,6 +133,7 @@ function! custom_config#after() abort
     nunmap <P
     nunmap >P
     iunmap jk
+    iunmap \<Tab>
 
     " Appearance
     hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
@@ -162,9 +162,6 @@ function! custom_config#after() abort
     " For saner snippets
     augroup SanerSnippets
       autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-      " <CR> always inserts newline (<buffer> necessary to override auto-pairs
-      " conflict)
-      inoremap <buffer><silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
       " use TAB for cycling completions
       inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
       inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
