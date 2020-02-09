@@ -1,0 +1,103 @@
+/*
+Last updated: FF73 200209
+
+1. Navigate the relevant profile directory (see `about:profiles`)
+2. Create a folder named `chrome` (if it doesn't exist) then create a file named userChrome.css inside it and paste this code
+3. If userChrome.css doesn’t seem to work, open `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets=true`
+
+Other references:
+Firefox Support forum - Tabs below the URL bar: https://support.mozilla.org/en-US/kb/forum-response-tabs-below-url-bar
+Custom CSS tweaks for Firefox Quantum: https://github.com/Aris-t2/CustomCSSforFx
+FirefoxCSS subreddit: https://www.reddit.com/r/FirefoxCSS
+
+Credits:
+https://gist.github.com/Trollwut/51bc71ba30ca0a182eb558746270ec5b
+https://gist.github.com/Arty2/e6e61801531ec5ee1f9f
+*/
+
+@import url("tabs-on-bottom.css");
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+/* bring the browser window to the top */
+#browser {
+  -moz-box-ordinal-group: 0 !important;
+  padding-top: 0px;
+}
+
+/* hide tab toolbar when fullscreen */
+#TabsToolbar[inFullscreen] {
+  display: none !important;
+}
+
+/* hide titlebar buttons */
+#TabsToolbar > .titlebar-buttonbox-container {
+  display: none !important;
+}
+
+/* to hide the native tabs */
+#main-window:not([customizing]):not([tabsintitlebar="true"]) #TabsToolbar {
+  visibility: collapse;
+}
+
+#navigator-toolbox {
+  margin-top: 1px;
+}
+
+#navigator-toolbox[inFullscreen] {
+  --tab-min-height_tnot: 0px;
+  position: absolute !important;
+  bottom: 0 !important;
+}
+
+/* to hide the sidebar header */
+#sidebar-header {
+  visibility: collapse !important;
+  /*display: none !important;*/
+}
+
+/* alignment of right-click menu to not be directly under cursor */
+#contentAreaContextMenu {
+  margin: 5px 0 0 5px;
+}
+
+/* Change the font of the URL bar, better indication of fake addresses */
+#urlbar,
+#searchbar .searchbar-textbox {
+  font-family: Roboto !important;
+}
+
+/* open URL bar to top */
+#urlbar-container .urlbarView {
+  top: unset !important;
+  bottom: 40px !important;
+}
+
+/* No white flash on opening a new tab */
+.browserContainer {
+  background-color: #282a36 !important;
+}
+
+#navigator-toolbox {
+  -moz-box-ordinal-group: 2;
+}
+
+#main-window[sizemode="maximized"] {
+  padding-top: 7px !important;
+}
+
+/* hide titlebar */
+/* #titlebar { */
+/*   display: none !important; */
+/* } */
+
+/* put suggestions popup on top */
+#PopupAutoCompleteRichResult {
+  opacity: 0.9;
+  margin-top: -332px;
+  margin-left: 10px;
+  height: 300px;
+}
+
+#PopupAutoCompleteRichResult .autocomplete-richlistbox > scrollbox {
+  overflow-y: auto !important;
+}
