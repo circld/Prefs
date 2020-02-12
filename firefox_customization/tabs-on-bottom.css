@@ -6,9 +6,14 @@ https://www.reddit.com/r/FirefoxCSS/comments/elkolw/firefox_72_tabs_on_bottom_fi
 #TabsToolbar:not([inFullScreen]) {
   position: absolute;
   bottom: 0;
-  left: -2vw;
-  width: 102vw;
+  left: 0;
+  width: 100vw;
   display: block;
+}
+
+.titlebar-spacer[type="pre-tabs"],
+.titlebar-spacer[type="post-tabs"] {
+  width: 5px !important;
 }
 
 #tabbrowser-tabs {
