@@ -37,7 +37,7 @@
   filetree_show_hidden = true
 
 [[layers]]
-  name = 'unite'
+  name = 'denite'
 
 [[layers]]
   name = 'autocomplete'
