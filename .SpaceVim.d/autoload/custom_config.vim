@@ -142,9 +142,12 @@ function! custom_config#after() abort
     hi DiffChange gui=NONE guifg=#b2b2b2 guibg=#3a3a3a
     hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
     hi DiffText   gui=NONE guifg=#fabd2f guibg=#827400
-    hi link diffRemoved DiffDelete
-    hi link diffChanged DiffChange
     hi link diffAdded DiffAdd
+    hi link diffChanged DiffChange
+    hi link diffRemoved DiffDelete
+    hi link GitGutterAdd DiffAdd
+    hi link GitGutterChange DiffChange
+    hi link GitGutterDelete DiffDelete
     hi EasyMotionTarget guifg=#5fd700
 
     " UltiSnips
