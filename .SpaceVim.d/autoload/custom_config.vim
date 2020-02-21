@@ -139,7 +139,7 @@ function! custom_config#after() abort
     hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
     hi SpecialComment ctermfg=38 guifg=#0087d7
     hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
-    hi DiffChange gui=NONE guifg=#b2b2b2 guibg=#3a3a3a
+    hi DiffChange gui=NONE guifg=#fabd2f guibg=#3a3a3a
     hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
     hi DiffText   gui=NONE guifg=#fabd2f guibg=#827400
     hi link diffAdded DiffAdd
