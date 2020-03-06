@@ -4,7 +4,6 @@ function! custom_config#before() abort
     let g:python3_host_prog = '/Users/paul.garaud/miniconda3/bin/python'
 
     " Options
-    set autochdir
     set completeopt=menu,preview
     set foldlevel=99
     set ignorecase
