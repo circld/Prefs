@@ -81,3 +81,8 @@
     name = "zhimsel/vim-stay"
     lazy = false
     merged = false
+
+[[custom_plugins]]
+    name = "mbbill/undotree"
+    on_cmd = ["UndotreeToggle"]
+    merged = false

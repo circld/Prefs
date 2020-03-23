@@ -46,6 +46,8 @@ function! custom_config#before() abort
     call SpaceVim#custom#SPC('nore', ['d', 'a'], 'windo difft', 'diff-all-windows', 1)
     call SpaceVim#custom#SPC('nore', ['d', 'x'], 'windo diffoff', 'turn-off-diff', 1)
     call SpaceVim#custom#SPC('nmap', ['j', 'Q'], '<Plug>(easymotion-eol-bd-jk)', 'jump-to-an-eol', 0)
+    call SpaceVim#custom#SPCGroupName(['u'], '+Undo')
+    call SpaceVim#custom#SPC('nmap', ['u', 'h'], 'UndotreeToggle', 'toggle-undotree', 1)
 
     " Plugins
 
