@@ -1,4 +1,4 @@
-set PATH $HOME/miniconda3/bin /usr/local/bin $HOME/.local/bin /Library/Frameworks/Python.framework/Versions/3.6/bin $HOME/.cargo/bin:$PATH $PATH
+set PATH $HOME/miniconda3/bin /usr/local/bin $HOME/.local/bin /Library/Frameworks/Python.framework/Versions/3.6/bin $HOME/.cargo/bin $PATH
 
 alias vi "nvim"
 

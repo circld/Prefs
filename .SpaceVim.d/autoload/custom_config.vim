@@ -5,6 +5,7 @@ function! custom_config#before() abort
 
     " Options
     set completeopt=menu,preview
+    set cursorcolumn
     set foldlevel=99
     set ignorecase
     set smartcase
@@ -28,6 +29,7 @@ function! custom_config#before() abort
       autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
       autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
       autocmd FileType json setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
+      autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 foldmethod=indent
       autocmd FileType rust setlocal foldmethod=syntax
       autocmd FileType sql setlocal shiftwidth=2 tabstop=2 foldmethod=indent
       autocmd FileType text setlocal wrap linebreak nolist shiftwidth=2 tabstop=2 textwidth=0 wrapmargin=0
@@ -58,7 +60,6 @@ function! custom_config#before() abort
     let g:ale_fix_on_save = 1
     let g:ale_completion_enabled = 0
     let g:ale_completion_max_suggestions = 1000
-    let g:ale_open_list = 'on_save'
     let g:ale_markdown_remark_lint_executable = expand('~/.node_modules_global/bin/remark')
     let g:ale_markdown_remark_lint_options = '--use remark-preset-lint-recommended'
     let g:ale_markdown_remark_lint_use_global = 1
@@ -95,6 +96,22 @@ function! custom_config#before() abort
     \     'clippy_preference': 'on'
     \   }
     \}
+
+    " markdown-preview
+    let g:mkdp_auto_start = 1
+    let g:mkdp_auto_close = 1
+    let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 1,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false
+    \ }
 
     " rainbow
     let g:rainbow_active = 1
