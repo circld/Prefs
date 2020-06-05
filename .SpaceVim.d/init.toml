@@ -15,6 +15,7 @@
     colorscheme_bg = "dark"
     disabled_plugins = ["delimitMate", "rainbow_parentheses"]
     enable_ale = true
+    enable_cursorcolumn = 1
     enable_guicolors = true
     enable_insert_leader = false
     enable_neomake = false

@@ -5,7 +5,6 @@ function! custom_config#before() abort
 
     " Options
     set completeopt=menu,preview
-    set cursorcolumn
     set foldlevel=99
     set ignorecase
     set smartcase
@@ -41,15 +40,69 @@ function! custom_config#before() abort
       au BufNewFile,BufRead *.ddl,*.hql set filetype=sql
     augroup END
 
-    " SPCsymotion-eol-bd- commands
+    " workaround to access jump forward since tab remapped by SpaceVim
+    nnoremap <f5> <c-i>
+
+    function! Jump_transient_state() abort
+      let state = SpaceVim#api#import('transient_state')
+      call state.set_title('Jump Transient State')
+      call state.defind_keys(
+            \ {
+            \ 'layout' : 'vertical split',
+            \ 'left' : [
+            \ {
+            \ 'key' : 'j',
+            \ 'desc' : 'next jump',
+            \ 'func' : '',
+            \ 'cmd' : 'try | exe "norm \<f5>"| catch | endtry ',
+            \ 'exit' : 0,
+            \ },
+            \ {
+            \ 'key' : 'J',
+            \ 'desc' : 'previous jump',
+            \ 'func' : '',
+            \ 'cmd' : 'try | exe "norm \<c-o>" | catch | endtry',
+            \ 'exit' : 0,
+            \ },
+            \ ],
+            \ 'right' : [
+            \ {
+            \ 'key' : 'c',
+            \ 'desc' : 'next change',
+            \ 'func' : '',
+            \ 'cmd' : "try | exe 'norm g,' | catch | endtry",
+            \ 'exit' : 0,
+            \ },
+            \ {
+            \ 'key' : 'C',
+            \ 'desc' : 'previous change',
+            \ 'func' : '',
+            \ 'cmd' : "try | exe 'norm g;' | catch | endtry",
+            \ 'exit' : 0,
+            \ },
+            \ {
+            \ 'key' : 'q',
+            \ 'desc' : 'quit',
+            \ 'func' : '',
+            \ 'cmd' : '',
+            \ 'exit' : 1,
+            \ },
+            \ ],
+            \ }
+            \ )
+      call state.open()
+    endfunction
+
+    " SPC commands
     call SpaceVim#custom#SPC('nore', ['b', 'l'], 'b#', 'switch-to-last-buffer', 1)
     call SpaceVim#custom#SPC('nore', ['g', 'l'], 'Glog', 'traverse-diff-history', 1)
     call SpaceVim#custom#SPC('nore', ['g', 'L'], '0Glog', 'traverse-file-history', 1)
     call SpaceVim#custom#SPC('nore', ['d', 'a'], 'windo difft', 'diff-all-windows', 1)
     call SpaceVim#custom#SPC('nore', ['d', 'x'], 'windo diffoff', 'turn-off-diff', 1)
     call SpaceVim#custom#SPC('nmap', ['j', 'Q'], '<Plug>(easymotion-eol-bd-jk)', 'jump-to-an-eol', 0)
+    call SpaceVim#custom#SPC('nore', ['j', '.'], 'call Jump_transient_state()', 'jump-transient-state', 1)
     call SpaceVim#custom#SPCGroupName(['u'], '+Undo')
-    call SpaceVim#custom#SPC('nmap', ['u', 'h'], 'UndotreeToggle', 'toggle-undotree', 1)
+    call SpaceVim#custom#SPC('nmap', ['u', 't'], 'UndotreeToggle', 'toggle-undotree', 1)
 
     " Plugins
 
@@ -105,8 +158,8 @@ function! custom_config#before() abort
     \ 'katex': {},
     \ 'uml': {},
     \ 'maid': {},
-    \ 'disable_sync_scroll': 1,
-    \ 'sync_scroll_type': 'middle',
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'relative',
     \ 'hide_yaml_meta': 1,
     \ 'sequence_diagrams': {},
     \ 'flowchart_diagrams': {},
@@ -243,5 +296,6 @@ function! custom_config#after() abort
           \ 'Custom command; no definition.',
           \ ]
           \ ]
+
 
   endfunction
