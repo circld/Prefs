@@ -10,6 +10,7 @@ function! custom_config#before() abort
     set smartcase
     set splitbelow
     set splitright
+    set title
     set viewoptions=cursor,folds,slash,unix
 
     " Mappings
@@ -222,16 +223,22 @@ function! custom_config#after() abort
     hi EasyMotionTarget guifg=#5fd700
 
     " Mode-specific cursors
+    " START HERE: :h $TERM
     " - https://vim.fandom.com/wiki/Configuring_the_cursor
     " - SpaceVim/autoload/SpaceVim/layers/core/statusline.vim
+    set termguicolors
     let t = SpaceVim#mapping#guide#theme#SpaceVim#palette()
-    hi Cursor guifg=white guibg=None
+    hi Cursor guifg=bg guibg=fg
     exe 'hi! iCursor gui=bold cterm=bold ctermbg=' . t[4][3] . ' ctermfg=' . t[4][2] . ' guibg=' . t[4][1] . ' guifg=' . t[4][0]
     exe 'hi! vCursor gui=bold cterm=bold ctermbg=' . t[5][3] . ' ctermfg=' . t[5][2] . ' guibg=' . t[5][1] . ' guifg=' . t[5][0]
 
     set guicursor=n-c:block-Cursor
     set guicursor+=i:ver25-iCursor
     set guicursor+=v:block-vCursor
+
+    " revert cursor when leaving
+    " https://github.com/neovim/neovim/wiki/FAQ#cursor-style-isnt-restored-after-exiting-nvim
+    au VimLeave * set guicursor=a:block-blinkon0
 
     " UltiSnips
     inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
