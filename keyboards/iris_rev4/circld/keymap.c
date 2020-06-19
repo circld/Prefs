@@ -3,7 +3,7 @@
 // tapdance keycodes
 enum td_keycodes {
   ALT_FWD, // `LALT` when held, `LGUI-]` when tapped
-  ALT_BWD // `LALT` when held, `LGUI-[` when tapped
+  ALT_BWD  // `LALT` when held, `LGUI-[` when tapped
 };
 
 // define a type containing as many tapdance states as you need
@@ -27,13 +27,17 @@ void altbwd_finished (qk_tap_dance_state_t *state, void *user_data);
 void altbwd_reset (qk_tap_dance_state_t *state, void *user_data);
 
 // KEYMAP
-#define _TYPING 0
-#define _SYMBOL 1
-#define _NUMERIC 2
-#define _NAVIGATION 3
-#define _FNUM 4
-#define _SHIFT 5
-#define _LIGHT 6
+enum layer_names {
+  _TYPING,
+  _SYMBOL,
+  _NUMERIC,
+  _NAVIGATION,
+  _FNUM,
+  _SHIFT,
+  _CTL,
+  _GUI,
+  _LIGHT
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -45,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
       KC_TAB,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_MINS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   LSFT(KC_TAB), KC_COLN, KC_Q,  KC_J,    KC_K,    KC_X,    KC_LCTL,         KC_LGUI,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    MO(6),
+   LGUI(KC_SPC), KC_COLN, KC_Q,  KC_J,    KC_K,    KC_X,    TD(ALT_BWD),         TD(ALT_FWD),  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    MO(8),
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                              TD(ALT_BWD), LT(2,KC_ESC), LT(5,KC_BSPC),   LT(1,KC_SPC), LT(3,KC_ENT), TD(ALT_FWD)),
+                              LT(6,KC_LCTL), LT(2,KC_ESC), LT(5,KC_BSPC),   LT(1,KC_SPC), LT(3,KC_ENT), LT(7,KC_LGUI)),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
 	[_SYMBOL] = LAYOUT(
@@ -113,6 +117,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TRNS, KC_TRNS, LSFT(KC_Q), LSFT(KC_J), LSFT(KC_K), LSFT(KC_X), KC_TRNS, KC_TRNS, LSFT(KC_B), LSFT(KC_M), LSFT(KC_W), LSFT(KC_V), LSFT(KC_Z), KC_TRNS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                      KC_TRNS, KC_TRNS, KC_TRNS,           LSFT(KC_SPC), LSFT(KC_ENT), KC_TRNS),
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+
+	[_CTL] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  LCTL(KC_LALT), LCTL(KC_QUOT), KC_TRNS, KC_TRNS, LCTL(KC_P), LCTL(KC_Y), LCTL(KC_F), LCTL(KC_G), LCTL(KC_C), LCTL(KC_R), LCTL(KC_L), LCTL(KC_LALT),
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  LCTL(KC_TAB), LCTL(KC_A), LCTL(KC_O), LCTL(KC_E), LCTL(KC_U), LCTL(KC_I), LCTL(KC_D), LCTL(KC_H), LCTL(KC_T), LCTL(KC_N), LCTL(KC_S), KC_TRNS,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  KC_TRNS, KC_TRNS, LCTL(KC_Q), LCTL(KC_J), LCTL(KC_K), LCTL(KC_X), KC_TRNS, LCTL(KC_ENT), LCTL(KC_B), LCTL(KC_M), LCTL(KC_W), LCTL(KC_V), LCTL(KC_Z), KC_TRNS,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                     KC_TRNS, KC_TRNS, KC_TRNS,           LCTL(KC_LSFT), LCTL(KC_LALT), LCTL(KC_LGUI)),
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+
+	[_GUI] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  LGUI(KC_LALT), LGUI(KC_QUOT), KC_TRNS, KC_TRNS, LGUI(KC_P), LGUI(KC_Y), LGUI(KC_F), LGUI(KC_G), LGUI(KC_C), LGUI(KC_R), LGUI(KC_L), LGUI(KC_LALT),
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  LGUI(KC_TAB), LGUI(KC_A), LGUI(KC_O), LGUI(KC_E), LGUI(KC_U), LGUI(KC_I), LGUI(KC_D), LGUI(KC_H), LGUI(KC_T), LGUI(KC_N), LGUI(KC_S), KC_TRNS,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+  KC_TRNS, KC_TRNS, LGUI(KC_Q), LGUI(KC_J), LGUI(KC_K), LGUI(KC_X), LGUI(KC_ENT), KC_TRNS, LGUI(KC_B), LGUI(KC_M), LGUI(KC_W), LGUI(KC_V), LGUI(KC_Z), KC_TRNS,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                             LGUI(KC_LCTL), LGUI(KC_LALT), LGUI(KC_LSFT),        KC_TRNS, KC_TRNS, KC_TRNS),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
 	[_LIGHT] = LAYOUT(
