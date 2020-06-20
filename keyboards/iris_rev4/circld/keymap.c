@@ -28,20 +28,30 @@ void altbwd_reset (qk_tap_dance_state_t *state, void *user_data);
 
 // KEYMAP
 enum layer_names {
-  _TYPING,
-  _SYMBOL,
-  _NUMERIC,
-  _NAVIGATION,
-  _FNUM,
-  _SHIFT,
-  _CTL,
-  _GUI,
-  _LIGHT
+  TYP,
+  SYM,
+  NUM,
+  NAV,
+  FNUM,
+  SFT,
+  LMOD,
+  RMOD,
+  LITE
 };
+
+// Modifier chords
+#define M_SCA LCA(KC_LSFT)
+#define M_SC LCTL(KC_LSFT)
+#define M_SA LALT(KC_LSFT)
+#define M_SG LGUI(KC_LSFT)
+#define M_SGA SGUI(KC_LALT)
+#define M_CA LCTL(KC_LALT)
+#define M_GSCA MEH(KC_LGUI)
+#define M_GA LGUI(KC_LALT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-	[_TYPING] = LAYOUT(
+	[TYP] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_EQL,  KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -49,113 +59,113 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
       KC_TAB,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_MINS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   LGUI(KC_SPC), KC_COLN, KC_Q,  KC_J,    KC_K,    KC_X,    TD(ALT_BWD),         TD(ALT_FWD),  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    MO(8),
+   LGUI(KC_SPC), KC_COLN, KC_Q,  KC_J,    KC_K,    KC_X,  TD(ALT_BWD),     TD(ALT_FWD),  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    MO(8),
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                              LT(6,KC_LCTL), LT(2,KC_ESC), LT(5,KC_BSPC),   LT(1,KC_SPC), LT(3,KC_ENT), LT(7,KC_LGUI)),
+                                 MO(LMOD), LT(NUM,KC_ESC), LT(SFT,KC_BSPC),  LT(SYM,KC_SPC), LT(NAV,KC_ENT), MO(RMOD)),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_SYMBOL] = LAYOUT(
+	[SYM] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_TRNS, KC_TRNS, KC_COMM, KC_DOT,  KC_SCLN, KC_PERC,                            KC_DQUO, KC_EQL, KC_UNDS, KC_PLUS, KC_ASTR, KC_TRNS,
+     _______, _______, KC_COMM, KC_DOT,  KC_SCLN, KC_PERC,                            KC_DQUO, KC_EQL, KC_UNDS, KC_PLUS, KC_ASTR, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_TRNS, KC_LT,   KC_LCBR, KC_LBRC, KC_LPRN, KC_BSLS,                            KC_SLSH, KC_RPRN, KC_RBRC, KC_RCBR, KC_GT,   KC_MINS,
+     _______,  KC_LT,   KC_LCBR, KC_LBRC, KC_LPRN, KC_BSLS,                            KC_SLSH, KC_RPRN, KC_RBRC, KC_RCBR, KC_GT,   KC_MINS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_TRNS, KC_AT,   KC_DLR,  KC_AMPR, KC_EXLM, KC_GRV,  KC_TRNS,         KC_TRNS,  KC_TILD, KC_QUES, KC_PIPE, KC_HASH, KC_CIRC, KC_TRNS,
+     _______,  KC_AT,   KC_DLR,  KC_AMPR, KC_EXLM, KC_GRV, _______,          _______, KC_TILD, KC_QUES, KC_PIPE, KC_HASH, KC_CIRC, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_TRNS, KC_TRNS, MO(4),                     KC_TRNS, KC_ENT,  KC_TRNS),
+                                    _______, _______, MO(FNUM),                 _______,  KC_ENT, _______),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_NUMERIC] = LAYOUT(
+	[NUM] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_EQL,  KC_SLSH, KC_ASTR, KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX,   KC_EQL,  KC_SLSH, KC_ASTR, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  KC_TRNS, LCA(KC_LSFT), LCTL(KC_LSFT), LALT(KC_LSFT), LGUI(KC_LSFT), KC_NO,           KC_NO,   KC_7,    KC_8,    KC_9,    KC_PLUS, KC_NO,
+     _______,  M_SCA,   M_SC,    M_SA,    M_SG,   XXXXXXX,                            XXXXXXX,   KC_7,    KC_8,    KC_9,  KC_PLUS, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_TRNS, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_NO,                              KC_NO,   KC_4,    KC_5,    KC_6,    KC_COMM, KC_NO,
+     _______,  KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, XXXXXXX,                           XXXXXXX,   KC_4,    KC_5,    KC_6,  KC_COMM, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  KC_NO, SGUI(KC_LALT), LCTL(KC_LALT), MEH(KC_LGUI), LGUI(KC_LALT), KC_NO, KC_NO, KC_BSPC, KC_NO, KC_1,  KC_2,    KC_3,    KC_MINS, KC_NO,
+     XXXXXXX,  M_SGA,    M_CA,   M_GSCA,   M_GA,  XXXXXXX, XXXXXXX,          KC_BSPC, XXXXXXX,   KC_1,    KC_2,    KC_3,  KC_MINS, XXXXXXX,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_NO,   KC_TRNS, KC_TRNS,                   KC_SPC,  KC_0,    KC_DOT),
+                                    XXXXXXX, _______, _______,                    KC_SPC,   KC_0,   KC_DOT),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_NAVIGATION] = LAYOUT(
+	[NAV] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  KC_TRNS, LCA(KC_LSFT), LCTL(KC_LSFT), LALT(KC_LSFT), LGUI(KC_LSFT), KC_NO,           KC_NO,   KC_PGUP, KC_UP,   KC_PGDN, KC_NO,   KC_NO,
+     _______,  M_SCA,   M_SC,    M_SA,    M_SG,   XXXXXXX,                            XXXXXXX,  KC_PGUP, KC_UP,  KC_PGDN, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_TRNS, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_NO,                              KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  KC_NO,
+     _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, XXXXXXX,                            KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    KC_NO, SGUI(KC_LALT), LCTL(KC_LALT), MEH(KC_LGUI), LGUI(KC_LALT), KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     XXXXXXX,  M_SGA,    M_CA,   M_GSCA,   M_GA,  XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_NO,   KC_DEL,  KC_TRNS,                   KC_TRNS, KC_TRNS, KC_NO),
+                                    XXXXXXX,  KC_DEL,  _______,                 _______, _______, XXXXXXX),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_FNUM] = LAYOUT(
+	[FNUM] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_F10,  KC_F11,  KC_F12,  KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX,  KC_F10,  KC_F11,  KC_F12, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    KC_TRNS, LCA(KC_LSFT), LCTL(KC_LSFT), LALT(KC_LSFT), LGUI(KC_LSFT), KC_NO, KC_NO, KC_F7, KC_F8, KC_F9, KC_VOLU, KC_NO,
+     _______,  M_SCA,   M_SC,     M_SA,    M_SG,  XXXXXXX,                            XXXXXXX,  KC_F7,   KC_F8,   KC_F9,  KC_VOLU, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TRNS, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,  KC_NO,                              KC_NO,   KC_F4,   KC_F5,   KC_F6,   KC_MUTE, KC_NO,
+     _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,  XXXXXXX,                           XXXXXXX,  KC_F4,   KC_F5,   KC_F6,  KC_MUTE, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    KC_NO, SGUI(KC_LALT), LCTL(KC_LALT), MEH(KC_LGUI), LGUI(KC_LALT), KC_NO, KC_NO, KC_NO, KC_NO, KC_F1, KC_F2,   KC_F3,   KC_VOLD, KC_NO,
+     XXXXXXX,  M_SGA,   M_CA,    M_GSCA,   M_GA,  XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX,  KC_F1,   KC_F2,   KC_F3,  KC_VOLD, XXXXXXX,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_NO,   KC_NO,   KC_TRNS,                   KC_TRNS, KC_BRID, KC_BRIU),
+                                    XXXXXXX, XXXXXXX,   _______,                 _______, KC_BRID, KC_BRIU),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_SHIFT] = LAYOUT(
+	[SFT] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LSFT(KC_LALT), LSFT(KC_QUOT), KC_TRNS, KC_TRNS, LSFT(KC_P), LSFT(KC_Y), LSFT(KC_F), LSFT(KC_G), LSFT(KC_C), LSFT(KC_R), LSFT(KC_L), LSFT(KC_LALT),
+  LSFT(KC_LALT), LSFT(KC_QUOT), _______, _______, LSFT(KC_P), LSFT(KC_Y), LSFT(KC_F), LSFT(KC_G), LSFT(KC_C), LSFT(KC_R), LSFT(KC_L), LSFT(KC_LALT),
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LSFT(KC_TAB), LSFT(KC_A), LSFT(KC_O), LSFT(KC_E), LSFT(KC_U), LSFT(KC_I), LSFT(KC_D), LSFT(KC_H), LSFT(KC_T), LSFT(KC_N), LSFT(KC_S), KC_TRNS,
+  LSFT(KC_TAB), LSFT(KC_A), LSFT(KC_O), LSFT(KC_E), LSFT(KC_U), LSFT(KC_I), LSFT(KC_D), LSFT(KC_H), LSFT(KC_T), LSFT(KC_N), LSFT(KC_S), _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  KC_TRNS, KC_TRNS, LSFT(KC_Q), LSFT(KC_J), LSFT(KC_K), LSFT(KC_X), KC_TRNS, KC_TRNS, LSFT(KC_B), LSFT(KC_M), LSFT(KC_W), LSFT(KC_V), LSFT(KC_Z), KC_TRNS,
+  _______, _______, LSFT(KC_Q), LSFT(KC_J), LSFT(KC_K), LSFT(KC_X), _______, _______, LSFT(KC_B), LSFT(KC_M), LSFT(KC_W), LSFT(KC_V), LSFT(KC_Z), _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_TRNS, KC_TRNS, KC_TRNS,           LSFT(KC_SPC), LSFT(KC_ENT), KC_TRNS),
+                                    _______, _______, _______,             LSFT(KC_SPC), LSFT(KC_ENT), _______),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_CTL] = LAYOUT(
+	[LMOD] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LCTL(KC_LALT), LCTL(KC_QUOT), KC_TRNS, KC_TRNS, LCTL(KC_P), LCTL(KC_Y), LCTL(KC_F), LCTL(KC_G), LCTL(KC_C), LCTL(KC_R), LCTL(KC_L), LCTL(KC_LALT),
+     XXXXXXX,  M_SCA,   M_SC,    M_SA,    M_SG,   XXXXXXX,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LCTL(KC_TAB), LCTL(KC_A), LCTL(KC_O), LCTL(KC_E), LCTL(KC_U), LCTL(KC_I), LCTL(KC_D), LCTL(KC_H), LCTL(KC_T), LCTL(KC_N), LCTL(KC_S), KC_TRNS,
+     XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, XXXXXXX,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  KC_TRNS, KC_TRNS, LCTL(KC_Q), LCTL(KC_J), LCTL(KC_K), LCTL(KC_X), KC_TRNS, LCTL(KC_ENT), LCTL(KC_B), LCTL(KC_M), LCTL(KC_W), LCTL(KC_V), LCTL(KC_Z), KC_TRNS,
+     XXXXXXX,  M_SGA,    M_CA,   M_GSCA,   M_GA,  XXXXXXX, XXXXXXX,          _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_TRNS, KC_TRNS, KC_TRNS,           LCTL(KC_LSFT), LCTL(KC_LALT), LCTL(KC_LGUI)),
+                                    _______, _______, _______,                   _______, _______, _______),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_GUI] = LAYOUT(
+	[RMOD] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     _______, _______, _______, _______, _______, _______,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LGUI(KC_LALT), LGUI(KC_QUOT), KC_TRNS, KC_TRNS, LGUI(KC_P), LGUI(KC_Y), LGUI(KC_F), LGUI(KC_G), LGUI(KC_C), LGUI(KC_R), LGUI(KC_L), LGUI(KC_LALT),
+     _______, _______, _______, _______, _______, _______,                            XXXXXXX,   M_SG,    M_SA,    M_SC,   M_SCA,  XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LGUI(KC_TAB), LGUI(KC_A), LGUI(KC_O), LGUI(KC_E), LGUI(KC_U), LGUI(KC_I), LGUI(KC_D), LGUI(KC_H), LGUI(KC_T), LGUI(KC_N), LGUI(KC_S), KC_TRNS,
+     _______, _______, _______, _______, _______, _______,                            XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  KC_TRNS, KC_TRNS, LGUI(KC_Q), LGUI(KC_J), LGUI(KC_K), LGUI(KC_X), LGUI(KC_ENT), KC_TRNS, LGUI(KC_B), LGUI(KC_M), LGUI(KC_W), LGUI(KC_V), LGUI(KC_Z), KC_TRNS,
+     _______, _______, _______, _______, _______, _______, _______,          XXXXXXX, XXXXXXX,   M_GA,   M_GSCA,   M_CA,   M_SGA,  XXXXXXX,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                             LGUI(KC_LCTL), LGUI(KC_LALT), LGUI(KC_LSFT),        KC_TRNS, KC_TRNS, KC_TRNS),
+                                    MO(SYM), _______, _______,                   _______, _______, _______),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
-	[_LIGHT] = LAYOUT(
+	[LITE] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              KC_NO,   RGB_HUI, RGB_SAI, RGB_VAI, KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                              RGB_TOG, RGB_HUD, RGB_SAD, RGB_VAD, KC_NO,   KC_NO,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            RGB_TOG, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,            RGB_MOD, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_TRNS,
+     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     KC_NO,   KC_NO,   KC_NO,                    RGB_RMOD, KC_NO,   KC_NO)
+                                     XXXXXXX, XXXXXXX, XXXXXXX,                    RGB_RMOD, XXXXXXX, XXXXXXX)
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 };
 
