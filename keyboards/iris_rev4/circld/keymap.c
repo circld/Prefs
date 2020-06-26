@@ -40,14 +40,47 @@ enum layer_names {
 };
 
 // Modifier chords
-#define M_SCA LCA(KC_LSFT)
-#define M_SC LCTL(KC_LSFT)
-#define M_SA LALT(KC_LSFT)
-#define M_SG LGUI(KC_LSFT)
-#define M_SGA SGUI(KC_LALT)
-#define M_CA LCTL(KC_LALT)
+#define M_SCA  LCA(KC_LSFT)
+#define M_SC   LCTL(KC_LSFT)
+#define M_SA   LALT(KC_LSFT)
+#define M_SG   LGUI(KC_LSFT)
+#define M_SGA  SGUI(KC_LALT)
+#define M_CA   LCTL(KC_LALT)
 #define M_GSCA MEH(KC_LGUI)
-#define M_GA LGUI(KC_LALT)
+#define M_GA   LGUI(KC_LALT)
+
+// Shifted keys
+#define SH_A    LSFT(KC_A)
+#define SH_B    LSFT(KC_B)
+#define SH_C    LSFT(KC_C)
+#define SH_D    LSFT(KC_D)
+#define SH_E    LSFT(KC_E)
+#define SH_ENT  LSFT(KC_ENT)
+#define SH_F    LSFT(KC_F)
+#define SH_G    LSFT(KC_G)
+#define SH_H    LSFT(KC_H)
+#define SH_I    LSFT(KC_I)
+#define SH_J    LSFT(KC_J)
+#define SH_K    LSFT(KC_K)
+#define SH_L    LSFT(KC_L)
+#define SH_LALT LSFT(KC_LALT)
+#define SH_M    LSFT(KC_M)
+#define SH_N    LSFT(KC_N)
+#define SH_O    LSFT(KC_O)
+#define SH_P    LSFT(KC_P)
+#define SH_Q    LSFT(KC_Q)
+#define SH_QUOT LSFT(KC_QUOT)
+#define SH_R    LSFT(KC_R)
+#define SH_S    LSFT(KC_S)
+#define SH_SPC  LSFT(KC_SPC)
+#define SH_T    LSFT(KC_T)
+#define SH_TAB  LSFT(KC_TAB)
+#define SH_U    LSFT(KC_U)
+#define SH_V    LSFT(KC_V)
+#define SH_W    LSFT(KC_W)
+#define SH_X    LSFT(KC_X)
+#define SH_Y    LSFT(KC_Y)
+#define SH_Z    LSFT(KC_Z)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -120,13 +153,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LSFT(KC_LALT), LSFT(KC_QUOT), _______, _______, LSFT(KC_P), LSFT(KC_Y), LSFT(KC_F), LSFT(KC_G), LSFT(KC_C), LSFT(KC_R), LSFT(KC_L), LSFT(KC_LALT),
+     SH_LALT, SH_QUOT, _______, _______,   SH_P,    SH_Y,                               SH_F,    SH_G,    SH_C,    SH_R,    SH_L,  SH_LALT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  LSFT(KC_TAB), LSFT(KC_A), LSFT(KC_O), LSFT(KC_E), LSFT(KC_U), LSFT(KC_I), LSFT(KC_D), LSFT(KC_H), LSFT(KC_T), LSFT(KC_N), LSFT(KC_S), _______,
+      SH_TAB,   SH_A,    SH_O,    SH_E,    SH_U,    SH_I,                               SH_D,    SH_H,    SH_T,    SH_N,    SH_S,  _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-  _______, _______, LSFT(KC_Q), LSFT(KC_J), LSFT(KC_K), LSFT(KC_X), _______, _______, LSFT(KC_B), LSFT(KC_M), LSFT(KC_W), LSFT(KC_V), LSFT(KC_Z), _______,
+     _______, _______,   SH_Q,    SH_J,    SH_K,    SH_X,  _______,          _______,   SH_B,    SH_M,    SH_W,    SH_V,    SH_Z,  _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, _______,             LSFT(KC_SPC), LSFT(KC_ENT), _______),
+                                    _______, _______, _______,                    SH_SPC,  SH_ENT, _______),
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
 	[LMOD] = LAYOUT(
@@ -165,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                     XXXXXXX, XXXXXXX, XXXXXXX,                    RGB_RMOD, XXXXXXX, XXXXXXX)
+                                    XXXXXXX, XXXXXXX, XXXXXXX,                  RGB_RMOD, XXXXXXX, XXXXXXX)
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 };
 
