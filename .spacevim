@@ -1,0 +1,198 @@
+" Use the same plugin download directory for both Vim and NeoVim.
+let g:spacevim_plug_home = '~/.vim/plugged'
+
+" Uncomment the following line to override the lcader key. The default value is space key "<\Space>".
+" let g:spacevim_leader = "<\Space>"
+
+" Uncomment the following line to override the local leader key. The default value is comma ','.
+let g:spacevim_localleader = '\'
+
+" Enable the existing layers in space-vim.
+" Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
+let g:spacevim_layers = [
+      \ 'better-defaults', 'better-motion', 'code-snippets', 'ctags', 'deoplete', 'editing', 'file-manager', 'fzf', 'git',
+      \ 'lightline', 'lsp', 'programming', 'python', 'rust', 'spacevim', 'syntax-checking', 'text-align', 'tmux', 'which-key'
+      \ ]
+
+" Uncomment the following line if your terminal(-emulator) supports true colors.
+let g:spacevim_enable_true_color = 1
+
+" Uncomment the following if you have some nerd font installed.
+let g:spacevim_nerd_fonts = 1
+
+" Experimental (as of 9/6/20)
+let g:spacevim_enable_clap = 1
+
+" Language Server
+g:spacevim_lsp_engine = 'coc'
+
+" Manage your own plugins.
+" Refer to https://github.com/junegunn/vim-plug for more detials.
+function! UserInit()
+
+  " Add your own plugin via Plug command.
+  Plug 'tpope/vim-unimpaired'
+  Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
+endfunction
+
+" Override the default settings from space-vim as well as adding extras
+function! UserConfig()
+  " TODO have preview in folds
+
+  " disable quick-scope due to error on line 74
+  let g:loaded_quick_scope = 1
+
+  " mappings
+  nmap f <Plug>(easymotion-overwin-f)
+  xmap f <Plug>(easymotion-bd-f)
+  omap f <Plug>(easymotion-bd-f)
+
+  " Options
+  set number
+  set norelativenumber
+  set completeopt=menu,preview
+  set foldlevel=99
+  set ignorecase
+  set smartcase
+  set splitbelow
+  set splitright
+  set title
+  set viewoptions=cursor,folds,slash,unix
+
+  " Mappings
+  nnoremap Y v$hy
+  nnoremap vv vV
+  nnoremap V v$h
+
+  nmap <left>  :3wincmd <<cr>
+  nmap <right> :3wincmd ><cr>
+  nmap <up>    :3wincmd +<cr>
+  nmap <down>  :3wincmd -<cr>
+
+  " Neovim - configure Python provider
+  let g:python3_host_prog = '/Users/paul.garaud/miniconda3/bin/python'
+
+  " Filetypes
+  augroup FileTypeConfiguration
+    autocmd FileType html setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
+    autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
+    autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+    autocmd FileType json setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
+    autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 foldmethod=indent
+    autocmd FileType rust setlocal foldmethod=syntax
+    autocmd FileType sql setlocal shiftwidth=2 tabstop=2 foldmethod=indent
+    autocmd FileType text setlocal wrap linebreak nolist shiftwidth=2 tabstop=2 textwidth=0 wrapmargin=0
+    autocmd FileType python setlocal foldmethod=syntax
+    au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
+    au BufNewFile,BufRead *.coco set filetype=python
+    au BufNewFile,BufRead *.sc set filetype=scala
+    au BufNewFile,BufRead *.ipynb set filetype=json
+    au BufNewFile,BufRead *.ddl,*.hql set filetype=sql
+  augroup END
+
+  " Appearance
+  " :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  colorscheme space-vim-dark
+  hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
+  hi SpecialComment ctermfg=38 guifg=#0087d7
+  hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
+  hi DiffChange gui=NONE guifg=#fabd2f guibg=#3a3a3a
+  hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
+  hi DiffText   gui=NONE guifg=#fabd2f guibg=#827400
+  hi link diffAdded DiffAdd
+  hi link diffChanged DiffChange
+  hi link diffRemoved DiffDelete
+  hi link GitGutterAdd DiffAdd
+  hi link GitGutterChange DiffChange
+  hi link GitGutterDelete DiffDelete
+  hi EasyMotionTarget guifg=#5fd700
+  hi CurrentWordTwins cterm=bold,underline ctermfg=40 ctermbg=234 gui=bold,underline guifg=#00ff00
+
+  " ALE
+  command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
+  command! ALEToggleAll execute "ALEToggle \| ALEToggleFixer"
+  let g:ale_linters_explicit = 1
+  let g:ale_fix_on_save = 1
+  let g:ale_completion_enabled = 0
+  let g:ale_completion_max_suggestions = 1000
+  let g:ale_markdown_remark_lint_executable = expand('~/.node_modules_global/bin/remark')
+  let g:ale_markdown_remark_lint_options = '--use remark-preset-lint-recommended'
+  let g:ale_markdown_remark_lint_use_global = 1
+  let g:ale_python_autoflake_options = '--remove-all-unused-imports --remove-duplicate-keys --remove-unused-variables'
+  let g:ale_python_auto_pipenv = 1
+  let g:ale_python_flake8_auto_pipenv = 1
+  let g:ale_python_autoflake_executable = 'autoflake'
+  let g:ale_sql_sqlformat_executable = expand('~/.node_modules_global/bin/sql-formatter-cli')
+  let g:ale_sql_sqlformat_options = '-i "-" -o "-"'
+
+  let g:ale_linters = {
+  \    'css': ['eslint', 'prettier'],
+  \    'javascript': ['eslint', 'prettier'],
+  \    'json': ['jsonlint'],
+  \    'markdown': ['remark-lint'],
+  \    'python': ['flake8'],
+  \    'rust': ['rls', 'rustfmt'],
+  \    'scala': [],
+  \    'sql': ['sqlint'],
+  \    'vim': ['vint']
+  \}
+  let g:ale_fixers = {
+  \    'css': ['prettier', 'eslint'],
+  \    'javascript': ['prettier', 'eslint', 'jq'],
+  \    'json': ['prettier', 'eslint', 'jq'],
+  \    'python': ['autoflake', 'isort', 'yapf'],
+  \    'rust': ['rustfmt'],
+  \    'scala': ['scalafmt'],
+  \    'sql': ['sqlformat'],
+  \    '*': ['remove_trailing_lines', 'trim_whitespace']
+  \}
+  let g:ale_rust_rls_config = {
+  \    'rust': {
+  \      'clippy_preference': 'on'
+  \    }
+  \}
+
+  let g:lightline.enable = {
+  \    'statusline': 1,
+  \    'tabline': 1
+  \  }
+  let g:lightline.tab = {
+  \    'active': [ 'tabnum', 'filename', 'modified' ],
+  \    'inactive': [ 'tabnum', 'filename', 'modified' ] }
+
+
+  " UltiSnips
+  inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
+  snoremap <silent> <Tab> <Tab>
+  snoremap <silent> <S-Tab> <S-Tab>
+  snoremap <silent> <PageUp> <NOP>
+  snoremap <silent> <PageDown> <NOP>
+  let &runtimepath .= ','.expand('~/Prefs')
+  let g:UltiSnipsSnippetDirectories=['UltiSnips', 'custom_snippets']
+  let g:ultisnips_python_style = 'google'
+  let g:UltiSnipsJumpForwardTrigger = '<PageDown>'
+  let g:UltiSnipsJumpBackwardTrigger = '<PageUp>'
+
+  " For saner snippets
+  augroup SanerSnippets
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
+    " use TAB for cycling completions
+    inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
+    inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
+  augroup END
+
+  " deoplete
+  call deoplete#custom#option({
+        \ 'sources': {
+          \ 'rust': ['ale'],
+        \ },
+        \ 'smart_case': v:true,
+      \ })
+
+  " Undotree
+  " FIXME address <leader>u collision
+  let g:undotree_SetFocusWhenToggle = 1
+  nmap <leader>u :UndotreeToggle<CR>
+
+endfunction
