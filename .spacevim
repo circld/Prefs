@@ -60,14 +60,28 @@ function! UserConfig()
   nnoremap Y v$hy
   nnoremap vv vV
   nnoremap V v$h
+  nnoremap <BS> g;
+  nnoremap <ESC> g,
+
+  nnoremap _t :tabs<CR>
+  nnoremap _b :buffers<CR>
+
+  " toggle diff of open windows
+  function! DiffToggle()
+    if &diff
+      :diffoff
+    else
+      :windo diffthis
+    endif
+  endfunction
+
+  nnoremap _d :call DiffToggle()<CR>
 
   nmap <left>  :3wincmd <<cr>
   nmap <right> :3wincmd ><cr>
   nmap <up>    :3wincmd +<cr>
   nmap <down>  :3wincmd -<cr>
 
-  nmap <BS> g;
-  nmap <ESC> g,
   nmap f <Plug>(easymotion-overwin-f)
   xmap f <Plug>(easymotion-bd-f)
   omap f <Plug>(easymotion-bd-f)
@@ -101,7 +115,7 @@ function! UserConfig()
   hi Error      gui=bold guifg=#ff5e86
   hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
   hi DiffChange gui=NONE guifg=#fabd2f guibg=#3a3a3a
-  hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
+  hi DiffDelete gui=NONE guifg=#ff5e86 guibg=#3a3a3a
   hi DiffText   gui=NONE guifg=#fabd2f guibg=#827400
   hi link diffAdded DiffAdd
   hi link diffChanged DiffChange
