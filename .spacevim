@@ -10,8 +10,9 @@ let g:spacevim_localleader = '\'
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
-      \ 'better-defaults', 'better-motion', 'code-snippets', 'ctags', 'deoplete', 'editing', 'file-manager', 'fzf', 'git',
-      \ 'lightline', 'lsp', 'programming', 'python', 'rust', 'spacevim', 'syntax-checking', 'text-align', 'tmux', 'which-key'
+      \ 'better-defaults', 'better-motion', 'code-snippets', 'ctags', 'deoplete', 'editing',
+      \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'markdown', 'programming', 'python',
+      \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'tmux', 'which-key'
       \ ]
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
@@ -43,11 +44,6 @@ function! UserConfig()
   " disable quick-scope due to error on line 74
   let g:loaded_quick_scope = 1
 
-  " mappings
-  nmap f <Plug>(easymotion-overwin-f)
-  xmap f <Plug>(easymotion-bd-f)
-  omap f <Plug>(easymotion-bd-f)
-
   " Options
   set number
   set norelativenumber
@@ -69,6 +65,12 @@ function! UserConfig()
   nmap <right> :3wincmd ><cr>
   nmap <up>    :3wincmd +<cr>
   nmap <down>  :3wincmd -<cr>
+
+  nmap <BS> g;
+  nmap <ESC> g,
+  nmap f <Plug>(easymotion-overwin-f)
+  xmap f <Plug>(easymotion-bd-f)
+  omap f <Plug>(easymotion-bd-f)
 
   " Neovim - configure Python provider
   let g:python3_host_prog = '/Users/paul.garaud/miniconda3/bin/python'
@@ -96,6 +98,7 @@ function! UserConfig()
   colorscheme space-vim-dark
   hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
   hi SpecialComment ctermfg=38 guifg=#0087d7
+  hi Error      gui=bold guifg=#ff5e86
   hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
   hi DiffChange gui=NONE guifg=#fabd2f guibg=#3a3a3a
   hi DiffDelete gui=NONE guifg=#e0211d guibg=#3a3a3a
@@ -161,6 +164,13 @@ function! UserConfig()
   \    'active': [ 'tabnum', 'filename', 'modified' ],
   \    'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
+  " Deoplete
+  call deoplete#custom#option({
+        \ 'sources': {
+          \ 'rust': ['ale'],
+        \ },
+        \ 'smart_case': v:true,
+      \ })
 
   " UltiSnips
   inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
@@ -181,14 +191,6 @@ function! UserConfig()
     inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
     inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
   augroup END
-
-  " deoplete
-  call deoplete#custom#option({
-        \ 'sources': {
-          \ 'rust': ['ale'],
-        \ },
-        \ 'smart_case': v:true,
-      \ })
 
   " Undotree
   " FIXME address <leader>u collision
