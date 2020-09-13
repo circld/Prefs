@@ -25,7 +25,7 @@ let g:spacevim_nerd_fonts = 1
 let g:spacevim_enable_clap = 1
 
 " Language Server
-g:spacevim_lsp_engine = 'coc'
+let g:spacevim_lsp_engine = 'lcn'
 
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
@@ -112,17 +112,21 @@ function! UserConfig()
   colorscheme space-vim-dark
   hi LineNr ctermbg=NONE ctermfg=243 guibg=NONE guifg=#767676
   hi SpecialComment ctermfg=38 guifg=#0087d7
-  hi Error      gui=bold guifg=#ff5e86
-  hi DiffAdd    gui=NONE guifg=#84d96e guibg=#3a3a3a
+  hi Error      gui=None guifg=#ff5e86
+  hi ErrorMsg   gui=bold guifg=#ff5e86
+  hi Warning    gui=NONE guifg=#fabd2f
+  hi WarningMsg gui=bold guifg=#fabd2f
+  hi Todo       gui=bold guifg=#d697e6
+  hi DiffAdd    gui=NONE guifg=#a4e93e guibg=#3a3a3a
   hi DiffChange gui=NONE guifg=#fabd2f guibg=#3a3a3a
   hi DiffDelete gui=NONE guifg=#ff5e86 guibg=#3a3a3a
   hi DiffText   gui=NONE guifg=#fabd2f guibg=#827400
-  hi link diffAdded DiffAdd
-  hi link diffChanged DiffChange
-  hi link diffRemoved DiffDelete
-  hi link GitGutterAdd DiffAdd
-  hi link GitGutterChange DiffChange
-  hi link GitGutterDelete DiffDelete
+  hi! link diffAdded DiffAdd
+  hi! link diffChanged DiffChange
+  hi! link diffRemoved DiffDelete
+  hi! link GitGutterAdd DiffAdd
+  hi! link GitGutterChange DiffChange
+  hi! link GitGutterDelete DiffDelete
   hi EasyMotionTarget guifg=#5fd700
   hi CurrentWordTwins cterm=bold,underline ctermfg=40 ctermbg=234 gui=bold,underline guifg=#00ff00
 
@@ -185,6 +189,11 @@ function! UserConfig()
         \ },
         \ 'smart_case': v:true,
       \ })
+
+  " LanguageClient-neovim
+  let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ }
 
   " UltiSnips
   inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
