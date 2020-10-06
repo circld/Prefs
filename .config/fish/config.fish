@@ -1,5 +1,5 @@
 # set PATH
-set PATH $HOME/miniconda3/bin /usr/local/bin $HOME/.local/bin /Library/Frameworks/Python.framework/Versions/3.6/bin $HOME/.cargo/bin $PATH
+set PATH $HOME/miniconda3/bin /usr/local/bin $HOME/.local/bin /Library/Frameworks/Python.framework/Versions/3.6/bin $HOME/.cargo/bin $HOME/.node_modules_global/bin $PATH
 
 # imports
 source ~/Prefs/.config/fish/aliases.fish

@@ -10,8 +10,8 @@ let g:spacevim_localleader = '\'
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
-      \ 'better-defaults', 'better-motion', 'code-snippets', 'ctags', 'deoplete', 'editing',
-      \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'markdown', 'programming', 'python',
+      \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'deoplete', 'editing',
+      \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'programming', 'python',
       \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'tmux', 'which-key'
       \ ]
 
@@ -39,7 +39,6 @@ endfunction
 
 " Override the default settings from space-vim as well as adding extras
 function! UserConfig()
-  " TODO have preview in folds
 
   " disable quick-scope due to error on line 74
   let g:loaded_quick_scope = 1
@@ -61,10 +60,11 @@ function! UserConfig()
   nnoremap vv vV
   nnoremap V v$h
   nnoremap <BS> g;
-  nnoremap <ESC> g,
+  nnoremap <ESC> /
 
   nnoremap _t :tabs<CR>
   nnoremap _b :buffers<CR>
+  vnoremap <CR> :
 
   " toggle diff of open windows
   function! DiffToggle()
@@ -155,6 +155,7 @@ function! UserConfig()
   \    'python': ['flake8'],
   \    'rust': ['rls', 'rustfmt'],
   \    'scala': [],
+  \    'sh': ['language_server', 'shellcheck'],
   \    'sql': ['sqlint'],
   \    'vim': ['vint']
   \}
@@ -162,9 +163,11 @@ function! UserConfig()
   \    'css': ['prettier', 'eslint'],
   \    'javascript': ['prettier', 'eslint', 'jq'],
   \    'json': ['prettier', 'eslint', 'jq'],
+  \    'markdown': ['remark-lint'],
   \    'python': ['autoflake', 'isort', 'yapf'],
   \    'rust': ['rustfmt'],
   \    'scala': ['scalafmt'],
+  \    'sh': ['shfmt'],
   \    'sql': ['sqlformat'],
   \    '*': ['remove_trailing_lines', 'trim_whitespace']
   \}
@@ -191,8 +194,19 @@ function! UserConfig()
       \ })
 
   " LanguageClient-neovim
+  " copied default from space-vim since needed to override `rust` entry
   let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'c':                ['ccls', '--log-file=/tmp/cq.log'],
+    \ 'cpp':              ['ccls', '--log-file=/tmp/cq.log'],
+    \ 'go':               ['go-langserver', '-gocodecompletion', '-func-snippet-enabled', '-logfile=/tmp/gols.log'],
+    \ 'haskell':          ['hie-wrapper', '--lsp', '-r', '/Users/paul.garaud/Desktop/scratch'],
+    \ 'javascript':       ['javascript-typescript-stdio'],
+    \ 'javascript.jsx':   ['javascript-typescript-stdio'],
+    \ 'objc':             ['ccls'],
+    \ 'python':           ['pyls', '--log-file=/tmp/pyls.log'],
+    \ 'rust':             ['rustup', 'run', 'stable', 'rls'],
+    \ 'sh':               ['bash-language-server', 'start'],
+    \ 'typescript':       ['javascript-typescript-stdio']
     \ }
 
   " UltiSnips
