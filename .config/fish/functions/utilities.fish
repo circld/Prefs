@@ -13,7 +13,6 @@ end
 
 function vif --description 'open a file found using `fzf`'
   set found (ls $argv[1] | fzf)
-  echo $found
   if test $status -eq 0
     vi (string join / $argv[1] $found)
   end
