@@ -11,9 +11,10 @@ function brb --description 'cd into a directory, execute a command, then cd back
   cd -
 end
 
-function vif --description 'open a file found using `fzf`'
-  set found (ls $argv[1] | fzf)
+function vif --description 'open a file found in specified dir using `fzf`'
+  set found (ls -alt $argv[1] | fzf)
   if test $status -eq 0
-    vi (string join / $argv[1] $found)
+    set name (echo $found | awk '{print $9}')
+    vi (string join / $argv[1] $name)
   end
 end
