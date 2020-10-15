@@ -34,6 +34,8 @@ function! UserInit()
   " Add your own plugin via Plug command.
   Plug 'tpope/vim-unimpaired'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+  " revisit when neovim v0.5+ is available on stable
+  " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 endfunction
 
@@ -300,8 +302,7 @@ function! UserConfig()
   augroup END
 
   " Undotree
-  " FIXME address <leader>u collision
   let g:undotree_SetFocusWhenToggle = 1
-  nmap <leader>u :UndotreeToggle<CR>
+  nmap _u :UndotreeToggle<CR>
 
 endfunction
