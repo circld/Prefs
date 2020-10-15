@@ -63,7 +63,6 @@ function! UserConfig()
   nnoremap V v$h
   nnoremap <BS> g;
   nnoremap <ESC> /
-  onoremap <ESC> <ESC>
 
   nnoremap _t :tabs<CR>
   nnoremap _b :buffers<CR>
@@ -274,6 +273,23 @@ function! UserConfig()
     \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
     \ }
     \ }
+
+  " Mode-specific cursors
+  " START HERE: :h $TERM
+  " - https://vim.fandom.com/wiki/Configuring_the_cursor
+  " - SpaceVim/autoload/SpaceVim/layers/core/statusline.vim
+  set termguicolors
+  hi Cursor guifg=bg guibg=fg
+  exe 'hi! iCursor gui=bold cterm=bold ctermbg=' . s:mediumcyan[1] . ' ctermfg=' . s:mediumcyan[1] . ' guibg=' . s:mediumcyan[0] . ' guifg=' . s:mediumcyan[0]
+  exe 'hi! vCursor gui=bold cterm=bold ctermbg=' . s:magenta[1] . ' ctermfg=' . s:magenta[1] . ' guibg=' . s:magenta[0] . ' guifg=' . s:magenta[0]
+
+  set guicursor=n-c:block-Cursor
+  set guicursor+=i:ver25-iCursor
+  set guicursor+=v:block-vCursor
+
+  " revert cursor when leaving
+  " https://github.com/neovim/neovim/wiki/FAQ#cursor-style-isnt-restored-after-exiting-nvim
+  au VimLeave * set guicursor=a:block-blinkon0
 
   " For saner snippets
   augroup SanerSnippets
