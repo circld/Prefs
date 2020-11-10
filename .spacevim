@@ -91,7 +91,7 @@ function! UserConfig()
   omap f <Plug>(easymotion-bd-f)
 
   " Neovim - configure Python provider
-  let g:python3_host_prog = '/Users/paul.garaud/miniconda3/bin/python'
+  let g:python3_host_prog = expand('~/.pyenv/shims/python3')
 
   " Filetypes
   augroup FileTypeConfiguration
@@ -190,6 +190,7 @@ function! UserConfig()
   \    'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
   " Deoplete
+  let g:deoplete#enable_at_startup = 1
   call deoplete#custom#option({
         \ 'sources': {
           \ 'rust': ['ale'],
