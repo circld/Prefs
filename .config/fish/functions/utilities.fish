@@ -18,3 +18,12 @@ function vif --description 'open a file found in specified dir using `fzf`'
     vi (string join / $argv[1] $name)
   end
 end
+
+# inspired by:
+# https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
+function rf --description 'interactive file contents `rg` searching via `fzf`'
+  set match (rg -i --no-heading --no-line-number --with-filename --sort path $argv[1] | fzf)
+  if test $status -eq 0
+    echo $match | awk -F: "{printf \$1}" | xargs -I {} nvim {}
+  end
+end
