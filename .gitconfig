@@ -1,6 +1,7 @@
-[user]
-    name = circld
-    email = circld1@gmail.com
+[include]
+    path = ~/git-personal.conf
+[includeIf "gitdir:~/work/"]
+    path = ~/work/git-work.conf
 [alias]
     st = status
     ci = commit

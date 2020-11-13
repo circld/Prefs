@@ -22,7 +22,12 @@ end
 # inspired by:
 # https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
 function rf --description 'interactive file contents `rg` searching via `fzf`'
-  set match (rg -i --no-heading --no-line-number --with-filename --sort path $argv[1] | fzf)
+  set match (\
+    rg -i --no-heading --with-filename --line-number --sort path $argv[1] \
+    | fzf -i -d ':' --with-nth=1 \
+      --preview 'bat --force-colorization --theme "base16" --style=numbers --highlight-line {2} {1}' \
+      --preview-window +{2}-/2
+  )
   if test $status -eq 0
     echo $match | awk -F: "{printf \$1}" | xargs -I {} nvim {}
   end
