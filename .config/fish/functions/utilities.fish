@@ -24,7 +24,7 @@ end
 function rf --description 'interactive file contents `rg` searching via `fzf`'
   set match (\
     rg -i --no-heading --with-filename --line-number --sort path $argv[1] \
-    | fzf -i -d ':' --with-nth=1 \
+    | fzf -i -d ':' --with-nth=1,3 \
       --preview 'bat --force-colorization --theme "base16" --style=numbers --highlight-line {2} {1}' \
       --preview-window +{2}-/2
   )
