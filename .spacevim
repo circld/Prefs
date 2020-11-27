@@ -70,6 +70,9 @@ function! UserConfig()
   nnoremap _b :buffers<CR>
   vnoremap <CR> :
 
+  " undo space-vim default mapping
+  iunmap jj
+
   " toggle diff of open windows
   function! DiffToggle()
     if &diff
