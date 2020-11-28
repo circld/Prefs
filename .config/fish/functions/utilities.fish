@@ -32,3 +32,14 @@ function rf --description 'interactive file contents `rg` searching via `fzf`'
     echo $match | awk -F: "{printf \$1}" | xargs -I {} nvim {}
   end
 end
+
+# e.g., $ on_change 'cargo run' rs toml
+#       $ on_change 'pytest -vv' '*'
+function on_change --description 'execute argv[1] whenever files with file types argv[2..-1] change'
+    set command (string join '; ' $argv[1] 'sleep 1')
+    set find_cmd "find . -name '*.$argv[2]'"
+    for ftype in $argv[3..-1]
+        set find_cmd $find_cmd "-o -name '*.$ftype'"
+    end
+    eval $find_cmd | entr -cs $command
+end
