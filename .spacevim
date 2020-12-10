@@ -11,7 +11,7 @@ let g:spacevim_localleader = '\'
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
       \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'deoplete', 'editing',
-      \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'programming', 'python',
+      \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'programming',
       \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'tmux', 'which-key'
       \ ]
 
@@ -147,10 +147,8 @@ function! UserConfig()
   let g:ale_markdown_remark_lint_executable = expand('~/.node_modules_global/bin/remark')
   let g:ale_markdown_remark_lint_options = '--use remark-preset-lint-recommended'
   let g:ale_markdown_remark_lint_use_global = 1
-  let g:ale_python_autoflake_options = '--remove-all-unused-imports --remove-duplicate-keys --remove-unused-variables'
   let g:ale_python_auto_pipenv = 1
-  let g:ale_python_flake8_auto_pipenv = 1
-  let g:ale_python_autoflake_executable = 'autoflake'
+  let g:ale_python_black_use_global = 1
   let g:ale_sql_sqlformat_executable = expand('~/.node_modules_global/bin/sql-formatter-cli')
   let g:ale_sql_sqlformat_options = '-i "-" -o "-"'
 
@@ -159,7 +157,7 @@ function! UserConfig()
   \    'javascript': ['eslint', 'prettier'],
   \    'json': ['jsonlint'],
   \    'markdown': ['remark-lint'],
-  \    'python': ['flake8'],
+  \    'python': [],
   \    'rust': ['rls', 'rustfmt'],
   \    'scala': [],
   \    'sh': ['language_server', 'shellcheck'],
@@ -171,7 +169,7 @@ function! UserConfig()
   \    'javascript': ['prettier', 'eslint', 'jq'],
   \    'json': ['prettier', 'eslint', 'jq'],
   \    'markdown': ['remark-lint'],
-  \    'python': ['autoflake', 'isort', 'yapf'],
+  \    'python': ['isort', 'black'],
   \    'rust': ['rustfmt'],
   \    'scala': ['scalafmt'],
   \    'sh': ['shfmt'],

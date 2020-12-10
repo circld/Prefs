@@ -23,7 +23,7 @@ end
 # https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
 function rf --description 'interactive file contents `rg` searching via `fzf`'
   set match (\
-    rg -i --no-heading --with-filename --line-number --sort path $argv[1] \
+    rg -i --no-heading --with-filename --line-number --sort path (string join ' ' $argv) \
     | fzf -i -d ':' --with-nth=1,3 \
       --preview 'bat --force-colorization --theme "base16" --style=numbers --highlight-line {2} {1}' \
       --preview-window +{2}-/2
