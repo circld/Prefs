@@ -22,4 +22,6 @@ function fish_vi_cursor; end
 fish_vi_key_bindings
 
 # pyenv support
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 pyenv init - | source
