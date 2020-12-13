@@ -271,13 +271,15 @@ function! UserConfig()
   let s:p.normal.error = [ [ s:base03, s:red ] ]
   let s:p.normal.warning = [ [ s:base023, s:yellow ] ]
 
-  let g:lightline#colorscheme#custom#palette = lightline#colorscheme#flatten(s:p)
-  let g:lightline = {
-    \ 'colorscheme': 'custom',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
-    \ }
-    \ }
+  if exists('lightline')
+    let g:lightline#colorscheme#custom#palette = lightline#colorscheme#flatten(s:p)
+    let g:lightline = {
+      \ 'colorscheme': 'custom',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+      \ }
+      \ }
+  endif
 
   " Mode-specific cursors
   " START HERE: :h $TERM
