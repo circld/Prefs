@@ -94,7 +94,8 @@ function! UserConfig()
   omap f <Plug>(easymotion-bd-f)
 
   " Neovim - configure Python provider
-  let g:python3_host_prog = expand('~/.pyenv/shims/python3')
+  " TODO come up with a better solution
+  " let g:python3_host_prog = expand('~/.pyenv/shims/python3')
 
   " Filetypes
   augroup FileTypeConfiguration
