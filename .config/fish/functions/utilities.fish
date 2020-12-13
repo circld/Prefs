@@ -43,3 +43,13 @@ function on_change --description 'execute argv[1] whenever files with file types
     end
     eval $find_cmd | entr -cs $command
 end
+
+# FIXME add repo link here
+function dev --description 'Open an IDE with the current path in `/src`'
+  docker images | rg 'cli_dev' &> /dev/null
+  if test $status -eq 0
+      docker run --name ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest
+  else
+      echo '`cli_dev` docker image not found.'
+  end
+end
