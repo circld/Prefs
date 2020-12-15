@@ -44,12 +44,14 @@ function on_change --description 'execute argv[1] whenever files with file types
     eval $find_cmd | entr -cs $command
 end
 
-# FIXME add repo link here
+# https://github.com/circld/cli_ide
 function dev --description 'Open an IDE with the current path in `/src`'
   docker images | rg 'cli_dev' &> /dev/null
   if test $status -eq 0
-      docker run --name ide --rm -it --mount type=bind,src=(pwd),dst=/src cli_dev:latest
+      set pwd (pwd)
+      set name (string join "" (string split '/' $pwd)[-1] '_' (random))
+      docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/src cli_dev:latest
   else
-      echo '`cli_dev` docker image not found.'
+      echo '`cli_dev:latest` docker image not found.'
   end
 end
