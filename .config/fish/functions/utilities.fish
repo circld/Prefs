@@ -50,7 +50,7 @@ function dev --description 'Open an IDE with the current path in `/src`'
   if test $status -eq 0
       set pwd (pwd)
       set name (string join "" (string split '/' $pwd)[-1] '_' (random))
-      docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/src cli_dev:latest
+      docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest
   else
       echo '`cli_dev:latest` docker image not found.'
   end
