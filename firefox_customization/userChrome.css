@@ -1,7 +1,7 @@
 /*
 Last updated: FF73 200209
 
-1. Navigate the relevant profile directory (see `about:profiles`)
+1. Navigate the relevant profile directory (see `about:profiles`); use the profile in the Root Directory
 2. Create a folder named `chrome` (if it doesn't exist) then create a file named userChrome.css inside it and paste this code
 3. If userChrome.css doesn’t seem to work, open `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets=true`
 
