@@ -12,7 +12,7 @@ let g:spacevim_localleader = '\'
 let g:spacevim_layers = [
       \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'deoplete', 'editing',
       \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'programming',
-      \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'tmux', 'which-key'
+      \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'which-key'
       \ ]
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
@@ -69,6 +69,8 @@ function! UserConfig()
   nnoremap _t :tabs<CR>
   nnoremap _b :buffers<CR>
   vnoremap <CR> :
+  nnoremap <TAB> <C-W>w
+  nnoremap <S-TAB> <C-W>W
 
   " undo space-vim default mapping
   iunmap jj
