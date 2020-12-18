@@ -63,8 +63,8 @@ function! UserConfig()
   nnoremap Y v$hy
   nnoremap vv vV
   nnoremap V v$h
-  nnoremap <BS> g;
-  nnoremap <ESC> /
+  nnoremap <BS> <C-O>
+  nnoremap <ESC> <C-I>
 
   nnoremap _t :tabs<CR>
   nnoremap _b :buffers<CR>

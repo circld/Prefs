@@ -1,0 +1,17 @@
+--smart-case
+
+# limit width and show preview
+--max-columns=200
+--max-columns-preview
+
+# exclude vendor files
+--iglob
+!**/vendor/**
+--iglob
+!vendor/*.js
+
+# exclude lockfiles
+--iglob
+!**/yarn.lock
+--iglob
+!**/package-lock.json
