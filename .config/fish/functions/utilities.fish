@@ -45,12 +45,25 @@ function on_change --description 'execute argv[1] whenever files with file types
 end
 
 # https://github.com/circld/cli_ide
-function dev --description 'Open an IDE with the current path in `/src`'
+function dev --description 'Open an IDE with the current path in `/src`. Supplying a name as an argument creates a non-ephemeral named container.'
   docker images | rg 'cli_dev' &> /dev/null
   if test $status -eq 0
       set pwd (pwd)
-      set name (string join "" (string split '/' $pwd)[-1] '_' (random))
-      docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest
+      if test -n "$argv[1]"
+          # non-ephemeral ide container
+          set name "ide_$argv[1]"
+          docker ps | rg $name &> /dev/null
+          if test $status -eq 0
+              echo "Container $name is running already; connecting to $name."
+              docker exec -it $name fish
+          else
+              docker run -dit --name $name --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest && docker exec -it $name fish
+          end
+      else
+          # ephemeral ide container
+          set name (string join "" (string split '/' $pwd)[-1] '_' (random))
+          docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest
+      end
   else
       echo '`cli_dev:latest` docker image not found.'
   end
