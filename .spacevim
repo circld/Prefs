@@ -46,6 +46,7 @@ function! UserConfig()
   let g:loaded_quick_scope = 1
 
   " Options
+  set clipboard&
   set completeopt=menu,preview
   set foldlevel=99
   set ignorecase
