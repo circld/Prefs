@@ -63,10 +63,10 @@ function fish_prompt --description 'Write out the prompt'
             else
                 set color_cwd $fish_color_cwd
             end
-            set suffix (set_color blue)'❯'(set_color magenta)'❯'(set_color red)'❯ '
+            set suffix (set_color blue)'❯'(set_color magenta)'❯'(set_color brmagenta)'❯ '
         case '*'
             set color_cwd $fish_color_cwd
-            set suffix (set_color red)'❯'(set_color yellow)'❯'(set_color green)'❯ '
+            set suffix (set_color cyan)'❯'(set_color brblue)'❯'(set_color magenta)'❯ '
     end
 
     # PWD
