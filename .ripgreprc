@@ -1,5 +1,8 @@
 --smart-case
 
+# make colorized output even when piping default
+--color=always
+
 # limit width and show preview
 --max-columns=200
 --max-columns-preview
