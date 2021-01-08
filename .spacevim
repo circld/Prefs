@@ -226,7 +226,7 @@ function! UserConfig()
   " lightline
   " wombat theme + powerline insert mode
   " is there a better way to modify *just* the insert mode colors?
-  source ~/Prefs/wombat_modified.vim
+  silent! source ~/Prefs/wombat_modified.vim
   let g:lightline = {
     \ 'colorscheme': 'wombat_modified',
     \ 'active': {

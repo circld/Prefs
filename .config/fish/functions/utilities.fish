@@ -11,11 +11,10 @@ function brb --description 'cd into a directory, execute a command, then cd back
   cd -
 end
 
-function vif --description 'open a file found in specified dir using `fzf`'
-  set found (ls -alt $argv[1] | fzf)
+function vif --description 'fuzzy find a file in directory or subdirectories and open in neovim'
+  set found (fd --color=never | fzf)
   if test $status -eq 0
-    set name (echo $found | awk '{print $9}')
-    vi (string join / $argv[1] $name)
+    vi $found
   end
 end
 
@@ -23,7 +22,7 @@ end
 # https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
 function rf --description 'interactive file contents `rg` searching via `fzf`'
   set match (\
-    rg -i --no-heading --with-filename --line-number --sort path (string join ' ' $argv) \
+    rg -i --color=never --no-heading --with-filename --line-number --sort path (string join ' ' $argv) \
     | fzf -i -d ':' --with-nth=1,3 \
       --preview 'bat --force-colorization --theme "base16" --style=numbers --highlight-line {2} {1}' \
       --preview-window +{2}-/2
