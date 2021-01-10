@@ -11,8 +11,12 @@ function brb --description 'cd into a directory, execute a command, then cd back
   cd -
 end
 
-function vif --description 'fuzzy find a file in directory or subdirectories and open in neovim'
-  set found (fd --color=never | fzf)
+function vif2 --description 'fuzzy find a file in directory or subdirectories and open in neovim'
+  set found (fd --color=never | fzf -i \
+      --layout=reverse \
+      --preview 'bat --force-colorization --theme "base16" --style=numbers {1}' \
+      --preview-window=right:70%:wrap
+)
   if test $status -eq 0
     vi $found
   end
