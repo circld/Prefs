@@ -11,10 +11,11 @@ function brb --description 'cd into a directory, execute a command, then cd back
   cd -
 end
 
-function vif2 --description 'fuzzy find a file in directory or subdirectories and open in neovim'
-  set found (fd --color=never | fzf -i \
+function vif --description 'fuzzy find a file in directory or subdirectories and open in neovim'
+  set found (fd $argv[1..-1] --type=f --color=never | fzf -i \
+      --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
       --layout=reverse \
-      --preview 'bat --force-colorization --theme "base16" --style=numbers {1}' \
+      --preview 'bat --force-colorization --theme "base16" --style=changes,header,numbers {1}' \
       --preview-window=right:70%:wrap
 )
   if test $status -eq 0
