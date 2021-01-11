@@ -9,6 +9,15 @@ let g:spacevim_localleader = '\'
 
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
+"
+" FIXME figure out why `$ nvim +70 .spacevim` jumps aways from line 70 if file
+" was exited from another line
+"
+" removing git, programming, and syntax-checking resolves
+" *only* enabling these three and deoplete likewise breaks
+"
+" TODO produce minimal .spacevim that produces behavior with clear repro
+" steps and then open an issue against space-vim repo
 let g:spacevim_layers = [
       \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'deoplete', 'editing',
       \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'programming',

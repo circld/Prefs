@@ -26,8 +26,8 @@ end
 # inspired by:
 # https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
 function rf --description 'interactive file contents `rg` searching via `fzf`'
+  # if no pattern provided, match all
   set query (string join " " $argv)
-  echo $query
   if test -z $query
       set query "."
   end
@@ -39,8 +39,11 @@ function rf --description 'interactive file contents `rg` searching via `fzf`'
       --preview 'bat --force-colorization --theme "base16" --style=changes,header,numbers --highlight-line {2} {1}' \
       --preview-window +{2}-/2:right:70%:wrap
   )
+  # open nvim on line of match
   if test $status -eq 0
-    echo $match | awk -F: "{printf \$1}" | xargs -I {} nvim {}
+    set args (string split ":" $match)[1..2]
+    echo nvim +$args[2] $args[1]
+    nvim +$args[2] $args[1]
   end
 end
 
