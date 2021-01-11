@@ -26,11 +26,18 @@ end
 # inspired by:
 # https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
 function rf --description 'interactive file contents `rg` searching via `fzf`'
+  set query (string join " " $argv)
+  echo $query
+  if test -z $query
+      set query "."
+  end
   set match (\
-    rg -i --color=never --no-heading --with-filename --line-number --sort path (string join ' ' $argv) \
+    rg -i --color=never --no-heading --with-filename --line-number --sort path $query \
     | fzf -i -d ':' --with-nth=1,3 \
-      --preview 'bat --force-colorization --theme "base16" --style=numbers --highlight-line {2} {1}' \
-      --preview-window +{2}-/2
+      --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
+      --layout=reverse \
+      --preview 'bat --force-colorization --theme "base16" --style=changes,header,numbers --highlight-line {2} {1}' \
+      --preview-window +{2}-/2:right:70%:wrap
   )
   if test $status -eq 0
     echo $match | awk -F: "{printf \$1}" | xargs -I {} nvim {}
