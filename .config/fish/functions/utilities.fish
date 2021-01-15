@@ -15,7 +15,7 @@ function vif --description 'fuzzy find a file in directory or subdirectories and
   set found (fd $argv[1..-1] --type=f --color=never | fzf -i \
       --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
       --layout=reverse \
-      --preview 'bat --force-colorization --theme "base16" --style=changes,header,numbers {1}' \
+      --preview 'bat --force-colorization --theme "base16" --terminal-width=$FZF_PREVIEW_COLUMNS --style=changes,header,numbers {1}' \
       --preview-window=right:70%:wrap
 )
   if test $status -eq 0
@@ -36,7 +36,7 @@ function rf --description 'interactive file contents `rg` searching via `fzf`'
     | fzf -i -d ':' --with-nth=1,3 \
       --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
       --layout=reverse \
-      --preview 'bat --force-colorization --theme "base16" --style=changes,header,numbers --highlight-line {2} {1}' \
+      --preview 'bat --force-colorization --theme "base16" --terminal-width=$FZF_PREVIEW_COLUMNS --style=changes,header,numbers --highlight-line {2} {1}' \
       --preview-window +{2}-/2:right:70%:wrap
   )
   # open nvim on line of match
