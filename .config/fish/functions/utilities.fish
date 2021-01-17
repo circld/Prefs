@@ -59,26 +59,34 @@ function on_change --description 'execute argv[1] whenever files with file types
 end
 
 # https://github.com/circld/cli_ide
-function dev --description 'Open an IDE with the current path in `/src`. Supplying a name as an argument creates a non-ephemeral named container.'
-  docker images | rg 'cli_dev' &> /dev/null
-  if test $status -eq 0
-      set pwd (pwd)
-      if test -n "$argv[1]"
-          # non-ephemeral ide container
-          set name "ide_$argv[1]"
-          docker ps | rg $name &> /dev/null
-          if test $status -eq 0
-              echo "Container $name is running already; connecting to $name."
-              docker exec -it $name fish
-          else
-              docker run -dit --name $name --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest && docker exec -it $name fish
-          end
+function dev --description 'Open an IDE with the current path in `/src`. Pass `rebuild` or an arbitrary to string (or both)'
+  set image_exists (docker images | rg 'cli_dev\s+latest')
+  if test "$argv[1]" = "rebuild"
+      set rebuild "true"
+      if test -n "$argv[2]"
+          set session_name "$argv[2]"
+      end
+  end
+  if test \( -n "$CLI_IDE_PATH" \) -a \( -n "$rebuild" -o -z "$image_exists" \)
+      if test -n $image_exists
+          docker rmi cli_dev:latest
+      end
+      docker build --build-arg CACHEBUST=(date) -f $CLI_IDE_PATH/Dockerfile -t cli_dev:latest $CLI_IDE_PATH
+  end
+  set pwd (pwd)
+  if test -n "$session_name"
+      # non-ephemeral ide container
+      set name "ide_$session_name"
+      docker ps | rg $name &> /dev/null
+      if test $status -eq 0
+          echo "Container $name is running already; connecting to $name."
+          docker exec -it $name fish
       else
-          # ephemeral ide container
-          set name (string join "" (string split '/' $pwd)[-1] '_' (random))
-          docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest
+          docker run -dit --name $name --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest && docker exec -it $name fish
       end
   else
-      echo '`cli_dev:latest` docker image not found.'
+      # ephemeral ide container
+      set name (string join "" (string split '/' $pwd)[-1] '_' (random))
+      docker run --name ide_$name --rm -it --mount type=bind,src=$pwd,dst=/root/src cli_dev:latest
   end
 end
