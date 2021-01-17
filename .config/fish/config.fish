@@ -16,6 +16,7 @@ set -x  RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 # imports
 source ~/Prefs/.config/fish/aliases.fish
 source ~/Prefs/.config/fish/functions/utilities.fish
+source ~/Prefs/.config/fish/functions/cli_ide.fish
 
 alias vi "nvim"
 
