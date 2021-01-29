@@ -42,6 +42,7 @@ function! UserInit()
 
   " Add your own plugin via Plug command.
   Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-repeat'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   " revisit when neovim v0.5+ is available on stable
   " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
@@ -250,6 +251,14 @@ function! UserConfig()
   \    'active': [ 'tabnum', 'filename', 'modified' ],
   \    'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
+  " Undotree
+  let g:undotree_SetFocusWhenToggle = 1
+  nmap _u :UndotreeToggle<CR>
+
+  " TODO reorder alphabetically by plugin
+  " traces.vim
+  let g:traces_num_range_preview = 1
+
   " Mode-specific cursors
   " START HERE: :h $TERM
   " - https://vim.fandom.com/wiki/Configuring_the_cursor
@@ -274,9 +283,5 @@ function! UserConfig()
     inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
     inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
   augroup END
-
-  " Undotree
-  let g:undotree_SetFocusWhenToggle = 1
-  nmap _u :UndotreeToggle<CR>
 
 endfunction
