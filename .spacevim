@@ -84,7 +84,8 @@ function! UserConfig()
   nnoremap <S-TAB> <C-W>W
 
   " vim-clap: <C-R> used to search history
-  cnoremap <C-G> <C-R>
+  cunmap <C-R>
+  cnoremap <C-R><C-R> :<c-u>call spacevim#map#manager#CommandHistory()<CR>
 
   " undo space-vim default mapping
   iunmap jj
