@@ -57,3 +57,20 @@ function on_change --description 'execute argv[1] whenever files with file types
     end
     eval $find_cmd | entr -cs $command
 end
+
+# utility for running `pytest` within a running container
+# usage: $ pipeline_tests pipeline_tests ~/work/octane-lending-data-process/sot_contract_pipeline test_create_contract_df
+function pipeline_tests
+  set container_name "$argv[1]"
+  set pipeline_path "$argv[2]"
+  set test_name "$argv[3]"
+
+  set repo_path (dirname $pipeline_path)
+  set pipeline (basename $pipeline_path)
+
+  cd $repo_path
+  if test 1 -eq (docker ps --filter="name=$container_name" | wc -l)
+      docker-compose run --rm -d -e "TERM=xterm-256color" --name $container_name pipelines /bin/bash
+  end
+  on_change "docker exec -it -e 'TERM=xterm-256color' $container_name python3 -m pytest -vv --show-capture=no -k $test_name $pipeline" py json`
+end
