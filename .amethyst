@@ -1,8 +1,8 @@
 {
   "layouts": [
-    "tall",
     "row",
-    "fullscreen"
+    "fullscreen",
+    "tall"
   ],
   "Valid modifiers are": [
     "option",

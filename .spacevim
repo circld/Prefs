@@ -71,6 +71,13 @@ function! UserConfig()
   set viewoptions=cursor,folds,slash,unix
 
   " Mappings
+
+  " vim-which-key leader guide mappings + descriptions
+  " see: https://github.com/liuchengxu/space-vim/issues/419
+  let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
+  let g:spacevim#map#leader#desc['C'] = ['Clap', ':Clap']
+
+  " regular mappings
   nnoremap Y v$hy
   nnoremap vv vV
   nnoremap V v$h
