@@ -79,6 +79,7 @@ function pipeline_tests
 
   cd $repo_path
   if test 1 -eq (docker ps --filter="name=$container_name" | wc -l)
+      docker rm $container_name &> /dev/null
       docker-compose run --rm -d -e "TERM=xterm-256color" --name $container_name pipelines /bin/bash
   end
   on_change "docker exec -it -e 'TERM=xterm-256color' $container_name python3 -m pytest -vv --show-capture=no $pytest_args -k $test_name $pipeline" py json`
