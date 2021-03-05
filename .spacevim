@@ -223,6 +223,7 @@ function! UserConfig()
   " - generate a pylintrc in root of project (pylint --generate-rcfile)
   " - comment out config options with trailing `=`
   " - add .vim/settings.json to project
+  " - add .vim and .pylint to <repo>/.git/info/exclude
   " - include "args": ["--rcfile", "PATH/TO/.pylint"] in "pylint" object
   "
   " https://github.com/autozimu/LanguageClient-neovim/pull/1013
