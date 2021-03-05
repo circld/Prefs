@@ -217,7 +217,18 @@ function! UserConfig()
       \ })
 
   " LanguageClient-neovim
-  " copied default from space-vim since needed to override `rust` entry
+  "
+  " Configuring pylint
+  " - install pylint
+  " - generate a pylintrc in root of project (pylint --generate-rcfile)
+  " - comment out config options with trailing `=`
+  " - add .vim/settings.json to project
+  " - include "args": ["--rcfile", "PATH/TO/.pylint"] in "pylint" object
+  "
+  " https://github.com/autozimu/LanguageClient-neovim/pull/1013
+  let g:LanguageClient_settingsPath = [g:LanguageClient_settingsPath, '.vim/settings.json']
+
+  " override space-vim defaults for lsp layer
   let g:LanguageClient_serverCommands = {
     \ 'c':                ['ccls', '--log-file=/tmp/cq.log'],
     \ 'cpp':              ['ccls', '--log-file=/tmp/cq.log'],
