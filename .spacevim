@@ -75,7 +75,10 @@ function! UserConfig()
   " vim-which-key leader guide mappings + descriptions
   " see: https://github.com/liuchengxu/space-vim/issues/419
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
-  let g:spacevim#map#leader#desc['C'] = ['Clap', ':Clap']
+  let g:spacevim#map#leader#desc['C'] = [':Clap providers', ':Clap']
+  let g:spacevim#map#leader#desc['g']['c'] = [':Clap bcommits', 'search-commits-for-current-file']
+  let g:spacevim#map#leader#desc['f']['s'] = [':Clap grep2 %:h', 'search-in-current-directory']
+  let g:spacevim#map#leader#desc['f']['f'] = [':Clap files %:h', 'files-in-current-directory']
 
   " regular mappings
   nnoremap Y v$hy
@@ -90,12 +93,19 @@ function! UserConfig()
   nnoremap <TAB> <C-W>w
   nnoremap <S-TAB> <C-W>W
 
+  " undo space-vim default mapping
+  iunmap jj
+
   " vim-clap: <C-R> used to search history
   cunmap <C-R>
   cnoremap <C-R><C-R> :<c-u>call spacevim#map#manager#CommandHistory()<CR>
 
-  " undo space-vim default mapping
-  iunmap jj
+  let g:MyBcommits = g:clap#provider#bcommits#
+
+  function! g:MyBcommits.sink(line) abort
+    let rev = clap#provider#commits#parse_rev(a:line)
+    exe 'Gdiffsplit ' . rev
+  endfunction
 
   " toggle diff of open windows
   function! DiffToggle()
