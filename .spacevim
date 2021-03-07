@@ -75,6 +75,11 @@ function! UserConfig()
   " vim-which-key leader guide mappings + descriptions
   " see: https://github.com/liuchengxu/space-vim/issues/419
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
+
+  nunmap <leader>gc
+  nunmap <leader>fs
+  nunmap <leader>ff
+
   let g:spacevim#map#leader#desc['C'] = [':Clap providers', ':Clap']
   let g:spacevim#map#leader#desc['g']['c'] = [':Clap bcommits', 'search-commits-for-current-file']
   let g:spacevim#map#leader#desc['f']['s'] = [':Clap grep2 %:h', 'search-in-current-directory']
@@ -99,13 +104,6 @@ function! UserConfig()
   " vim-clap: <C-R> used to search history
   cunmap <C-R>
   cnoremap <C-R><C-R> :<c-u>call spacevim#map#manager#CommandHistory()<CR>
-
-  let g:MyBcommits = g:clap#provider#bcommits#
-
-  function! g:MyBcommits.sink(line) abort
-    let rev = clap#provider#commits#parse_rev(a:line)
-    exe 'Gdiffsplit ' . rev
-  endfunction
 
   " toggle diff of open windows
   function! DiffToggle()
@@ -316,5 +314,14 @@ function! UserConfig()
     inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-i>"
     inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-i>"
   augroup END
+
+  " vim-clap
+  let g:clap_layout = { 'relative': 'editor', 'width': '49%', 'col': '1.5%' }
+  let g:MyBcommits = g:clap#provider#bcommits#
+
+  function! g:MyBcommits.sink(line) abort
+    let rev = clap#provider#commits#parse_rev(a:line)
+    exe 'Gdiffsplit ' . rev
+  endfunction
 
 endfunction
