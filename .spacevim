@@ -36,6 +36,9 @@ let g:spacevim_enable_clap = 1
 " Language Server
 let g:spacevim_lsp_engine = 'lcn'
 
+" Exclude plugins
+let g:spacevim_excluded = ['justinmk/vim-sneak', 'haya14busaincsearch-easymotion.vim']
+
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
 function! UserInit()
@@ -317,11 +320,11 @@ function! UserConfig()
 
   " vim-clap
   let g:clap_preview_direction = 'UD'
-  let g:clap_preview_size = { '*': 25, 'files': 50 }
+  let g:clap_preview_size = { '*': 25, 'files': 50, 'grep2': 50 }
   let g:clap_layout = { 'relative': 'editor', 'width': '80%', 'col': '10%', 'height': '20%', 'row': '5%' }
-  let g:MyBcommits = g:clap#provider#bcommits#
+  let g:BcommitsToDiff = g:clap#provider#bcommits#
 
-  function! g:MyBcommits.sink(line) abort
+  function! g:BcommitsToDiff.sink(line) abort
     let rev = clap#provider#commits#parse_rev(a:line)
     exe 'Gdiffsplit ' . rev
   endfunction
