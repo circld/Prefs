@@ -79,14 +79,21 @@ function! UserConfig()
   " see: https://github.com/liuchengxu/space-vim/issues/419
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
-  nunmap <leader>gc
-  nunmap <leader>fs
-  nunmap <leader>ff
+  silent! nunmap <leader>?
+  silent! nunmap <leader>C
+  silent! unmap <leader>ff
+  silent! unmap <leader>fc
+  silent! unmap <leader>fC
+  silent! unmap <leader>fs
+  silent! unmap <leader>gc
 
+  let g:spacevim#map#leader#desc['?'] = [':Clap help_tags', 'search-help-tags']
   let g:spacevim#map#leader#desc['C'] = [':Clap providers', ':Clap']
-  let g:spacevim#map#leader#desc['g']['c'] = [':Clap bcommits', 'search-commits-for-current-file']
-  let g:spacevim#map#leader#desc['f']['s'] = [':Clap grep2 %:h', 'search-in-current-directory']
-  let g:spacevim#map#leader#desc['f']['f'] = [':Clap files %:h', 'files-in-current-directory']
+  let g:spacevim#map#leader#desc['f']['f'] = [':Clap files! %:h', 'files-in-current-directory']
+  let g:spacevim#map#leader#desc['f']['c'] = [':let @*=expand(''%:t'') | echo ''Copied to clipboard: '' . @*', 'copy-file-name']
+  let g:spacevim#map#leader#desc['f']['C'] = [':let @*=expand(''%:p'') | echo ''Copied to clipboard: '' . @*', 'copy-file-path']
+  let g:spacevim#map#leader#desc['f']['s'] = [':Clap grep2! %:h', 'search-in-current-directory']
+  let g:spacevim#map#leader#desc['g']['c'] = [':Clap bcommits!', 'search-commits-for-current-file']
 
   " regular mappings
   nnoremap Y v$hy
@@ -136,7 +143,7 @@ function! UserConfig()
   augroup FileTypeConfiguration
     autocmd FileType html setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
     autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2
-    autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+    autocmd FileType javascript setlocal wrap linebreak shiftwidth=2 tabstop=2
     autocmd FileType json setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
     autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 foldmethod=indent
     autocmd FileType rust setlocal foldmethod=syntax
