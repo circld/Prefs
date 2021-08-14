@@ -84,14 +84,6 @@
     "mod": "mod1",
     "key": "l"
   },
-  "increase-main": {
-    "mod": "mod1",
-    "key": ","
-  },
-  "decrease-main": {
-    "mod": "mod1",
-    "key": "."
-  },
   "focus-ccw": {
     "mod": "mod1",
     "key": "m"

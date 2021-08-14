@@ -94,6 +94,7 @@ function! UserConfig()
   let g:spacevim#map#leader#desc['f']['C'] = [':let @*=expand(''%:p'') | echo ''Copied to clipboard: '' . @*', 'copy-file-path']
   let g:spacevim#map#leader#desc['f']['s'] = [':Clap grep2! %:h', 'search-in-current-directory']
   let g:spacevim#map#leader#desc['g']['c'] = [':Clap bcommits!', 'search-commits-for-current-file']
+  let g:spacevim#map#leader#desc['h'] = [':Clap help_tags', 'search-help-tags']
 
   " regular mappings
   nnoremap Y v$hy

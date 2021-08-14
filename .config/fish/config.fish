@@ -31,3 +31,12 @@ which pyenv &> /dev/null
 if test $status = 0
     pyenv init - | source
 end
+
+# nix workaround (see https://mjhart.netlify.app/posts/2020-03-14-nix-and-fish.html)
+# git clone https://github.com/oh-my-fish/plugin-foreign-env.git
+
+# Add fenv to path
+set fish_function_path $fish_function_path ~/plugin-foreign-env/functions
+
+# Source Nix setup script
+fenv source ~/.nix-profile/etc/profile.d/nix.sh
