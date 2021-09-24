@@ -1,0 +1,49 @@
+global !p
+import re
+
+def markdown_section_type(t):
+    out = []
+
+    # first line needs special handling
+    lines = t.split("\n")
+    lines[0] = "    *   " + lines[0]
+
+    for line in lines:
+        out.append(format_bullet_to_markdown(line))
+
+    return "\n\n".join(out)
+
+def format_bullet_to_markdown(line):
+    remove_leading_indent = re.sub("^    ", "", line)
+    indent_replaced = re.sub("    ", "#", remove_leading_indent)
+    bullet_replaced = re.sub("\*\s+", "## ", indent_replaced)
+    return bullet_replaced
+
+endglobal
+
+snippet ag "Agenda Item"
+${1:Item} (${2:10} min)
+endsnippet
+
+snippet mt "Meeting Notes" b
+# ${1:meeting name}
+
+## summary (5 min)
+
+*   purpose: ${2:purpose}
+*   product: ${3:product}
+*   personal benefit: ${4:benefit}
+*   process:
+    *   ${5:agenda item (00 min)}
+    *   closing (5 min)
+        *   final summary
+        *   decisions + assigning next steps
+
+$0`!p snip.rv=markdown_section_type(t[5])`
+
+## closing (5 min)
+
+### final summary
+
+### decisions + assigning next steps
+endsnippet

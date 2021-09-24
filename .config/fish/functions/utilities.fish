@@ -58,10 +58,10 @@ end
 # e.g., $ on_change 'cargo run' rs toml
 #       $ on_change 'pytest -vv' '*'
 function on_change --description 'execute argv[1] whenever files with file types argv[2..-1] change'
-    set command (string join '; ' $argv[1] 'sleep 1')
-    set find_cmd "find . -name '*.$argv[2]'"
+    set command (string join '; ' $argv[1] 'sleep 5')
+    set find_cmd "fd . -e '$argv[2]'"
     for ftype in $argv[3..-1]
-        set find_cmd $find_cmd "-o -name '*.$ftype'"
+        set find_cmd $find_cmd "-e '$ftype'"
     end
     eval $find_cmd | entr -cs $command
 end
@@ -82,5 +82,6 @@ function pipeline_tests
       docker rm $container_name &> /dev/null
       docker-compose run --rm -d -e "TERM=xterm-256color" --name $container_name pipelines /bin/bash
   end
-  on_change "docker exec -it -e 'TERM=xterm-256color' $container_name python3 -m pytest -vv --show-capture=no $pytest_args -k '$test_name' $pipeline" py json`
+  # TODO eventually want to watch json or python files
+  on_change "docker exec -it -e 'TERM=xterm-256color' $container_name python3 -m pytest -vv --show-capture=no $pytest_args -k '$test_name' $pipeline" py
 end

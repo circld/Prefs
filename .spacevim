@@ -136,9 +136,8 @@ function! UserConfig()
   xmap f <Plug>(easymotion-bd-f)
   omap f <Plug>(easymotion-bd-f)
 
-  " Neovim - configure Python provider
-  " TODO come up with a better solution
-  " let g:python3_host_prog = expand('~/.pyenv/shims/python3')
+  " Custom commands
+  command! BufOnly silent! execute "%bd|e#|bd#"
 
   " Filetypes
   augroup FileTypeConfiguration
