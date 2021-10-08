@@ -11,15 +11,29 @@ function brb --description 'cd into a directory, execute a command, then cd back
   cd -
 end
 
-function vif --description 'fuzzy find a file in directory or subdirectories and open in neovim'
-  set found (fd $argv[1..-1] --type=f --color=never | fzf -i \
+# e.g., rg --color=never -l <pattern> | preview | xargs nvim
+function preview --description 'preview files using fzf'
+  argparse 'l/line' -- $argv
+
+  if test -n "$_flag_l"
+    fzf -i -d ':' --with-nth=1,3 \
+      --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
+      --layout=reverse \
+      --preview 'bat --force-colorization --theme "base16" --terminal-width=$FZF_PREVIEW_COLUMNS --style=changes,header,numbers --highlight-line {2} {1}' \
+      --preview-window +{2}-/2:right:70%:wrap
+  else
+    fzf -i \
       --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
       --layout=reverse \
       --preview 'bat --force-colorization --theme "base16" --terminal-width=$FZF_PREVIEW_COLUMNS --style=changes,header,numbers {1}' \
       --preview-window=right:70%:wrap
-)
+  end
+end
+
+function vif --description 'fuzzy find a file in directory or subdirectories and open in neovim'
+  set found (fd $argv[1..-1] --type=f --color=never | preview)
   if test $status -eq 0
-    vi $found
+    nvim $found
   end
 end
 
@@ -39,13 +53,9 @@ function rf --description 'interactive file contents `rg` searching via `fzf`'
       set query "."
   end
 
-  set match (\
+  set match (
     eval "rg -i --color=never --no-heading --with-filename --line-number --sort path $rg_options '$query'" \
-    | fzf -i -d ':' --with-nth=1,3 \
-      --bind=shift-down:preview-half-page-down,shift-up:preview-half-page-up \
-      --layout=reverse \
-      --preview 'bat --force-colorization --theme "base16" --terminal-width=$FZF_PREVIEW_COLUMNS --style=changes,header,numbers --highlight-line {2} {1}' \
-      --preview-window +{2}-/2:right:70%:wrap
+    | preview -l
   )
   # open nvim on line of match
   if test $status -eq 0

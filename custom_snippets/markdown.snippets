@@ -28,18 +28,21 @@ endsnippet
 snippet mt "Meeting Notes" b
 # ${1:meeting name}
 
+*	notetaker: $0
+*	timekeeper:
+
 ## summary (5 min)
 
-*   purpose: ${2:purpose}
-*   product: ${3:product}
-*   personal benefit: ${4:benefit}
+*   purpose: the purpose of this meeting ${2:...}
+*   product: success for this meeting is we leave here with ${3:...}
+*   personal benefit: this will help us ${4:...}
 *   process:
-    *   ${5:agenda item (00 min)}
+    *   ${5:${6:item} ${7/..*/(/}${7:duration}${7/..*/ min)/}}$8
     *   closing (5 min)
         *   final summary
         *   decisions + assigning next steps
 
-$0`!p snip.rv=markdown_section_type(t[5])`
+`!p snip.rv=markdown_section_type(t[5])`
 
 ## closing (5 min)
 
