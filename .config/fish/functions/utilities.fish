@@ -1,3 +1,16 @@
+function work_layout
+  # notes session
+  tmux new-session -d -s notes -c ~/notes
+  tmux split-window -c ~/notes -p 30
+  tmux send-keys -t notes:0.0 'taskell kanban/(date +"%y%m%d")_kanban.md' C-m
+  tmux send-keys -t notes:0.1 'nvim (date +"%y%m%d")_notes.md' C-m
+
+  # work session
+  tmux new-session -d -s work -c ~/work
+
+  tmux attach -t notes
+end
+
 function . --description '`cd` up $argv[1] times and then to path in $argv[2]'
   for d in (seq $argv[1])
     set d_list $d_list '..'
