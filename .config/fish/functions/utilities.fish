@@ -1,12 +1,10 @@
 function work_layout
-  # notes session
   tmux new-session -d -s notes -c ~/notes
-  tmux split-window -c ~/notes -p 30
-  tmux send-keys -t notes:0.0 'taskell kanban/(date +"%y%m%d")_kanban.md' C-m
-  tmux send-keys -t notes:0.1 'nvim (date +"%y%m%d")_notes.md' C-m
-
-  # work session
   tmux new-session -d -s work -c ~/work
+
+  tmux split-window -d -t "notes:0.0" -l 20 -c ~/notes
+  tmux send-keys -t "notes:0.0" 'taskell kanban/(date +"%y%m%d")_kanban.md' C-m
+  tmux send-keys -t "notes:0.1" 'nvim (date +"%y%m%d")_notes.md' C-m
 
   tmux attach -t notes
 end
@@ -47,6 +45,15 @@ function vif --description 'fuzzy find a file in directory or subdirectories and
   set found (fd $argv[1..-1] --type=f --color=never | preview)
   if test $status -eq 0
     nvim $found
+  end
+end
+
+function cdf --description 'fuzzy find a directory or subdirectory and move there'
+  set found (fd $argv[1..-1] --absolute-path --type=d --color=never |
+    fzf --preview "fd --color=always --base-directory {1} ."
+  )
+  if test $status -eq 0
+    cd $found
   end
 end
 
