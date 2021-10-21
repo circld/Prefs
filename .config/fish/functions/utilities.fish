@@ -3,8 +3,8 @@ function work_layout
   tmux new-session -d -s work -c ~/work
 
   tmux split-window -d -t "notes:0.0" -l 20 -c ~/notes
-  tmux send-keys -t "notes:0.0" 'taskell kanban/(date +"%y%m%d")_kanban.md' C-m
-  tmux send-keys -t "notes:0.1" 'nvim (date +"%y%m%d")_notes.md' C-m
+  tmux send-keys -t "notes:0.0" 'taskell kanban/(date --date="today" +"%y%m%d")_kanban.md' C-m
+  tmux send-keys -t "notes:0.1" 'nvim (date --date="today" +"%y%m%d")_notes.md' C-m
 
   tmux attach -t notes
 end
@@ -50,7 +50,7 @@ end
 
 function cdf --description 'fuzzy find a directory or subdirectory and move there'
   set found (fd $argv[1..-1] --absolute-path --type=d --color=never |
-    fzf --preview "fd --color=always --base-directory {1} ."
+    fzf --layout reverse --preview "fd --color=always --base-directory {1} ."
   )
   if test $status -eq 0
     cd $found
@@ -114,4 +114,11 @@ function pipeline_tests
   end
   # TODO eventually want to watch json or python files
   on_change "docker exec -it -e 'TERM=xterm-256color' $container_name python3 -m pytest -vv --show-capture=no $pytest_args -k '$test_name' $pipeline" py
+end
+
+function root
+    set project_root (git rev-parse --show-toplevel)
+    if test $status -eq 0
+        cd $project_root
+    end
 end
