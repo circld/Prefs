@@ -47,6 +47,7 @@ function! UserInit()
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-repeat'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+  Plug 'vmchale/dhall-vim'
   " revisit when neovim v0.5+ is available on stable
   " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
@@ -197,6 +198,7 @@ function! UserConfig()
 
   let g:ale_linters = {
   \    'css': ['eslint', 'prettier'],
+  \    'dhall': ['dhall-lint'],
   \    'javascript': ['eslint', 'prettier'],
   \    'json': ['jsonlint'],
   \    'markdown': ['remark-lint'],
@@ -209,6 +211,7 @@ function! UserConfig()
   \}
   let g:ale_fixers = {
   \    'css': ['prettier', 'eslint'],
+  \    'dhall': ['dhall-format'],
   \    'javascript': ['prettier', 'eslint', 'jq'],
   \    'json': ['prettier', 'eslint', 'jq'],
   \    'markdown': ['remark-lint'],
@@ -251,6 +254,7 @@ function! UserConfig()
   let g:LanguageClient_serverCommands = {
     \ 'c':                ['ccls', '--log-file=/tmp/cq.log'],
     \ 'cpp':              ['ccls', '--log-file=/tmp/cq.log'],
+    \ 'dhall':            ['dhall-lsp-server'],
     \ 'go':               ['go-langserver', '-gocodecompletion', '-func-snippet-enabled', '-logfile=/tmp/gols.log'],
     \ 'haskell':          ['hie-wrapper', '--lsp', '-r', '/Users/paul.garaud/Desktop/scratch'],
     \ 'javascript':       ['javascript-typescript-stdio'],

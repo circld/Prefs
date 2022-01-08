@@ -1,3 +1,5 @@
+*Note: newer versions of [qmk_firmware](https://github.com/qmk/qmk_firmware) have CLI commands to accomplish the largely manual steps below. See [docs](https://docs.qmk.fm/#/) for more information.*
+
 # preonic rev3
 1. upload json to QMK Configurator website + make adjustments
 2. download json
