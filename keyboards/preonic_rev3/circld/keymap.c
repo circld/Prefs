@@ -19,13 +19,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┐
      KC_TILD, KC_EXLM,  KC_AT,  KC_HASH,  KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_PIPE, KC_EQL,  KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LALT, KC_QUOT, KC_COMM,  KC_DOT,   KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,  KC_LALT,
+ LGUI(KC_LBRC), KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,  LGUI(KC_RBRC),
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,    KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,  KC_MINS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_WBAK, KC_COLN,   KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,  KC_WFWD,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
- KC_LCTL, KC_LALT, KC_LGUI, MO(LMOD), LT(NUM,KC_ESC), LT(SFT,KC_BSPC), LT(SYM,KC_SPC), LT(NAV,KC_ENT), MO(RMOD), KC_NO, KC_LALT, KC_LGUI),
+KC_LCTL, KC_LALT, KC_LGUI, MO(LMOD), LT(NUM,KC_ESC), LT(SFT,KC_BSPC), LT(SYM,KC_SPC), LT(NAV,KC_ENT), MO(RMOD), KC_NO, KC_LALT, KC_LGUI),
   //└────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
 
 	[SYM] = LAYOUT_preonic_grid(
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TRNS,  KC_AT,  KC_DLR,  KC_AMPR, KC_EXLM, KC_GRV,  KC_TILD, KC_QUES, KC_PIPE, KC_HASH, KC_CIRC, KC_TRNS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  MO(FNUM),  KC_TRNS, KC_ENT,   KC_NO,   KC_NO,  KC_TRNS, KC_TRNS),
+     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(FNUM), KC_TRNS, KC_ENT,   KC_NO,   KC_NO,  KC_TRNS, KC_TRNS),
   //└────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
 
 	[NUM] = LAYOUT_preonic_grid(
