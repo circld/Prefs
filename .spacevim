@@ -128,6 +128,23 @@ function! UserConfig()
 
   nnoremap _d :call DiffToggle()<CR>
 
+  function! OpenGithub()
+    let file = expand("%:p")
+    let line = getcurpos()[1]
+
+    let repo_full_path = split(execute("!git rev-parse --show-toplevel"), "\n")[-1]
+    let branch = split(execute("!git rev-parse --abbrev-ref HEAD"))[-1]
+    let remote = split(split(execute("!git remote -v"))[-2], ":")[-1]
+
+    let file_repo_path = substitute(file, repo_full_path, '', '')
+    let file_repo_path = "https://github.com/" . remote . "/tree/" . branch . file_repo_path . "\\#L" . line
+
+    " OSX only
+    execute("!open " . file_repo_path)
+  endfunction
+
+  nnoremap _g :call OpenGithub()<CR>
+
   nmap <left>  :3wincmd <<cr>
   nmap <right> :3wincmd ><cr>
   nmap <up>    :3wincmd +<cr>
