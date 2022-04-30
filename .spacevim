@@ -48,6 +48,7 @@ function! UserInit()
   Plug 'tpope/vim-repeat'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   Plug 'vmchale/dhall-vim'
+  Plug 'unisonweb/unison', { 'branch': 'trunk', 'rtp': 'editor-support/vim' }
   " revisit when neovim v0.5+ is available on stable
   " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
@@ -143,7 +144,7 @@ function! UserConfig()
     execute("!open " . file_repo_path)
   endfunction
 
-  nnoremap _g :call OpenGithub()<CR>
+  nnoremap _g :silent! call OpenGithub()<CR>
 
   nmap <left>  :3wincmd <<cr>
   nmap <right> :3wincmd ><cr>
@@ -354,7 +355,7 @@ function! UserConfig()
 
   function! g:BcommitsToDiff.sink(line) abort
     let rev = clap#provider#commits#parse_rev(a:line)
-    exe 'Gdiffsplit ' . rev
+    exe 'Gdiffsplit ' . rev . '~1'
   endfunction
 
 endfunction
