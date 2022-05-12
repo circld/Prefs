@@ -6,6 +6,7 @@
     st = status
     ci = commit
     co = checkout
+    rco = "!f(){ git fetch origin \"$1\" && git checkout \"$1\"; };f"
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
     type = cat-file -t
     dump = cat-file -p
