@@ -11,6 +11,7 @@
     type = cat-file -t
     dump = cat-file -p
     br = "!git --no-pager branch"
+    nbr = "!f(){ git checkout -b \"$1\" && git push --set-upstream origin \"$1\"; };f"
 	root = rev-parse --show-toplevel
 [core]
     excludesfile = ~/.gitignore_global
