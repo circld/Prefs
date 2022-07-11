@@ -9,17 +9,8 @@ let g:spacevim_localleader = '\'
 
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
-"
-" FIXME figure out why `$ nvim +70 .spacevim` jumps aways from line 70 if file
-" was exited from another line
-"
-" removing git, programming, and syntax-checking resolves
-" *only* enabling these three and deoplete likewise breaks
-"
-" TODO produce minimal .spacevim that produces behavior with clear repro
-" steps and then open an issue against space-vim repo
 let g:spacevim_layers = [
-      \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'deoplete', 'editing',
+      \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'editing',
       \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'programming',
       \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'which-key'
       \ ]
@@ -34,10 +25,10 @@ let g:spacevim_nerd_fonts = 1
 let g:spacevim_enable_clap = 1
 
 " Language Server
-let g:spacevim_lsp_engine = 'lcn'
+let g:spacevim_lsp_engine = 'coc'
 
 " Exclude plugins
-let g:spacevim_excluded = ['justinmk/vim-sneak', 'haya14busaincsearch-easymotion.vim']
+let g:spacevim_excluded = ['neoclide/coc-neco', 'haya14busaincsearch-easymotion.vim', 'justinmk/vim-sneak']
 
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
@@ -167,6 +158,7 @@ function! UserConfig()
     autocmd FileType markdown setlocal shiftwidth=4 tabstop=4 foldmethod=indent
     autocmd FileType rust setlocal foldmethod=syntax
     autocmd FileType sql setlocal shiftwidth=2 tabstop=2 foldmethod=indent
+    autocmd FileType haskell setlocal shiftwidth=2 tabstop=2 foldmethod=indent
     autocmd FileType text setlocal wrap linebreak nolist shiftwidth=2 tabstop=2 textwidth=0 wrapmargin=0
     autocmd FileType python setlocal foldmethod=syntax
     au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
@@ -199,64 +191,6 @@ function! UserConfig()
   hi EasyMotionTarget guifg=#5fd700
   hi CurrentWordTwins cterm=bold,underline ctermfg=40 ctermbg=234 gui=bold,underline guifg=#00ff00
 
-  " ALE
-  command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-  command! ALEToggleAll execute "ALEToggle \| ALEToggleFixer"
-  let g:ale_linters_explicit = 1
-  let g:ale_fix_on_save = 1
-  let g:ale_completion_enabled = 0
-  let g:ale_completion_max_suggestions = 1000
-  let g:ale_markdown_remark_lint_executable = expand('~/.node_modules_global/bin/remark')
-  let g:ale_markdown_remark_lint_options = '--use remark-preset-lint-recommended'
-  let g:ale_markdown_remark_lint_use_global = 1
-  let g:ale_python_auto_pipenv = 1
-  let g:ale_python_black_use_global = 1
-  let g:ale_sql_sqlformat_executable = expand('~/.node_modules_global/bin/sql-formatter-cli')
-  let g:ale_sql_sqlformat_options = '-i "-" -o "-"'
-
-  let g:ale_linters = {
-  \    'css': ['eslint', 'prettier'],
-  \    'dhall': ['dhall-lint'],
-  \    'javascript': ['eslint', 'prettier'],
-  \    'json': ['jsonlint'],
-  \    'markdown': ['remark-lint'],
-  \    'python': [],
-  \    'rust': ['rls', 'rustfmt'],
-  \    'scala': [],
-  \    'sh': ['language_server', 'shellcheck'],
-  \    'sql': ['sqlint'],
-  \    'vim': ['vint']
-  \}
-  let g:ale_fixers = {
-  \    'css': ['prettier', 'eslint'],
-  \    'dhall': ['dhall-format'],
-  \    'javascript': ['prettier', 'eslint', 'jq'],
-  \    'json': ['prettier', 'eslint', 'jq'],
-  \    'markdown': ['remark-lint'],
-  \    'python': ['isort', 'black'],
-  \    'rust': ['rustfmt'],
-  \    'scala': ['scalafmt'],
-  \    'sh': ['shfmt'],
-  \    'sql': ['sqlformat'],
-  \    '*': ['remove_trailing_lines', 'trim_whitespace']
-  \}
-  let g:ale_rust_rls_config = {
-  \    'rust': {
-  \      'clippy_preference': 'on'
-  \    }
-  \}
-
-  " Deoplete
-  let g:deoplete#enable_at_startup = 1
-  call deoplete#custom#option({
-        \ 'sources': {
-          \ 'rust': ['ale'],
-        \ },
-        \ 'smart_case': v:true,
-      \ })
-
-  " LanguageClient-neovim
-  "
   " Configuring pylint
   " - install pylint
   " - generate a pylintrc in root of project (pylint --generate-rcfile)
@@ -264,25 +198,6 @@ function! UserConfig()
   " - add .vim/settings.json to project (https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json)
   " - add .vim and .pylint to <repo>/.git/info/exclude
   " - include "args": ["--rcfile", "PATH/TO/.pylint"] in "pylint" object
-  "
-  " https://github.com/autozimu/LanguageClient-neovim/pull/1013
-  let g:LanguageClient_settingsPath = [g:LanguageClient_settingsPath, '.vim/settings.json']
-
-  " override space-vim defaults for lsp layer
-  let g:LanguageClient_serverCommands = {
-    \ 'c':                ['ccls', '--log-file=/tmp/cq.log'],
-    \ 'cpp':              ['ccls', '--log-file=/tmp/cq.log'],
-    \ 'dhall':            ['dhall-lsp-server'],
-    \ 'go':               ['go-langserver', '-gocodecompletion', '-func-snippet-enabled', '-logfile=/tmp/gols.log'],
-    \ 'haskell':          ['hie-wrapper', '--lsp', '-r', '/Users/paul.garaud/Desktop/scratch'],
-    \ 'javascript':       ['javascript-typescript-stdio'],
-    \ 'javascript.jsx':   ['javascript-typescript-stdio'],
-    \ 'objc':             ['ccls'],
-    \ 'python':           ['pyls', '--log-file=/tmp/pyls.log'],
-    \ 'rust':             ['rustup', 'run', 'stable', 'rls'],
-    \ 'sh':               ['bash-language-server', 'start'],
-    \ 'typescript':       ['javascript-typescript-stdio']
-    \ }
 
   " UltiSnips
   inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
@@ -357,5 +272,9 @@ function! UserConfig()
     let rev = clap#provider#commits#parse_rev(a:line)
     exe 'Gdiffsplit ' . rev . '~1'
   endfunction
+
+  " coc
+  hi! link CocErrorSign Error
+  hi! link CocWarningSign Warning
 
 endfunction
