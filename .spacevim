@@ -199,6 +199,9 @@ function! UserConfig()
   " - add .vim and .pylint to <repo>/.git/info/exclude
   " - include "args": ["--rcfile", "PATH/TO/.pylint"] in "pylint" object
 
+  " EasyMotion
+  let g:EasyMotion_do_mapping = 0
+
   " UltiSnips
   inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
   snoremap <silent> <Tab> <Tab>
