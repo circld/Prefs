@@ -28,7 +28,7 @@ let g:spacevim_enable_clap = 1
 let g:spacevim_lsp_engine = 'coc'
 
 " Exclude plugins
-let g:spacevim_excluded = ['neoclide/coc-neco', 'haya14busaincsearch-easymotion.vim', 'justinmk/vim-sneak']
+let g:spacevim_excluded = ['scrooloose/nerdtree', 'neoclide/coc-neco', 'haya14busaincsearch-easymotion.vim', 'justinmk/vim-sneak']
 
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
@@ -80,8 +80,12 @@ function! UserConfig()
   silent! unmap <leader>fs
   silent! unmap <leader>gc
 
+  " Custom commands
+  command! BufOnly silent! execute "%bd|e#|bd#"
+
   let g:spacevim#map#leader#desc['?'] = [':Clap help_tags', 'search-help-tags']
   let g:spacevim#map#leader#desc['C'] = [':Clap providers', ':Clap']
+  let g:spacevim#map#leader#desc['b']['o'] = [':BufOnly', 'only-this-buffer']
   let g:spacevim#map#leader#desc['f']['f'] = [':Clap files! %:h', 'files-in-current-directory']
   let g:spacevim#map#leader#desc['f']['c'] = [':let @*=expand(''%:t'') | echo ''Copied to clipboard: '' . @*', 'copy-file-name']
   let g:spacevim#map#leader#desc['f']['C'] = [':let @*=expand(''%:p'') | echo ''Copied to clipboard: '' . @*', 'copy-file-path']
@@ -145,9 +149,6 @@ function! UserConfig()
   nmap f <Plug>(easymotion-overwin-f)
   xmap f <Plug>(easymotion-bd-f)
   omap f <Plug>(easymotion-bd-f)
-
-  " Custom commands
-  command! BufOnly silent! execute "%bd|e#|bd#"
 
   " Filetypes
   augroup FileTypeConfiguration
