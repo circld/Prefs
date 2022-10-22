@@ -4,8 +4,8 @@ function work_layout
   tmux new-session -d -s work -c ~/work
 
   tmux split-window -d -t "notes:0.0" -l 20 -c $directory
-  tmux send-keys -t "notes:0.0" 'taskell kanban/(date --date="today" +"%y%m%d")_kanban.md' C-m
-  tmux send-keys -t "notes:0.1" 'nvim notes/(date --date="today" +"%y%m%d")_notes.md' C-m
+  tmux send-keys -t "notes:0.0" 'taskell kanban.md' C-m
+  tmux send-keys -t "notes:0.1" 'nvim today.md' C-m
 
   tmux attach -t notes
 end
@@ -64,6 +64,10 @@ function cdf --description 'fuzzy find a directory or subdirectory and move ther
   end
 end
 
+function browse --description 'file browser'
+  fd --full-path --type=file . | fzf --bind "space:execute(bat --paging=always {})","enter:execute(nvim {})","tab:accept" || true
+end
+
 # inspired by:
 # https://github.com/srid/neuron/blob/master/neuron/src-bash/neuron-search
 function rf --description 'interactive file contents `rg` searching via `fzf`'
@@ -92,6 +96,7 @@ function rf --description 'interactive file contents `rg` searching via `fzf`'
   end
 end
 
+# FIXME allow `on_change` to take a directory
 # e.g., $ on_change 'cargo run' rs toml
 #       $ on_change 'pytest -vv' '*'
 function on_change --description 'execute argv[1] whenever files with file types argv[2..-1] change'
@@ -103,6 +108,7 @@ function on_change --description 'execute argv[1] whenever files with file types
     eval $find_cmd | entr -cs $command
 end
 
+# FIXME too many files to watch results in a lot of garbage spewed to the terminal (data-process); update to limit watch files to specific dir
 # utility for running `pytest` within a running container
 # usage: $ pipeline_tests pipeline_tests ~/work/octane-lending-data-process/sot_contract_pipeline test_create_contract_df [--pdb]
 function pipeline_tests
