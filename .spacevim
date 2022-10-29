@@ -124,6 +124,18 @@ function! UserConfig()
 
   nnoremap _d :call DiffToggle()<CR>
 
+  " follow 'route' style filepaths
+  function! FollowRoutePath() abort
+    let target_path = expand('<cfile>')
+    " if valid root path exists, prefer that
+    if target_path[0] == '/' && empty(glob(target_path))
+      execute 'edit ' . target_path[1:]
+    else
+      norm! gf
+    endif
+  endfunction
+  nnoremap gf :call FollowRoutePath()<CR>
+
   function! OpenGithub()
     let file = expand("%:p")
     let line = getcurpos()[1]
