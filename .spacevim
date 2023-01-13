@@ -127,9 +127,15 @@ function! UserConfig()
   " follow 'route' style filepaths
   function! FollowRoutePath() abort
     let target_path = expand('<cfile>')
+    let ext = expand('<cfile>:e')
     " if valid root path exists, prefer that
     if target_path[0] == '/' && empty(glob(target_path))
-      execute 'edit ' . target_path[1:]
+      " use netrw to browse images
+      if index(['jpeg', 'jpg', 'png'], ext) >= 0
+        call netrw#BrowseX(target_path[1:],0)
+      else
+        execute 'edit ' . target_path[1:]
+      endif
     else
       norm! gf
     endif
@@ -158,7 +164,7 @@ function! UserConfig()
   nmap <up>    :3wincmd +<cr>
   nmap <down>  :3wincmd -<cr>
 
-  nmap f <Plug>(easymotion-overwin-f)
+  nmap f <Plug>(easymotion-s)
   xmap f <Plug>(easymotion-bd-f)
   omap f <Plug>(easymotion-bd-f)
 
