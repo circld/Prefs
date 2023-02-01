@@ -35,11 +35,12 @@ let g:spacevim_excluded = ['scrooloose/nerdtree', 'neoclide/coc-neco', 'haya14bu
 function! UserInit()
 
   " Add your own plugin via Plug command.
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-repeat'
+  Plug 'hashivim/vim-terraform'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-  Plug 'vmchale/dhall-vim'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-unimpaired'
   Plug 'unisonweb/unison', { 'branch': 'trunk', 'rtp': 'editor-support/vim' }
+  Plug 'vmchale/dhall-vim'
   " revisit when neovim v0.5+ is available on stable
   " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 

@@ -6,6 +6,9 @@ set PATH /usr/local/bin             \
     $PATH
 set -x NODE_PATH ~/.node_modules_global/lib/node_modules
 
+# set SHELL
+set SHELL ~/.nix-profile/bin/fish
+
 # https://stackoverflow.com/questions/60557160/python3-8-fails-with-fatal-python-error-config-get-locale-encoding
 set -x LANG "en_US.UTF-8"
 set -x LC_ALL "en_US.UTF-8"
