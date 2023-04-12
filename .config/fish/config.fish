@@ -43,3 +43,6 @@ fenv source ~/.nix-profile/etc/profile.d/nix.sh
 
 # directory-based nix shells
 direnv hook fish | source
+
+# Starship prompt
+starship init fish | source
