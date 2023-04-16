@@ -1,5 +1,5 @@
 /*
-Last updated: FF73 200209
+Last updated: FF113 230415
 
 1. Navigate the relevant profile directory (see `about:profiles`); use the profile in the Root Directory
 2. Create a folder named `chrome` (if it doesn't exist) then create a file named userChrome.css inside it and paste this code
@@ -16,20 +16,22 @@ https://github.com/jonhoo/configs/blob/master/gui/.mozilla/firefox/dev-edition-d
 https://gist.github.com/Trollwut/51bc71ba30ca0a182eb558746270ec5b
 https://gist.github.com/Arty2/e6e61801531ec5ee1f9f
 */
+
+/* tabs on bottom of window
+
+  we want to move #navigator-toolbox, but since FF72, it is wrapped in
+  a `box` element that has no identifier. we would like to use:
+    box:has(#navigator-toolbox) { -moz-box-ordinal-group: 10; }
+  but :has isn't a "live selector", so we can't use it in stylesheet
+  context. instead, we use this hack:
+*/
+
 @-moz-document url(chrome://browser/content/browser.xhtml) {
-  /* tabs on bottom of window */
-  /*
-	  we want to move #navigator-toolbox, but since FF72, it is wrapped in
-	  a `box` element that has no identifier. we would like to use:
-	    box:has(#navigator-toolbox) { -moz-box-ordinal-group: 10; }
-	  but :has isn't a "live selector", so we can't use it in stylesheet
-	  context. instead, we use this hack:
-	*/
   #mainPopupSet ~ box {
-    -moz-box-ordinal-group: 10;
+    order: 10;
   }
   #titlebar {
-    -moz-box-ordinal-group: 10;
+    order: 10;
   }
   #urlbar {
     top: unset !important;
