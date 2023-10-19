@@ -41,6 +41,7 @@ function! UserInit()
   Plug 'tpope/vim-unimpaired'
   Plug 'unisonweb/unison', { 'branch': 'trunk', 'rtp': 'editor-support/vim' }
   Plug 'vmchale/dhall-vim'
+  " Plug 'phaazon/hop.nvim', { 'branch': 'v2.0.3' }
   " revisit when neovim v0.5+ is available on stable
   " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
@@ -241,7 +242,7 @@ function! UserConfig()
   let g:lightline = {
     \ 'colorscheme': 'wombat_modified',
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+    \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ]
     \ }
     \ }
   let g:lightline.enable = {

@@ -1,11 +1,15 @@
 function work_layout
-  set directory ~/process
-  tmux new-session -d -s notes -c $directory
-  tmux new-session -d -s work -c ~/work
+  set notes_dir ~/process
+  set work_dir ~/work
 
-  tmux split-window -d -t "notes:0.0" -l 20 -c $directory
+  tmux new-session -d -s notes -c $notes_dir
+  tmux new-session -d -s work -c $work_dir
+
+  tmux split-window -d -t "notes:0.0" -l 20 -c $notes_dir
   tmux send-keys -t "notes:0.0" 'taskell kanban.md' C-m
   tmux send-keys -t "notes:0.1" 'nvim today.md' C-m
+
+  tmux split-window -d -t "work:0.0" -l 80 -c $work_dir
 
   tmux attach -t notes
 end
