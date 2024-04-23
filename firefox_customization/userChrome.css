@@ -1,5 +1,5 @@
 /*
-Last updated: FF119 230927
+Last updated: FF126 240423
 
 1. Navigate the relevant profile directory (see `about:profiles`); use the profile in the Root Directory
 2. Create a folder named `chrome` (if it doesn't exist) then create a file named userChrome.css inside it and paste this code
@@ -10,6 +10,7 @@ Firefox Support forum - Tabs below the URL bar: https://support.mozilla.org/en-U
 Custom CSS tweaks for Firefox Quantum: https://github.com/Aris-t2/CustomCSSforFx
 FirefoxCSS subreddit: https://www.reddit.com/r/FirefoxCSS
 How to debug: https://www.reddit.com/r/FirefoxCSS/comments/73dvty/tutorial_how_to_create_and_livedebug_userchromecss/
+              https://bugzilla.mozilla.org/show_bug.cgi?id=1420713
 
 Credits:
 https://github.com/jonhoo/configs/blob/master/gui/.mozilla/firefox/dev-edition-default/chrome/userChrome.css
@@ -35,23 +36,9 @@ https://gist.github.com/Arty2/e6e61801531ec5ee1f9f
   }
   #urlbar {
     top: unset !important;
-    bottom: calc(
-      (var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2
-    ) !important;
+    bottom: 0;
     box-shadow: none !important;
-    display: flex !important;
     flex-direction: column !important;
-  }
-  #urlbar-input-container {
-    order: 2;
-  }
-  #urlbar > .urlbarView {
-    order: 1;
-    border-bottom: 1px solid #666;
-  }
-  #urlbar-results {
-    display: flex;
-    flex-direction: column-reverse;
   }
   #urlbar,
   #searchbar .searchbar-textbox {
@@ -102,3 +89,4 @@ https://gist.github.com/Arty2/e6e61801531ec5ee1f9f
     height: 12px !important;
   }
 }
+
