@@ -144,3 +144,15 @@ function root
         cd $project_root
     end
 end
+
+function format_sql
+    set input_file "$argv[1]"
+    set output_file "$argv[2]"
+    if test (count $argv) -eq 3
+        set dialect "--read $argv[3]"
+    end
+
+    set command (string join " " -- "~/work/tools_exploration/sqlglot/venv/bin/python -m sqlglot" $dialect '$query' ">" '$output_file')
+    cat $input_file | read -fz query
+    eval $command
+end
