@@ -10,7 +10,7 @@ let g:spacevim_localleader = '\'
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
-      \ 'better-defaults', 'better-motion', 'code-snippets', 'cscope', 'editing',
+      \ 'better-defaults', 'code-snippets', 'cscope', 'editing',
       \ 'file-manager', 'fzf', 'git', 'lightline', 'lsp', 'markdown', 'programming',
       \ 'rust', 'spacevim', 'syntax-checking', 'text-align', 'which-key'
       \ ]
@@ -41,9 +41,7 @@ function! UserInit()
   Plug 'tpope/vim-unimpaired'
   Plug 'unisonweb/unison', { 'branch': 'trunk', 'rtp': 'editor-support/vim' }
   Plug 'vmchale/dhall-vim'
-  " Plug 'phaazon/hop.nvim', { 'branch': 'v2.0.3' }
-  " revisit when neovim v0.5+ is available on stable
-  " Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+  Plug 'folke/flash.nvim'
 
 endfunction
 
@@ -94,6 +92,8 @@ function! UserConfig()
   let g:spacevim#map#leader#desc['f']['s'] = [':Clap grep2! %:h', 'search-in-current-directory']
   let g:spacevim#map#leader#desc['g']['c'] = [':Clap bcommits!', 'search-commits-for-current-file']
   let g:spacevim#map#leader#desc['h'] = [':Clap help_tags', 'search-help-tags']
+  let g:spacevim#map#leader#desc['e']['n'] = [':call CocAction(''diagnosticNext'')<CR>', 'next-error']
+  let g:spacevim#map#leader#desc['e']['p'] = [':call CocAction(''diagnosticPrevious'')<CR>', 'previous-error']
 
   " regular mappings
   nnoremap Y v$hy
@@ -166,10 +166,6 @@ function! UserConfig()
   nmap <up>    :3wincmd +<cr>
   nmap <down>  :3wincmd -<cr>
 
-  nmap f <Plug>(easymotion-s)
-  xmap f <Plug>(easymotion-bd-f)
-  omap f <Plug>(easymotion-bd-f)
-
   " Filetypes
   augroup FileTypeConfiguration
     autocmd FileType html setlocal shiftwidth=2 tabstop=2 foldmethod=syntax
@@ -209,7 +205,6 @@ function! UserConfig()
   hi! link GitGutterAdd DiffAdd
   hi! link GitGutterChange DiffChange
   hi! link GitGutterDelete DiffDelete
-  hi EasyMotionTarget guifg=#5fd700
   hi CurrentWordTwins cterm=bold,underline ctermfg=40 ctermbg=234 gui=bold,underline guifg=#00ff00
 
   " Configuring pylint
@@ -219,9 +214,6 @@ function! UserConfig()
   " - add .vim/settings.json to project (https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json)
   " - add .vim and .pylint to <repo>/.git/info/exclude
   " - include "args": ["--rcfile", "PATH/TO/.pylint"] in "pylint" object
-
-  " EasyMotion
-  let g:EasyMotion_do_mapping = 0
 
   " UltiSnips
   inoremap <silent> <C-G> <C-R>=UltiSnips#ExpandSnippetOrJump()<cr>
@@ -312,5 +304,12 @@ function! UserConfig()
   " coc
   hi! link CocErrorSign Error
   hi! link CocWarningSign Warning
+
+  " flash.nvim
+  source ~/Prefs/init.lua.vim
+  hi! FlashBackdrop guifg=#5C6370 ctermfg=59
+  hi FlashMatch guifg=#8a6716 guibg=#292b2e
+  hi FlashCurrent guifg=#292b2e guibg=#8a6716 
+  hi FlashLabel gui=bold guifg=#fabd2f
 
 endfunction
