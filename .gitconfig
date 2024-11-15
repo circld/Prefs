@@ -1,5 +1,6 @@
 [include]
     path = ~/git-personal.conf
+    path = ~/delta_themes/themes.gitconfig
 [includeIf "gitdir:~/work/"]
     path = ~/work/git-work.conf
 [alias]
@@ -16,7 +17,7 @@
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvim
-    pager = bat
+    pager = delta
 [color]
     ui = true
     pager = true
@@ -32,3 +33,10 @@
     old = red bold
     new = green bold
     whitespace = red reverse
+[delta]
+    features = villsau
+    side-by-side = true
+[http]
+    sslCAInfo = /path/to/pem.pem
+[init]
+	defaultBranch = main
