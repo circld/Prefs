@@ -8,6 +8,7 @@ function work_layout
   tmux split-window -d -t "notes:0.0" -l 20 -c $notes_dir
   tmux send-keys -t "notes:0.0" 'taskell kanban.md' C-m
   tmux send-keys -t "notes:0.1" 'nvim today.md' C-m
+  tmux rename-window -t notes daily_tasks
 
   tmux split-window -d -t "work:0.0" -l 80 -c $work_dir
 
@@ -155,4 +156,10 @@ function format_sql
     set command (string join " " -- "~/work/tools_exploration/sqlglot/venv/bin/python -m sqlglot" $dialect '$query' ">" '$output_file')
     cat $input_file | read -fz query
     eval $command
+end
+
+function then
+    set last_cmd_args (string split " " $history[1])
+    set new_cmd (string join " " $argv[1] $last_cmd_args[2..])
+    vi $new_cmd
 end
