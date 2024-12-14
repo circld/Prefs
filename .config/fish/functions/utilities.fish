@@ -161,5 +161,5 @@ end
 function then
     set last_cmd_args (string split " " $history[1])
     set new_cmd (string join " " $argv[1] $last_cmd_args[2..])
-    vi $new_cmd
+    eval $new_cmd
 end
