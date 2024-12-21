@@ -42,6 +42,7 @@ function! UserInit()
   Plug 'unisonweb/unison', { 'branch': 'trunk', 'rtp': 'editor-support/vim' }
   Plug 'vmchale/dhall-vim'
   Plug 'folke/flash.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter'
 
 endfunction
 
