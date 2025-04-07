@@ -48,6 +48,12 @@ https://gist.github.com/Arty2/e6e61801531ec5ee1f9f
     position: relative !important;
     height: 1000;
   }
+  #urlbar > .urlbar-input-container > #urlbar-searchmode-switcher {
+    display: none;
+  }
+  #urlbar[focused] > .urlbar-input-container > #urlbar-searchmode-switcher {
+    display: inherit;
+  }
   #urlbar,
   #searchbar .searchbar-textbox {
     font-family: Roboto !important;
