@@ -6,6 +6,7 @@ function work_layout
   tmux new-session -d -s work -c $work_dir
 
   tmux split-window -d -t "notes:0.0" -l 20 -c $notes_dir
+  sleep 1  # allow for new pane to load
   tmux send-keys -t "notes:0.0" 'taskell kanban.md' C-m
   tmux send-keys -t "notes:0.1" 'nvim today.md' C-m
   tmux rename-window -t notes daily_tasks

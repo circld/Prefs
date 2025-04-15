@@ -152,10 +152,10 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: hack
+    # family: hack
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+    # style: Bold Italic
 
   # Point size
   size: 14.0
@@ -440,8 +440,9 @@ live_config_reload: true
 #   - (Windows) powershell
 shell:
   program: /Users/paul.garaud/.nix-profile/bin/fish
-#  args:
-#    - --login
+  # program: /bin/zsh
+  # args:
+  #   - --login
 
 # Startup directory
 #

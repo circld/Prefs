@@ -37,6 +37,7 @@
     features = villsau
     side-by-side = true
 [http]
-    sslCAInfo = /path/to/pem.pem
+    sslCAInfo = /Users/paul.garaud/octane/global-bundle-with-zscaler.pem
+    proactiveAuth = basic
 [init]
 	defaultBranch = main
