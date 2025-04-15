@@ -47,6 +47,5 @@ atuin init fish | source
 # Starship prompt
 starship init fish --print-full-init | source
 
-# nix workaround
-# see https://github.com/NixOS/nix/issues/7914
-launchctl setenv NIX_SSL_CERT_FILE ~/octane/ZscalerRootCertificate-2048-SHA256.crt
+# fzf
+fzf --fish | source

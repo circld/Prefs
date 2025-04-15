@@ -1,0 +1,2 @@
+[terminal]
+shell = { program = "/Users/paul.garaud/.nix-profile/bin/fish" }
