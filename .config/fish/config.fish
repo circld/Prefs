@@ -37,9 +37,6 @@ set fish_function_path $fish_function_path ~/plugin-foreign-env/functions
 # Source Nix setup script
 # see https://github.com/lilyball/nix-env.fish
 
-# directory-based nix shells
-direnv hook fish | source
-
 # atuin magical shell history
 set -gx ATUIN_NOBIND true
 atuin init fish | source
@@ -49,3 +46,6 @@ starship init fish --print-full-init | source
 
 # fzf
 fzf --fish | source
+
+# directory-based nix shells
+direnv hook fish | source
