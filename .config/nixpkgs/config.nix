@@ -16,6 +16,7 @@
         '')
         atuin
         awscli2
+        gcc
         bat
         delta
         direnv
