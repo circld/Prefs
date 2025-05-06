@@ -42,7 +42,7 @@
           ]
         )
         )
-        repgrep
+        ripgrep
         starship
         tldr
         tree

@@ -1,0 +1,5 @@
+command = /Users/paul.garaud/.nix-profile/bin/fish
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = no-cursor
+font-family = "Hasklug Nerd Font Mono"
