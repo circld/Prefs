@@ -7,7 +7,7 @@ set PATH $HOME/.nix-profile/bin                                       \
     "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" \
     $PATH
 set -x NODE_PATH ~/.node_modules_global/lib/node_modules
-set -xg TMPDIR /tmp
+set -gx TMPDIR /tmp
 
 # set SHELL
 set SHELL ~/.nix-profile/bin/fish
@@ -22,14 +22,13 @@ set -x RIPGREP_CONFIG_PATH $HOME/.ripgreprc
 # imports
 source ~/Prefs/.config/fish/aliases.fish
 source ~/Prefs/.config/fish/functions/utilities.fish
-source ~/Prefs/.config/fish/functions/cli_ide.fish
 
 alias vi nvim
 
 # vi-mode
 function fish_vi_cursor
 end
-fish_vi_key_bindings
+fish_vi_key_bindings --no-erase
 
 # Add fenv to path
 set fish_function_path $fish_function_path ~/plugin-foreign-env/functions

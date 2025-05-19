@@ -1,5 +1,9 @@
+# https://github.com/fish-shell/fish-shell/issues/11004
 command = /Users/paul.garaud/.nix-profile/bin/fish
 cursor-style = block
 cursor-style-blink = true
-shell-integration-features = no-cursor
 font-family = "Hasklug Nerd Font Mono"
+quit-after-last-window-closed = true
+macos-option-as-alt = true
+shell-integration = fish
+shell-integration-features = no-cursor
